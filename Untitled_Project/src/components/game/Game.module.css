@@ -1,0 +1,73 @@
+@import '../../vars.css';
+
+.container{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20vh;
+}
+
+.audiocontainer{
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    width: 100%;
+    justify-content: center;
+}
+
+.tracklength{
+    width: 80vw;
+    height: 10px;
+    background-color: var(--soft-grey);
+    margin-top: 70px;
+    margin-inline: 1.5vw;
+}
+
+.trackprogress {
+    height: 100%;
+    background-color: #4caf50; /* Color for the progress indicator */
+    width: 0; /* Initial width of the progress indicator */
+  }
+
+.playbutton{
+    cursor: pointer;
+}
+
+.header{
+    align-self: center;
+    color: var(--soft-grey)
+}
+
+.guesscontainer{
+    align-self: center;
+    display: flex;
+    flex-direction: row;
+    gap: .2em;
+}
+
+.guess{
+    padding-inline: 1em;
+    padding-block:  1em;
+
+}
+
+.subguess{
+    padding-inline: 1em;
+    padding-block:  1em;
+    background-color: #4caf50;
+    font-weight: 1000;
+    color: var(--off-black);
+}
+
+.skipbtn{
+    padding-inline: 2vw;
+    padding-block: 1.2vh;
+    align-self: center;
+    margin-top: 5px;
+    background-color: #4caf50;
+    font-weight: 1000;
+    color: var(--off-black);
+}
+
+.score{
+    position: absolute;
+}
