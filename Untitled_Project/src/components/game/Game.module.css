@@ -52,7 +52,7 @@
 .subguess{
     padding-inline: 1em;
     padding-block:  1em;
-    background-color: var(--primary-color);
+    background-color: var(--lightblue);
     font-weight: 1000;
     color: var(--off-black);
 }
@@ -62,11 +62,12 @@
     padding-block: 1.2vh;
     align-self: center;
     margin-top: 5px;
-    background-color: var(--primary-color);
+    background-color: var(--lightblue);
     font-weight: 1000;
     color: var(--off-black);
 }
 
 .score{
     position: absolute;
+    bottom: 0;
 }

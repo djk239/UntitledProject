@@ -7,7 +7,7 @@
     color: var(--smokewhite);    
     font-size: 2.5rem; 
     border-radius: 5px; 
-    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.35); 
+    text-shadow: 0 2px 5px var(--darkblue); 
     background-color: transparent;
 }
 
@@ -37,8 +37,12 @@
     border-radius: 25px;
     align-self: center;
     background: radial-gradient(circle, var(--smokewhite), var(--lightwhite));
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.35);
-    margin-top: 6em
+    box-shadow: 0 3px 10px var(--richblack);
+    margin-top: 6em;
+}
+
+.bottom{
+    padding-bottom: 2em;
 }
 
 @media(max-width:767px){

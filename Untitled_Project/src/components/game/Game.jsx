@@ -80,7 +80,7 @@ export default function Game({isLoggedIn}) {
   return (
     <div className={styles.container}>
       <h1 className={styles.score}>Score: {score}</h1>
-      <h1 className={styles.header}>Guess the Song</h1>
+      <h1 className={styles.header}>Name the Melody</h1>
       <div className={styles.audiocontainer}>
         <svg
           className={styles.playbutton}

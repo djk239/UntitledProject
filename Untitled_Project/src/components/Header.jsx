@@ -64,7 +64,8 @@ const Header = ({ isLoggedIn, handleLog, handleLogout }) => {
           </svg>
         </motion.div>
       </div>
-      <div className={styles.bar} />
+        <div className={styles.bar} />
+        <div className={styles.bottom}/>
       <AnimatePresence>
         {menuOpen && <Nav isLoggedIn={isLoggedIn} handleLog={handleLog} handleLogout={handleLogout} menuOpen={menuOpen} handleClick={handleClick} />}
       </AnimatePresence>
