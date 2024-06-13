@@ -3,7 +3,7 @@
 .container{
     display: flex;
     flex-direction: column;
-    margin-top: 20vh;
+    margin-top: 5vh;
 }
 
 .audiocontainer{
@@ -47,13 +47,12 @@
 .guess{
     padding-inline: 1em;
     padding-block:  1em;
-
 }
 
 .subguess{
     padding-inline: 1em;
     padding-block:  1em;
-    background-color: #4caf50;
+    background-color: var(--primary-color);
     font-weight: 1000;
     color: var(--off-black);
 }
@@ -63,7 +62,7 @@
     padding-block: 1.2vh;
     align-self: center;
     margin-top: 5px;
-    background-color: #4caf50;
+    background-color: var(--primary-color);
     font-weight: 1000;
     color: var(--off-black);
 }

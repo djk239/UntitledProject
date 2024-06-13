@@ -13,7 +13,6 @@ export default function AutosuggestInput({ guess, setGuess, suggestions, fetchSu
   };
 
   const onSuggestionsClearRequested = () => {
-    setSuggestions([]);
   };
 
   const inputProps = {
@@ -29,7 +28,7 @@ export default function AutosuggestInput({ guess, setGuess, suggestions, fetchSu
       onSuggestionsFetchRequested={onSuggestionsFetchRequested}
       onSuggestionsClearRequested={onSuggestionsClearRequested}
       getSuggestionValue={(suggestion) => suggestion}
-      renderSuggestion={(suggestion) => <div>{suggestion}</div>}
+      renderSuggestion={(suggestion) => <div>{suggestion.title} by - {suggestion.artist}</div>}
       inputProps={inputProps}
       renderInputComponent={renderInputComponent}
       onSuggestionSelected={(event, { suggestion }) => {

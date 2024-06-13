@@ -1,22 +1,18 @@
-.container{
+.container {
+    position: fixed; 
+    background-color: var(--richblack);
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
-    align-content: center;
     justify-content: center;
     overflow: hidden;
-    width: 100%;
+    width: 20%; 
+    height: 95%; 
+    right: 0; 
+    z-index: 9;
 }
 
-.header{
-    position: relative;
-}
 
-.hamburger {
-    margin-left: 40%;
-    position: absolute;
-    cursor: pointer;
-}
 
 .logoutButton {
     margin-left: 40%;
@@ -29,11 +25,29 @@
     color: var(--off-black);
 }
 
+.linkcontainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+    flex-grow: 1;
+    font-size: large;
+
+}
+
+.termscontainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+    gap: 1px;
+    margin-bottom: 10px;
+}
+
 @media(max-width:767px){
-.hamburger{
-    margin-left: 80%;
-}
-.logoutButton{
-    margin-left: 80%;
-}
+    .container {
+        right: 0;
+        width: 55%;
+    }
 }

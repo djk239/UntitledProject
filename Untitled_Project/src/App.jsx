@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import styles from './App.module.css'
 import Header from './components/Header'
 import Footer from './components/Footer'
-import PopupMenu from './components/PopupMenu'
 import Game from './components/game/Game'
 import { getAccessToken, removeTokens } from './api'
 
@@ -18,7 +17,6 @@ function App() {
 
   const handleLog = () => {
     setIsLoggedIn(true);
-    console.log('test22s34232');
   };
 
   const handleLogout = () => {

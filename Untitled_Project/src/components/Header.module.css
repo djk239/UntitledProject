@@ -1,7 +1,61 @@
-.container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #1a1a1a;
-    height: 8%;
+@import '../vars.css';
+
+.title {
+    text-align: center; 
+    margin-top: 1em; 
+    font-family: 'Danfo', sans-serif; 
+    color: var(--smokewhite);    
+    font-size: 2.5rem; 
+    border-radius: 5px; 
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.35); 
+    background-color: transparent;
+}
+
+  
+  .container {
+    position: absolute;
+    right: 0;
+    margin-right: 16vw;
+    z-index: 100;
+    margin-top: 3em;
+  }
+
+.hamburger{
+    right: 0;
+    cursor: pointer;
+  }
+
+.hamburger svg {
+    width: 40px;
+    height: 40px;
+  }
+
+  .bar {
+    position: absolute;
+    width: 70vw;
+    height: 3px;
+    border-radius: 25px;
+    align-self: center;
+    background: radial-gradient(circle, var(--smokewhite), var(--lightwhite));
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.35);
+    margin-top: 6em
+}
+
+@media(max-width:767px){
+    .container {
+        margin-right: 1em;
+        margin-top: 1.8em;
+    }
+    .title{
+        font-size: 1.75rem;
+    }
+
+    .bar{
+        margin-top: 4rem;
+    }
+    .hamburger svg {
+        width: 25px;
+        height: 25px;
+      }
+
 }

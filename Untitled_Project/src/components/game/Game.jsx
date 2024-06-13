@@ -73,7 +73,7 @@ export default function Game({isLoggedIn}) {
   };
 
   const handleSuggestionSelected = (suggestion) => {
-    setGuess(suggestion);
+    setGuess(suggestion.title);
     setSuggestions([]);
   };
 
@@ -107,7 +107,7 @@ export default function Game({isLoggedIn}) {
           onSuggestionSelected={handleSuggestionSelected}
         />
         <motion.button className={styles.subguess} onClick={onSubmitGuess} whileTap={{scale: 0.9}} whileHover={{scale: 1.05}}>
-          -&gt;
+          &gt;
         </motion.button>
       </div>
       <motion.button whileTap={{scale: 0.9}} whileHover={{scale: 1.05}} className={styles.skipbtn} onClick={() => setGuessCounter(guessCounter - 1)}>
