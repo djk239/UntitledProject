@@ -19,9 +19,13 @@ export default function Admin() {
     e.preventDefault();
     try {
       const data = await addSong(title, artist, link, isPlayable);
-      toast.success('Song added successfully!');
+      toast.success('Song added successfully!' , {
+        toastId: 'success add',
+      });
     } catch (error) {
-      toast.error('Error adding song.');
+      toast.error('Error adding song.', {
+        toastId: 'error add', 
+      });
     }
   };
 
@@ -30,9 +34,11 @@ export default function Admin() {
     try {
       const audioSource = await getAudioLink(spotifyLink);
       setPlaylink(audioSource);
-      toast.success('Link retrieved successfully!');
+      toast.success('Link retrieved successfully!', {
+        toastId: 'success get', });
     } catch (error) {
-      toast.error('Error getting link.');
+      toast.error('Error getting link.', {
+        toastId: 'error get', });
     }
   };
 
@@ -89,7 +95,7 @@ export default function Admin() {
         </form>
       </div>
       <Footer />
-      <ToastContainer />
+      <ToastContainer limit={2} />
     </div>
   );
 }

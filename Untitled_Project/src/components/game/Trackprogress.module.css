@@ -1,0 +1,49 @@
+.tracklength {
+    width: 80vw;
+    height: 10px;
+    background-color: var(--soft-grey);
+    margin-top: 70px;
+    margin-inline: 1.5vw;
+    display: flex;
+    overflow: hidden;
+    margin-top: 0px;
+  }
+  
+  .trackprogress {
+    background-color: black; 
+    height: 100%; 
+    margin-right: 2px; 
+    flex-shrink: 0;
+    width: 0; 
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .snippetlengths {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-bottom: 10px; 
+    align-content: center;
+  }
+
+  .incorrect {
+    color: rgb(126, 51, 51);
+  }
+
+  .active {
+    color: var(--smokewhite);
+  }
+
+  .inactive {
+    color: var(--richblack);
+  }
+
+  @media(max-width:767px){
+    .active, .incorrect, .inactive {
+        font-size: medium;
+    }
+}

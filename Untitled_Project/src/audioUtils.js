@@ -1,12 +1,13 @@
-export const playSnippet = (audioRef, songUrl, snippetDuration, setProgress) => {
+export const playSnippet = (audioRef, songUrl, snippetDuration, setProgress, guessCounter) => {
     audioRef.current.src = songUrl;
     audioRef.current.currentTime = 0;
     audioRef.current.volume = 0.1;
     audioRef.current.play();
+    setProgress(0);
   
     const interval = setInterval(() => {
       const currentTime = audioRef.current.currentTime;
-      const progressPercentage = (currentTime / 10) * 100;
+      const progressPercentage = ((6-guessCounter) / 5 ) * 100;
       setProgress(progressPercentage);
   
       if (currentTime >= snippetDuration) {

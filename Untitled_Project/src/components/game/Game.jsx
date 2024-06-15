@@ -5,10 +5,13 @@ import { motion } from "framer-motion"
 import { fetchAccessToken, fetchClip, fetchSuggestions, getAccessToken } from '../../api';
 import { playSnippet } from '../../audioUtils';
 import AutosuggestInput from './AutosuggestInput';
+import Trackprogress from './Trackprogress';
 
-const snippetDurations = [0.1, 0.5, 1, 5, 10]; // Predefined snippet lengths in seconds
+// Predefined snippet lengths in seconds
+const snippetDurations = [0.5, 1, 2.5, 5, 10];
 
 export default function Game({isLoggedIn}) {
+  // Initialize state variables
   const [guess, setGuess] = useState('');
   const [suggestions, setSuggestions] = useState([]);
   const [accessToken, setAccessToken] = useState('');
@@ -19,8 +22,10 @@ export default function Game({isLoggedIn}) {
   const [audioUrl, setAudioUrl] = useState(''); 
   const audioRef = useRef(null);
 
+  // Triggered when the component mounts
   useEffect(() => {
     async function initialize() {
+      // Fetch access token and load a new clip
       const token = await fetchAccessToken();
       setAccessToken(token);
       await loadNewClip();
@@ -28,6 +33,7 @@ export default function Game({isLoggedIn}) {
     initialize();
   }, []);
 
+  // Function to load a new audio clip
   const loadNewClip = async () => {
     const clip = await fetchClip();
     setAudioUrl(clip.url);
@@ -35,29 +41,38 @@ export default function Game({isLoggedIn}) {
     setGuessCounter(5);
   };
 
+  // Triggered when the score or isLoggedIn status changes
   useEffect(() => {
     loadNewClip();
   }, [score, isLoggedIn]);
 
+  // Triggered when the guess counter changes
   useEffect(() => {
     if (guessCounter === 0) {
+      // Load a new clip when the guess counter reaches 0
       loadNewClip();
       setGuessCounter(5);
     }
   }, [guessCounter]);
 
+  // Function to play an audio snippet
   const handlePlaySnippet = () => {
+    // Calculate the snippet duration based on the guess counter
     const snippetDuration = snippetDurations[5 - guessCounter];
-    playSnippet(audioRef, audioUrl, snippetDuration, setProgress);
+    playSnippet(audioRef, audioUrl, snippetDuration, setProgress, guessCounter);
   };
 
+  // Function to submit a guess
   const onSubmitGuess = async () => {
+    // Decrement the guess counter
     setGuessCounter(guessCounter-1);
+    // Reset the guess input
     setGuess('');
 
     try {
+      // Get the access token and send a POST request to check the guess
       const token = getAccessToken();
-      const response = await axios.post('http://192.168.1.173:8000/api/songs/check/', {
+      const response = await axios.post('/api/songs/check/', {
         title: guess,
         id: songID, 
       }, {
@@ -66,14 +81,18 @@ export default function Game({isLoggedIn}) {
         },
       });
       console.log('Guess sent and correct:', response.data);
+      // Increment the score if the guess is correct
       setScore(score+1)
     } catch (error) {
       console.error('Error sending guess or incorrect. Check console for details:', error);
     }
   };
 
+  // Function to handle a suggestion selection
   const handleSuggestionSelected = (suggestion) => {
+    // Update the guess input with the selected suggestion
     setGuess(suggestion.title);
+    // Reset the suggestions list
     setSuggestions([]);
   };
 
@@ -93,9 +112,7 @@ export default function Game({isLoggedIn}) {
           <circle cx="50" cy="50" r="45" fill="#070707" />
           <polygon points="35,25 75,50 35,75" fill="#eeebeb" />
         </svg>
-        <div className={styles.tracklength}>
-          <motion.div className={styles.trackprogress} animate={{ width: `${progress}%` }} />
-        </div>
+          <Trackprogress progress={progress} duration={snippetDurations[5 - guessCounter]} />
         <audio ref={audioRef} />
       </div>
       <div className={styles.guesscontainer}>
@@ -103,6 +120,7 @@ export default function Game({isLoggedIn}) {
           guess={guess}
           setGuess={setGuess}
           suggestions={suggestions}
+          // Fetch suggestions when the input value changes
           fetchSuggestions={(value) => fetchSuggestions(value, accessToken).then(setSuggestions)}
           onSuggestionSelected={handleSuggestionSelected}
         />
