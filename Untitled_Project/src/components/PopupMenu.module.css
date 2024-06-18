@@ -6,11 +6,10 @@
     align-items: center;
     position: absolute;
     align-self: center;
-    padding: 3%;
     border-radius: 15px;
-    background-color: var(--off-black);
+    background: linear-gradient(to top, var(--richblack), #0b0b0e 50%);
+    box-shadow: -5px 10px 10px #eee5e50e; 
     z-index: 100;
-    box-shadow: 0px 0px 12px rgb(25, 25, 25);
   }
 
   .head{
@@ -36,6 +35,9 @@
   .signuplist label {
     display: block;
     margin-bottom: 5px;
+    color: var(--lightwhite);
+    font-weight: 600;
+    font-size: smaller;
   }
   
   .loginlist input,
@@ -56,14 +58,16 @@
   margin: auto;
   width: 85px;
   color:#fff;
-  background-color: #010101;
+  background-color: var(--richblack);
   }
 
   .login{
-    height: 340px;
+    height: 16em;
+    padding: 1em;
   }
   .signup {
-    height: 420px;
+    height: 21em;
+    padding: 1em;
 }
 
 

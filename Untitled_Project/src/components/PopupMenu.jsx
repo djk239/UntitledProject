@@ -16,7 +16,7 @@ const popupVariants = {
         rotate: 0,
         y: 0,
         transition: {
-            duration: 0.5,
+            duration: 0.6,
             ease: "easeOut",
         },
     },
@@ -26,10 +26,16 @@ const popupVariants = {
         rotate: 10,
         y: 50,
         transition: {
-            duration: 0.3,
+            duration: 0.4,
             ease: "easeIn",
         },
     },
+};
+
+const formTransition = {
+    type: "tween",
+    duration: 0.6,
+    ease: "easeInOut",
 };
 
 function PopupMenu({ close, handleLog }) {
@@ -76,6 +82,8 @@ function PopupMenu({ close, handleLog }) {
             initial="hidden"
             animate="visible"
             exit="exit"
+            layout
+            transition={formTransition}
         >
             <form onSubmit={isLoggingin ? handleLogin : handleSignup}>
                 {isLoggingin ? (

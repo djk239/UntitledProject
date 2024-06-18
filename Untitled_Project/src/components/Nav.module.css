@@ -11,6 +11,8 @@
     height: 95%; 
     right: 0; 
     z-index: 9;
+    margin-top: 15px;
+    border-radius: 5px;
 }
 
 
@@ -34,7 +36,19 @@
     gap: 1em;
     flex-grow: 1;
     font-size: large;
+}
 
+.links {
+    color: var(--smokewhite);
+    text-decoration: none;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 10px;
+    margin: 5px;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.774);
 }
 
 .termscontainer{
@@ -44,6 +58,14 @@
     text-align: center;
     gap: 1px;
     margin-bottom: 10px;
+}
+
+.terms{
+    color: var(--darkblue);
+    text-decoration: none;
+    font-weight: 200;
+    font-size: small;   
+    cursor: pointer;
 }
 
 @media(max-width:767px){

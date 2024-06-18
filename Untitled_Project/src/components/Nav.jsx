@@ -20,15 +20,21 @@ function Nav({ isLoggedIn, handleLog, handleLogout, menuOpen, handleClick }) {
       className={styles.container}
     >
       <div className={styles.linkcontainer}>
-        <a onClick={popup}>SignUp / Login</a>
-        <Link to="/leaderboards">Leaderboards</Link>
-        <Link to="/">Melody Mystery</Link>
-        <Link to="/about">About</Link>
+        <motion.p className={styles.links} whileTap={{scale: 0.8}} whileHover={{scale: 1.15}} onClick={popup}>SignUp / Login</motion.p>
+        <motion.div whileTap={{scale: 0.8}} whileHover={{scale: 1.15}}>
+          <Link className={styles.links} to="/leaderboards">Leaderboards</Link>
+        </motion.div>
+        <motion.div whileTap={{scale: 0.8}} whileHover={{scale: 1.15}}>
+          <Link className={styles.links} to="/">Melody Mystery</Link>
+        </motion.div>
+        <motion.div whileTap={{scale: 0.8}} whileHover={{scale: 1.15}}>
+          <Link className={styles.links} to="/about">About</Link>
+        </motion.div>
       </div>
       <div className={styles.termscontainer}>
-        <Link to="/terms">Terms and Conditions</Link>
-        <p>|</p>
-        <Link to="/privacy">Privacy Policy</Link>
+        <Link className={styles.terms} to="/terms">Terms and Conditions</Link>
+        <p className={styles.terms}>|</p>
+        <Link className={styles.terms} to="/privacy">Privacy Policy</Link>
       </div>
       {popupOpen && <PopupMenu close={handleClick} handleLog={handleLog}/>}
     </motion.div>

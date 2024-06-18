@@ -19,12 +19,12 @@ const Trackprogress = ({ progress, duration }) => {
 
   const getClassName = (expectedDuration) => {
     if (duration > expectedDuration) {
-      return styles.incorrect; // Apply active style defined in Trackprogress.module.css
+      return styles.incorrect; 
     } else if (duration === expectedDuration) {
         return styles.active;
     } 
     else {
-      return styles.inactive; // Apply inactive style defined in Trackprogress.module.css
+      return styles.inactive; 
     }
   };
 

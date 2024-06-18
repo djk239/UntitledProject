@@ -7,7 +7,7 @@
     color: var(--smokewhite);    
     font-size: 2.5rem; 
     border-radius: 5px; 
-    text-shadow: 0 2px 5px var(--darkblue); 
+    text-shadow: 0 2px 8px var(--darkblue); 
     background-color: transparent;
 }
 
@@ -32,12 +32,12 @@
 
   .bar {
     position: absolute;
-    width: 70vw;
-    height: 3px;
+    width: 40vw;
+    height: 7px;
     border-radius: 25px;
     align-self: center;
-    background: radial-gradient(circle, var(--smokewhite), var(--lightwhite));
-    box-shadow: 0 3px 10px var(--richblack);
+    background: linear-gradient(to left, var(--smokewhite), var(--lightwhite), var(--smokewhite));
+    box-shadow: 0 10px 10px var(--richblack);
     margin-top: 6em;
 }
 
@@ -48,14 +48,16 @@
 @media(max-width:767px){
     .container {
         margin-right: 1em;
-        margin-top: 1.8em;
+        margin-top: 2.2em;
     }
     .title{
         font-size: 1.75rem;
     }
 
     .bar{
-        margin-top: 4rem;
+        margin-top: 4.5rem;
+        width: 75vw;
+        height: 4px;
     }
     .hamburger svg {
         width: 25px;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Nav from './Nav';
 import styles from './Header.module.css';
 import { motion, AnimatePresence } from "framer-motion";
@@ -9,6 +9,27 @@ const Header = ({ isLoggedIn, handleLog, handleLogout }) => {
   const handleClick = () => {
     setMenuOpen(!menuOpen);
   };
+
+  // Effect to lock/unlock scrolling
+  useEffect(() => {
+    if (menuOpen) {
+      document.documentElement.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
+    } else {
+      document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+    }
+
+    // Cleanup function to reset overflow when component unmounts
+    return () => {
+      document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+    };
+  }, [menuOpen]);
 
   return (
     <>
@@ -21,7 +42,7 @@ const Header = ({ isLoggedIn, handleLog, handleLogout }) => {
           animate={menuOpen ? "open" : "closed"}
         >
           <svg
-            viewBox="0 0 24 24"
+            viewBox="0 0 26 26"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -64,8 +85,8 @@ const Header = ({ isLoggedIn, handleLog, handleLogout }) => {
           </svg>
         </motion.div>
       </div>
-        <div className={styles.bar} />
-        <div className={styles.bottom}/>
+      <div className={styles.bar} />
+      <div className={styles.bottom}/>
       <AnimatePresence>
         {menuOpen && <Nav isLoggedIn={isLoggedIn} handleLog={handleLog} handleLogout={handleLogout} menuOpen={menuOpen} handleClick={handleClick} />}
       </AnimatePresence>
