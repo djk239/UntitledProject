@@ -10,3 +10,9 @@ html{
   overflow-x: hidden;
   background-color: #0b0b0b;
 }
+body {
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+}

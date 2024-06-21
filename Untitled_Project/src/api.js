@@ -80,7 +80,7 @@ export const fetchSuggestions = async (query, accessToken) => {
       );
       
       // Get the response data
-      const { data } = response;
+      const data = response.data; 
       
       // If the response data contains tracks, map the track items to objects with title and artist, and return the array
       if (data.tracks && data.tracks.items) {

@@ -6,6 +6,7 @@ import { fetchAccessToken, fetchClip, fetchSuggestions, getAccessToken } from '.
 import { playSnippet } from '../../audioUtils';
 import AutosuggestInput from './AutosuggestInput';
 import Trackprogress from './Trackprogress';
+import ShareButton from './ShareButton';
 
 // Predefined snippet lengths in seconds
 const snippetDurations = [0.5, 1, 2.5, 5, 10];
@@ -99,21 +100,17 @@ export default function Game({isLoggedIn}) {
   return (
     <div className={styles.container}>
       <h1 className={styles.score}>Score: {score}</h1>
-      <h1 className={styles.header}>Name the Melody</h1>
       <div className={styles.audiocontainer}>
-        <svg
-          className={styles.playbutton}
-          onClick={handlePlaySnippet}
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 100 100"
-          width="100"
-          height="100"
-        >
-          <circle cx="50" cy="50" r="45" fill="#070707" />
-          <polygon points="35,25 75,50 35,75" fill="#eeebeb" />
-        </svg>
-          <Trackprogress progress={progress} duration={snippetDurations[5 - guessCounter]} />
+        <Trackprogress progress={progress} duration={snippetDurations[5 - guessCounter]} />
         <audio ref={audioRef} />
+      </div>
+      <div className={styles.playcontainer}>
+        <motion.button className={styles.playbtn} onClick={handlePlaySnippet} whileTap={{scale: 0.9}} whileHover={{scale: 1.05}}>
+          Play
+        </motion.button>
+        <motion.button whileTap={{scale: 0.9}} whileHover={{scale: 1.05}} className={styles.skipbtn} onClick={() => setGuessCounter(guessCounter - 1)}>
+          Skip
+        </motion.button>
       </div>
       <div className={styles.guesscontainer}>
       <AutosuggestInput
@@ -128,9 +125,7 @@ export default function Game({isLoggedIn}) {
           &gt;
         </motion.button>
       </div>
-      <motion.button whileTap={{scale: 0.9}} whileHover={{scale: 1.05}} className={styles.skipbtn} onClick={() => setGuessCounter(guessCounter - 1)}>
-        Skip
-      </motion.button>
+      <ShareButton />
     </div>
   );
 }

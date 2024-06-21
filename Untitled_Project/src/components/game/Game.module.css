@@ -8,34 +8,19 @@
 
 .audiocontainer{
     display: flex;
-    flex-direction: row;
     margin: auto;
     width: 100%;
     justify-content: center;
     margin-top: 4vh;
 }
 
-.tracklength{
-    width: 80vw;
-    height: 10px;
-    background-color: var(--soft-grey);
-    margin-top: 70px;
-    margin-inline: 1.5vw;
-}
-
-.trackprogress {
-    height: 100%;
-    background-color: #4caf50; /* Color for the progress indicator */
-    width: 0; /* Initial width of the progress indicator */
-  }
-
-.playbutton{
-    cursor: pointer;
-}
-
-.header{
-    align-self: center;
-    color: var(--soft-grey)
+.playcontainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 1vh;
+    margin-bottom: 4vh;
+    gap: 1vw;
 }
 
 .guesscontainer{
@@ -63,9 +48,32 @@
     padding-block: 1.2vh;
     align-self: center;
     margin-top: 5px;
-    background-color: var(--lightblue);
-    font-weight: 1000;
-    color: var(--off-black);
+    background-color: var(--darkblue);
+    font-weight: 100;
+    color: var(--lightwhite);
+    text-shadow: -2px 3px 2px var(--richblack); 
+    width: 8em;
+    height: 2.5em;
+    border-radius: 0 100px 100px 0;
+    font-family: 'Danfo', sans-serif; 
+    font-size: x-large;
+}
+
+
+.playbtn{
+    padding-inline: 2vw;
+    padding-block: 1.2vh;
+    align-self: center;
+    margin-top: 5px;
+    background-color: var(--darkblue);
+    font-weight: 100;
+    color: var(--lightwhite);
+    text-shadow: -2px 3px 2px var(--richblack); 
+    width: 8em;
+    height: 2.5em;
+    border-radius: 100px 0 0px 100px;
+    font-family: 'Danfo', sans-serif; 
+    font-size: x-large;
 }
 
 .score{
