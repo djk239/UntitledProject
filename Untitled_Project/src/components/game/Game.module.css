@@ -32,15 +32,21 @@
 
 .guess{
     padding-inline: 1em;
-    padding-block:  1em;
+    padding-block:  1.05em;
+    background-color: var(--smokewhite);
+    width: 15rem;
+    border-radius: 10px 0 0 10px;
 }
 
 .subguess{
     padding-inline: 1em;
     padding-block:  1em;
-    background-color: var(--lightblue);
+    background-color: var(--darkblue);
     font-weight: 1000;
-    color: var(--off-black);
+    color: var(--lightwhite);
+    font-weight: 800;
+    text-shadow: 2px 3px 3px var(--richblack);
+    border-radius: 0 10px 10px 0px; 
 }
 
 .skipbtn{
@@ -57,6 +63,7 @@
     border-radius: 0 100px 100px 0;
     font-family: 'Danfo', sans-serif; 
     font-size: x-large;
+    box-shadow: 5px 1px 20px var(--richblack);
 }
 
 
@@ -74,9 +81,43 @@
     border-radius: 100px 0 0px 100px;
     font-family: 'Danfo', sans-serif; 
     font-size: x-large;
+    box-shadow: -5px 1px 20px var(--richblack);
 }
 
 .score{
-    position: absolute;
-    bottom: 0;
+    align-self: center;
+    font-size: .8rem;
+    color: var(--lightblue);
+    font-weight: 600;
+    text-shadow: 0px 2px 1px var(--richblack);
+}
+
+.guesses{
+    margin-left: 12vw;
+    margin-top: 5px;
+    font-size: 1rem;
+    color: var(--lightblue);
+    font-weight: 800;
+    text-shadow: 0px 3px 2px var(--richblack);
+
+}
+
+.tagline{
+    align-self: center;
+    color: var(--lightblue);
+    text-align: center;
+    font-weight: 800;
+    font-size: 1.5rem;
+    text-shadow: 5px 8px 6px var(--richblack);
+    
+}
+
+@media(max-width:767px){
+    .guesses{
+        font-size: .5rem;
+    }
+
+    .score{
+        font-size: .5rem;
+    }
 }

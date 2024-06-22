@@ -7,10 +7,11 @@
     display: flex;
     overflow: hidden;
     margin-top: 0px;
+    box-shadow: 0 -1px 8px 8px var(--richblack);
   }
   
   .trackprogress {
-    background-color: black; 
+    background-color: var(--lightblue); 
     height: 100%; 
     margin-right: 2px; 
     flex-shrink: 0;
@@ -31,15 +32,18 @@
   }
 
   .incorrect {
-    color: rgb(126, 51, 51);
+    color: rgb(88, 8, 8);
+    text-shadow: 0 3px 2px var(--richblack);
   }
 
   .active {
     color: var(--smokewhite);
+    text-shadow: 2px 2px 2px var(--darkblue);
   }
 
   .inactive {
     color: var(--richblack);
+    opacity: 0;
   }
 
   @media(max-width:767px){

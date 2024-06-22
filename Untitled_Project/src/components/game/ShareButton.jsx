@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import styles from './GamePopup.module.css';
 
 export default function ShareButton() {
   const shareData = useMemo(() => ({
@@ -19,7 +20,7 @@ export default function ShareButton() {
   };
 
   return (
-    <button onClick={handleShare} aria-label="Share your guess">
+    <button className={styles.button} onClick={handleShare} aria-label="Share your guess">
       Share
     </button>
   );

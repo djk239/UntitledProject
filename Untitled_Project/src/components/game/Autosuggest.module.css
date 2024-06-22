@@ -5,8 +5,8 @@
   .suggestionsContainer {
     position: absolute;
     z-index: 5;
-    background-color: white;
-    border: 1px solid #ccc;
+    background-color: var(--smokewhite);
+    border: 1px solid  var(--richblack);
     width: 100%;
     max-height: 200px;
     overflow-y: auto;
@@ -21,5 +21,24 @@
   }
   
   .suggestionHighlighted {
-    background-color: #ddd;
+    background-color: var(--darkblue);
   }
+
+  /* Scrollbar styles for WebKit browsers (Chrome, Safari) */
+.suggestionsContainer::-webkit-scrollbar {
+  width: 12px; /* Adjust the width as needed */
+}
+
+.suggestionsContainer::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Background of the scrollbar track */
+}
+
+.suggestionsContainer::-webkit-scrollbar-thumb {
+  background-color: #888; /* Color of the scrollbar thumb */
+  border-radius: 10px; /* Round the corners of the scrollbar thumb */
+  border: 3px solid #f1f1f1; /* Adds space around the scrollbar thumb */
+}
+
+.suggestionsContainer::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* Color when hovering over the scrollbar thumb */
+}

@@ -1,12 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styles from './Game.module.css';
 import axios from 'axios';
-import { motion } from "framer-motion"
+import { AnimatePresence,motion } from "framer-motion"
 import { fetchAccessToken, fetchClip, fetchSuggestions, getAccessToken } from '../../api';
 import { playSnippet } from '../../audioUtils';
 import AutosuggestInput from './AutosuggestInput';
 import Trackprogress from './Trackprogress';
-import ShareButton from './ShareButton';
+import GamePopup from './GamePopup';
 
 // Predefined snippet lengths in seconds
 const snippetDurations = [0.5, 1, 2.5, 5, 10];
@@ -21,6 +21,12 @@ export default function Game({isLoggedIn}) {
   const [progress, setProgress] = useState(0);
   const [score, setScore] = useState(0);
   const [audioUrl, setAudioUrl] = useState(''); 
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupData, setPopupData] = useState({
+    guessesTaken: 0,
+    correctTitle: '',
+    correctArtist: '',
+  });
   const audioRef = useRef(null);
 
   // Triggered when the component mounts
@@ -40,21 +46,26 @@ export default function Game({isLoggedIn}) {
     setAudioUrl(clip.url);
     setSongID(clip.id);
     setGuessCounter(5);
+    setPopupData({
+      guessesTaken: 0,
+      correctTitle: '',
+      correctArtist: '',
+    });
   };
 
   // Triggered when the score or isLoggedIn status changes
   useEffect(() => {
-    loadNewClip();
-  }, [score, isLoggedIn]);
+    setGuessCounter(5);
+  }, [score, isLoggedIn]);  
 
   // Triggered when the guess counter changes
   useEffect(() => {
     if (guessCounter === 0) {
-      // Load a new clip when the guess counter reaches 0
-      loadNewClip();
-      setGuessCounter(5);
+      // Show Popup when guesses reach 0
+      setShowPopup(true);
+
     }
-  }, [guessCounter]);
+  }, [guessCounter]);  
 
   // Function to play an audio snippet
   const handlePlaySnippet = () => {
@@ -73,7 +84,7 @@ export default function Game({isLoggedIn}) {
     try {
       // Get the access token and send a POST request to check the guess
       const token = getAccessToken();
-      const response = await axios.post('/api/songs/check/', {
+      const response = await axios.post('http://192.168.1.173:8000/api/songs/check/', {
         title: guess,
         id: songID, 
       }, {
@@ -82,12 +93,23 @@ export default function Game({isLoggedIn}) {
         },
       });
       console.log('Guess sent and correct:', response.data);
-      // Increment the score if the guess is correct
       setScore(score+1)
+      setShowPopup(true);
+      setPopupData({
+        guessesTaken: 6 - guessCounter,
+        correctTitle: response.data.song.title,
+        correctArtist: response.data.song.artist,
+      });
     } catch (error) {
       console.error('Error sending guess or incorrect. Check console for details:', error);
     }
   };
+
+  const handleNextBtn = () => { 
+    setShowPopup(false);
+    loadNewClip();
+    setGuessCounter(5);
+  }
 
   // Function to handle a suggestion selection
   const handleSuggestionSelected = (suggestion) => {
@@ -99,11 +121,13 @@ export default function Game({isLoggedIn}) {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.score}>Score: {score}</h1>
+      <h1 className={styles.tagline}>Heard this one before?</h1>
       <div className={styles.audiocontainer}>
-        <Trackprogress progress={progress} duration={snippetDurations[5 - guessCounter]} />
+        <Trackprogress progress={progress} duration={snippetDurations[5 - guessCounter]} guessesRemaining={guessCounter} />
         <audio ref={audioRef} />
       </div>
+      <p className={styles.guesses}>Guesses Remaining: {guessCounter}</p>
+      <p className={styles.score}>Score: {score}</p>
       <div className={styles.playcontainer}>
         <motion.button className={styles.playbtn} onClick={handlePlaySnippet} whileTap={{scale: 0.9}} whileHover={{scale: 1.05}}>
           Play
@@ -125,7 +149,16 @@ export default function Game({isLoggedIn}) {
           &gt;
         </motion.button>
       </div>
-      <ShareButton />
+      <AnimatePresence>
+        {showPopup && (
+            <GamePopup
+              guessesTaken={popupData.guessesTaken}
+              correctTitle={popupData.correctTitle}
+              correctArtist={popupData.correctArtist}
+              handleNextBtn={handleNextBtn}
+            />
+        )}
+      </AnimatePresence>
     </div>
   );
 }
