@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import styles from './GamePopup.module.css';
+import { motion } from "framer-motion"
 
 export default function ShareButton() {
   const shareData = useMemo(() => ({
@@ -20,8 +21,8 @@ export default function ShareButton() {
   };
 
   return (
-    <button className={styles.button} onClick={handleShare} aria-label="Share your guess">
+    <motion.button className={styles.button} onClick={handleShare} whileTap={{scale: 0.9}} whileHover={{scale: 1.05}} aria-label="Share your guess">
       Share
-    </button>
+    </motion.button>
   );
 }

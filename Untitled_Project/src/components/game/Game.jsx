@@ -7,12 +7,14 @@ import { playSnippet } from '../../audioUtils';
 import AutosuggestInput from './AutosuggestInput';
 import Trackprogress from './Trackprogress';
 import GamePopup from './GamePopup';
+import {prompts} from './prompts';  
 
 // Predefined snippet lengths in seconds
 const snippetDurations = [0.5, 1, 2.5, 5, 10];
 
 export default function Game({isLoggedIn}) {
   // Initialize state variables
+  const [prompt, setPrompt] = useState(prompts[Math.floor(Math.random() * prompts.length)]);
   const [guess, setGuess] = useState('');
   const [suggestions, setSuggestions] = useState([]);
   const [accessToken, setAccessToken] = useState('');
@@ -45,7 +47,6 @@ export default function Game({isLoggedIn}) {
     const clip = await fetchClip();
     setAudioUrl(clip.url);
     setSongID(clip.id);
-    setGuessCounter(5);
     setPopupData({
       guessesTaken: 0,
       correctTitle: '',
@@ -109,7 +110,8 @@ export default function Game({isLoggedIn}) {
     setShowPopup(false);
     loadNewClip();
     setGuessCounter(5);
-  }
+    setPrompt(prompts[Math.floor(Math.random() * prompts.length)]);
+  };
 
   // Function to handle a suggestion selection
   const handleSuggestionSelected = (suggestion) => {
@@ -121,10 +123,10 @@ export default function Game({isLoggedIn}) {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.tagline}>Heard this one before?</h1>
+      <motion.h1 className={styles.tagline} key={prompt} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.5 }} exit={{ opacity: 0 }}>{prompt}</motion.h1>
       <div className={styles.audiocontainer}>
         <Trackprogress progress={progress} duration={snippetDurations[5 - guessCounter]} guessesRemaining={guessCounter} />
-        <audio ref={audioRef} />
+        <audio ref={audioRef} playsInline preload='none' />
       </div>
       <p className={styles.guesses}>Guesses Remaining: {guessCounter}</p>
       <p className={styles.score}>Score: {score}</p>

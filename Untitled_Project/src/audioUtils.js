@@ -46,11 +46,13 @@ export const playSnippet = (audioRef, songUrl, snippetDuration, setProgress, gue
 
   /**
    * This timeout function ensures that the audio playback is paused and the progress is reset after the specified snippet duration.
+   * Sets src to empty, disabling lockscreen controls
    * It also clears the interval function to prevent any further updates.
    * The timeout is set to the snippet duration in milliseconds, ensuring that the playback is paused at the correct time.
    */
   setTimeout(() => {
     audioRef.current.pause();
+    audioRef.current.src = '';
     clearInterval(interval);
     setProgress(0);
   }, snippetDuration * 1000);

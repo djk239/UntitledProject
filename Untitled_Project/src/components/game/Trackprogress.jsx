@@ -44,6 +44,10 @@ const Trackprogress = ({ progress, duration, guessesRemaining }) => {
 
   return (
     <div className={styles.container}>
+      <div className={styles.lencontainer}>
+        <h2>0</h2>
+        <h2>10</h2>
+      </div>
       <div className={styles.snippetlengths}>
         {[0.5, 1, 2.5, 5, 10].map((time, index) => (
           <React.Fragment key={index}>

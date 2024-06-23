@@ -1,7 +1,8 @@
 .container {
     position: fixed; 
-    background: linear-gradient(to top, var(--richblack), #0b0b0e, var(--richblack));
-    box-shadow: -10px 10px 10px #04030f; 
+    background: linear-gradient(to top, var(--richblack), #242434, var(--richblack));
+    box-shadow: -5px 5px 10px var(--richblack);
+    border: var(--richblack) 10px solid; 
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -13,19 +14,6 @@
     z-index: 9;
     margin-top: 15px;
     border-radius: 5px;
-}
-
-
-
-.logoutButton {
-    margin-left: 40%;
-    position: absolute;
-    cursor: pointer;
-    width: 4vw;
-    height: 4vh;
-    background-color: #4caf50;
-    font-weight: 1000;
-    color: var(--off-black);
 }
 
 .linkcontainer {
@@ -40,6 +28,7 @@
 
 .links {
     color: var(--smokewhite);
+    text-shadow: var(--richblack) 1px 3px 8px;
     text-decoration: none;
     font-weight: 700;
     cursor: pointer;

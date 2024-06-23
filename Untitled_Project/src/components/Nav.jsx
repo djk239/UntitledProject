@@ -20,8 +20,8 @@ function Nav({ isLoggedIn, handleLog, handleLogout, menuOpen, handleClick }) {
       className={styles.container}
     >
       <div className={styles.linkcontainer}>
-        <motion.p className={styles.links} whileTap={{scale: 0.8}} whileHover={{scale: 1.15}} onClick={popup}>SignUp / Login</motion.p>
-        <motion.div whileTap={{scale: 0.8}} whileHover={{scale: 1.15}}>
+        <motion.p className={styles.links} whileTap={{scale: 0.8}} whileHover={{scale: 1.25}} onClick={popup}>SignUp / Login</motion.p>
+        <motion.div whileTap={{scale: 0.8}} whileHover={{scale: 1.2}}>
           <Link className={styles.links} to="/leaderboards">Leaderboards</Link>
         </motion.div>
         <motion.div whileTap={{scale: 0.8}} whileHover={{scale: 1.15}}>

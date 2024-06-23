@@ -19,7 +19,7 @@ export default function GamePopup({ guessesTaken, correctTitle, correctArtist, h
                 <p>{correctTitle}</p>
                 <p>{correctArtist}</p>
                 <div className={styles.buttonWrapper}>
-                  <button className={styles.button} onClick={handleNextBtn}>Next</button>
+                  <motion.button className={styles.button} onClick={handleNextBtn} whileTap={{scale: 0.9}} whileHover={{scale: 1.05}}>Next</motion.button>
                   <ShareButton />
                 </div>
             </motion.div>
@@ -37,7 +37,7 @@ export default function GamePopup({ guessesTaken, correctTitle, correctArtist, h
         >
                 <h2>Incorrect</h2>
                 <p>Sorry, maybe it'll come up again.</p>
-                <button className={styles.button} onClick={handleNextBtn}>Try Again</button>
+                <motion.button className={styles.button} onClick={handleNextBtn} whileTap={{scale: 0.9}} whileHover={{scale: 1.05}}>Try Again</motion.button>
         </motion.div>
       </div>
     );

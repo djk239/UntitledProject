@@ -46,8 +46,29 @@
     opacity: 0;
   }
 
+  .lencontainer {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    gap: 70vw;
+    align-self: center;
+    margin-top: 30px;
+  }
+
+  .lencontainer h2{
+    color: var(--smokewhite);
+    font-size: x-small;
+    text-shadow: -2px 2px 3px var(--richblack);
+  }
+
   @media(max-width:767px){
     .active, .incorrect, .inactive {
         font-size: medium;
+    }
+    .lencontainer {
+      margin-top: 2vh;
+    }
+    .lencontainer h2 {
+      font-size: xx-small;
     }
 }
