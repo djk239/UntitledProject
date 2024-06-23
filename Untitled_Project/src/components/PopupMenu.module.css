@@ -7,13 +7,14 @@
     position: absolute;
     align-self: center;
     border-radius: 15px;
-    background: linear-gradient(to top, var(--richblack), #0b0b0e 50%);
+    background: radial-gradient(circle at bottom left, var(--richblack), #0e0e1a, var(--richblack));
     box-shadow: -5px 10px 10px #eee5e50e; 
     z-index: 100;
   }
 
   .head{
-    color: var(--off-white);
+    color: var(--smokewhite);
+    text-shadow: var(--darkblue) -1px 1px 2px;
     
 }
   
@@ -29,6 +30,8 @@
     margin-top: 20px;
     color: var(--soft-grey);
     margin-bottom: 15px;
+    text-shadow: var(--richblack) -1px 1px 2px;
+
   }
   
   .loginlist label,
@@ -57,18 +60,54 @@
   padding: 2%;
   margin: auto;
   width: 85px;
-  color:#fff;
-  background-color: var(--richblack);
+  color:var(--lightwhite);
+  background-color: var(--darkblue);
+  border: 2px solid #16162c;
+  box-shadow: 0 2px 5px var(--richblack);
+  text-shadow: var(--richblack) -1px 1px 2px;
+  font-weight: 500;
   }
 
   .login{
-    height: 16em;
+    max-height: 20em;
     padding: 1em;
   }
   .signup {
-    height: 21em;
+    
+    max-height: 29em;
     padding: 1em;
 }
 
+.input{
+    border-radius: 8px;
+    background: linear-gradient(to top, var(--smokewhite), var(--lightwhite) 50%);
+    color: var(--richblack);
+    outline: none;
+}
 
+.input::placeholder{
+  color: #333030;
+}
+
+input:focus{
+  border: 3px solid var(--darkblue);
+}
+
+.inputError{
+  border: 3px solid var(--deepred);
+}
+
+.error{
+  color: var(--deepred);
+  font-size: smaller;
+  font-weight: 600;
+  text-shadow: none
+
+}
+
+@media(max-width:767px){
+  .container{
+    position: absolute;
+  }
+}
 
