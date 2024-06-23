@@ -38,6 +38,8 @@
     position: relative;
     overflow: hidden;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.774);
+    font-family: "Alegreya Sans SC", sans-serif;
+    font-size: larger;
 }
 
 .termscontainer{
