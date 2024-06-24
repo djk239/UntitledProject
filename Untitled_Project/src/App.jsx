@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react'
 import styles from './App.module.css'
-import Header from './components/Header'
-import Footer from './components/Footer'
-import Game from './components/game/Game'
+import Admin from './components/adminpanel/Admin.jsx';
+import GamePage from './components/game/GamePage'
 import { getAccessToken, removeTokens } from './api'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Leaderboard from './components/leaderboard/Leaderboard.jsx';
 
 function App() {
 
@@ -25,13 +26,14 @@ function App() {
   };
 
   return (
-    <div className={styles.App}>
-      <Header isLoggedIn={isLoggedIn} handleLog={handleLog} handleLogout={handleLogout}/>
-      <div className={styles.content}>
-        <Game isLoggedIn={isLoggedIn}/>
-      </div>
-      <Footer />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<GamePage isLoggedIn={isLoggedIn} handleLog={handleLog} handleLogout={handleLogout}/>} />
+        <Route path="/admin" element={<Admin />} />
+        <Route path="/leaderboards" element={<Leaderboard />} />
+      </Routes>
+    </Router>
+
   )
 }
 

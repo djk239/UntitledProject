@@ -1,0 +1,67 @@
+@import '../../vars.css';
+
+.container{
+    display: flex;
+    flex-direction: column;
+    background: radial-gradient(circle at bottom left, var(--richblack), #15151d, var(--richblack));
+    width:  100vw;
+    height: 100vh;
+    overflow-x: hidden;
+    position: fixed;
+
+}
+
+.content{
+    margin-top: 3vh;
+    flex-grow: 1;
+    align-self: center;
+}
+
+.leaderboard{
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(45deg, var(--richblack), #191820, var(--richblack));
+    border: #15151d 3px solid;
+    box-shadow: -2px 2px 5px #19182096;
+    max-width: 80vw;
+    min-width: 50vw;
+    height: 60vh;
+    border-radius: 15px;
+    text-align: center;
+    color: var(--smokewhite);
+}
+
+.title{
+    margin-top: .5em;
+    padding: .5em;
+}
+
+.table{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 25px;
+}
+
+.others{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: var(--lightwhite);
+
+}
+
+.bar{
+    width: .3em;
+    height: 95%;
+    border-radius: 5px;
+    background-color: var(--smokewhite);
+    align-self: center;
+}
+
+.self{
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    color: var(--lightwhite);
+}
