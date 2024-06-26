@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import styles from './App.module.css'
+import Home from './components/homepage/homepage.jsx';
 import Admin from './components/adminpanel/Admin.jsx';
 import GamePage from './components/game/GamePage'
 import { getAccessToken, removeTokens } from './api'
@@ -28,9 +29,10 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<GamePage isLoggedIn={isLoggedIn} handleLog={handleLog} handleLogout={handleLogout}/>} />
+        <Route path="/" element={<Home />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/leaderboards" element={<Leaderboard isLoggedIn={isLoggedIn} handleLog={handleLog} handleLogout={handleLogout} />} />
+        <Route path="/melodymystery" element={<GamePage isLoggedIn={isLoggedIn} handleLog={handleLog} handleLogout={handleLogout}/>}  />
       </Routes>
     </Router>
 
