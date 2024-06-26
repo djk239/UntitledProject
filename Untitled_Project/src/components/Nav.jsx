@@ -4,7 +4,7 @@ import PopupMenu from './PopupMenu';
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from 'react-router-dom';
 
-function Nav({ isLoggedIn, handleLog, handleLogout, menuOpen, handleClick }) {
+function Nav( {isLoggedIn, handleLog, handleLogout, menuOpen, handleClick }) {
   const [popupOpen, setPopupOpen] = useState(false);  
 
   const popup = () => {

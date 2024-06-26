@@ -42,9 +42,10 @@ const formTransition = {
     ease: "easeInOut",
 };
 
-function PopupMenu({ close, handleLog }) {
+function PopupMenu({close, handleLog} ) {
     const [isLoggingin, setisLoggingin] = useState(true);
 
+    console.log(typeof handleLog)
     const loginFormik = useFormik({
         initialValues: {
             username: "",

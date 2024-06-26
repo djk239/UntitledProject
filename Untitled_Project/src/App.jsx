@@ -30,7 +30,7 @@ function App() {
       <Routes>
         <Route path="/" element={<GamePage isLoggedIn={isLoggedIn} handleLog={handleLog} handleLogout={handleLogout}/>} />
         <Route path="/admin" element={<Admin />} />
-        <Route path="/leaderboards" element={<Leaderboard />} />
+        <Route path="/leaderboards" element={<Leaderboard isLoggedIn={isLoggedIn} handleLog={handleLog} handleLogout={handleLogout} />} />
       </Routes>
     </Router>
 

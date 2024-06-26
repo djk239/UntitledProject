@@ -3,7 +3,7 @@ import styles from './Game.module.css';
 import axios from 'axios';
 import { AnimatePresence,motion } from "framer-motion"
 import { fetchAccessToken, fetchClip, fetchSuggestions, getAccessToken } from '../../api';
-import { playSnippet } from '../../audioUtils';
+import { playFull, playSnippet } from '../../audioUtils';
 import AutosuggestInput from './AutosuggestInput';
 import Trackprogress from './Trackprogress';
 import GamePopup from './GamePopup';
@@ -101,6 +101,7 @@ export default function Game({isLoggedIn}) {
         correctTitle: response.data.song.title,
         correctArtist: response.data.song.artist,
       });
+      playFull(audioRef, audioUrl);
     } catch (error) {
       console.error('Error sending guess or incorrect. Check console for details:', error);
     }
@@ -111,6 +112,7 @@ export default function Game({isLoggedIn}) {
     loadNewClip();
     setGuessCounter(5);
     setPrompt(prompts[Math.floor(Math.random() * prompts.length)]);
+    audioRef.current.pause();
   };
 
   // Function to handle a suggestion selection

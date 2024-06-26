@@ -289,3 +289,49 @@ export const removeTokens = () => {
   localStorage.removeItem('accessToken');
   localStorage.removeItem('refreshToken');
 };
+
+export const fetchTopScores = async () => {
+    try {
+        // Get the access token from local storage
+        const token = getAccessToken();
+        
+        // Make a GET request to the API to fetch a random song clip
+        const response = await axios.get(`${API_BASE_URL}/api/top-scores/`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        
+        // Return the data of the fetched song clip
+        console.log(response.data);     
+        return response.data;
+    } catch (error) {
+        // Log the error and throw it again to handle it in the caller function
+        console.error('Error fetching data:', error);
+        throw error;
+    }
+  };
+
+
+  export const fetchMyScore = async () => {
+    try {
+        // Get the access token from local storage
+        const token = getAccessToken();
+        
+        // Make a GET request to the API to fetch a random song clip
+        const response = await axios.get(`${API_BASE_URL}/api/user-score/`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        
+        // Return the data of the fetched song clip
+        console.log(response.data);     
+        return response.data;
+    } catch (error) {
+        // Log the error and throw it again to handle it in the caller function
+        console.error('Error fetching data:', error);
+        throw error;
+    }
+  };
+  

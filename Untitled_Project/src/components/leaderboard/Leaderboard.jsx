@@ -2,13 +2,19 @@ import React from 'react'
 import Header from '../Header'
 import Footer from '../Footer'
 import styles from './Leaderboard.module.css'
+import { fetchMyScore, fetchTopScores } from '../../api'
 
-export default function Leaderboard() {
-
+export default function Leaderboard({isLoggedIn, handleLog, handleLogout}) {
+    console.log(typeof handleLog)
+    const loadtop10 = async () => {
+        const clip = await fetchTopScores();
+        console.log(clip);
+      };
+    
     const headersArray = Array.from({ length: 10 }, (_, index) => `${index + 1}. Player `);
   return (
     <div className={styles.container} >
-        <Header />
+        <Header isLoggedIn={isLoggedIn} handleLog={handleLog} handleLogout={handleLogout} />
         <div className={styles.content}>
             <div className={styles.leaderboard}>
                 <h1 className={styles.title}>Leaderboard</h1>
@@ -24,6 +30,7 @@ export default function Leaderboard() {
                         <h2>You</h2>
                         <p>{headersArray[0]}</p>
                     </div>
+                    <button onClick={loadtop10}>CLICKKKKK</button>
                 </div>
             </div>
         </div>

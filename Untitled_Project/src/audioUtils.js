@@ -57,3 +57,10 @@ export const playSnippet = (audioRef, songUrl, snippetDuration, setProgress, gue
     setProgress(0);
   }, snippetDuration * 1000);
 };
+
+export const playFull = (audioRef, songUrl) => {
+  audioRef.current.src = songUrl;
+  audioRef.current.currentTime = 0;
+  audioRef.current.volume = 0.1;
+  audioRef.current.play();
+}
