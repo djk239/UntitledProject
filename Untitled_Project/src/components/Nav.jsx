@@ -44,7 +44,7 @@ function Nav({close}) {
         <p className={styles.terms}>|</p>
         <Link className={styles.terms} to="/privacy">Privacy Policy</Link>
       </div>
-      {popupOpen && <PopupMenu close={close} handleLog={handleLog}/>}
+      {popupOpen && <PopupMenu close={close}/>}
     </motion.div>
   );
 }
