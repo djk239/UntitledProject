@@ -25,15 +25,19 @@
     box-shadow: -2px 2px 5px #19182096;
     max-width: 80vw;
     min-width: 50vw;
-    height: 60vh;
+    height: 75vh;
     border-radius: 15px;
     text-align: center;
     color: var(--smokewhite);
+    padding: 1em;
+    margin-bottom: 2.5em;
 }
 
 .title{
     margin-top: .5em;
     padding: .5em;
+    font-family: "Alegreya Sans SC", sans-serif;
+    font-size: x-large;
 }
 
 .table{
@@ -46,7 +50,7 @@
 .others{
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 1px;
     color: var(--lightwhite);
 
 }
@@ -64,4 +68,22 @@
     flex-direction: column;
     gap: 2em;
     color: var(--lightwhite);
+}
+
+.columnTitle{
+    font-family: "Alegreya Sans SC", sans-serif;
+    font-size: x-large;
+    margin-top: .5em;
+}
+
+.error{
+    color: var(--deepred);
+    font-size: large;
+}
+
+.players{
+    font-family: "Alegreya Sans SC", sans-serif;
+    font-size: 1em;
+    margin-top: .5em;
+    padding: .5em;
 }
