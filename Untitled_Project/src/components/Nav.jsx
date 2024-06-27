@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Link } from 'react-router-dom';
 import { useAuth } from '../AuthContext';
 
-function Nav() {
+function Nav({close}) {
   const [popupOpen, setPopupOpen] = useState(false);  
   const { isLoggedIn, handleLog, handleLogout } = useAuth();
 
@@ -22,7 +22,10 @@ function Nav() {
       className={styles.container}
     >
       <div className={styles.linkcontainer}>
+
+        {!isLoggedIn && 
         <motion.p className={styles.links} whileTap={{scale: 0.8}} whileHover={{scale: 1.25}} onClick={popup}>SignUp / Login</motion.p>
+        }
         <motion.div whileTap={{scale: 0.8}} whileHover={{scale: 1.2}}>
           <Link className={styles.links} to="/leaderboards">Leaderboards</Link>
         </motion.div>
@@ -32,13 +35,16 @@ function Nav() {
         <motion.div whileTap={{scale: 0.8}} whileHover={{scale: 1.15}}>
           <Link className={styles.links} to="/about">About</Link>
         </motion.div>
+        {isLoggedIn && 
+        <motion.p className={styles.links} whileTap={{scale: 0.8}} whileHover={{scale: 1.25}} onClick={handleLogout}>Logout</motion.p>
+        }
       </div>
       <div className={styles.termscontainer}>
         <Link className={styles.terms} to="/terms">Terms and Conditions</Link>
         <p className={styles.terms}>|</p>
         <Link className={styles.terms} to="/privacy">Privacy Policy</Link>
       </div>
-      {popupOpen && <PopupMenu close={handleClick} handleLog={handleLog}/>}
+      {popupOpen && <PopupMenu close={close} handleLog={handleLog}/>}
     </motion.div>
   );
 }

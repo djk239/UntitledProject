@@ -25,7 +25,7 @@
     box-shadow: -2px 2px 5px #19182096;
     max-width: 80vw;
     min-width: 50vw;
-    height: 75vh;
+    min-height: fit-content;
     border-radius: 15px;
     text-align: center;
     color: var(--smokewhite);
@@ -36,6 +36,7 @@
 .title{
     margin-top: .5em;
     padding: .5em;
+    text-shadow: var(--darkblue) 1px 2px 1px;
     font-family: "Alegreya Sans SC", sans-serif;
     font-size: x-large;
 }
@@ -57,10 +58,11 @@
 
 .bar{
     width: .3em;
-    height: 95%;
+    height: 28em;
     border-radius: 5px;
     background-color: var(--smokewhite);
     align-self: center;
+    box-shadow: var(--richblack) 1px 3px 4px;
 }
 
 .self{
@@ -74,6 +76,7 @@
     font-family: "Alegreya Sans SC", sans-serif;
     font-size: x-large;
     margin-top: .5em;
+    text-shadow: var(--richblack) 1px 3px 8px;
 }
 
 .error{
@@ -86,4 +89,5 @@
     font-size: 1em;
     margin-top: .5em;
     padding: .5em;
+    text-shadow: var(--richblack) 1px 3px 8px;
 }

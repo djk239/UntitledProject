@@ -88,7 +88,7 @@ const Header = () => {
       <div className={styles.bar} />
       <div className={styles.bottom}/>
       <AnimatePresence>
-        {menuOpen && <Nav />}
+        {menuOpen && <Nav close={handleClick}/>}
       </AnimatePresence>
     </>
   );
