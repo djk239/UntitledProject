@@ -4,7 +4,7 @@ import Footer from '../Footer';
 import styles from './Leaderboard.module.css';
 import { fetchMyScore, fetchTopScores } from '../../api';
 
-export default function Leaderboard({ isLoggedIn, handleLog, handleLogout }) {
+export default function Leaderboard() {
     const [leaderboard, setLeaderboard] = useState(Array(10).fill({ username: 'N/A', score: 'N/A' }));
     const [myScore, setMyScore] = useState({});
     const [error, setError] = useState(null);
@@ -43,7 +43,7 @@ export default function Leaderboard({ isLoggedIn, handleLog, handleLogout }) {
 
     return (
         <div className={styles.container}>
-            <Header isLoggedIn={isLoggedIn} handleLog={handleLog} handleLogout={handleLogout} />
+            <Header />
             <div className={styles.content}>
                 <div className={styles.leaderboard}>
                     <h1 className={styles.title}>Leaderboard</h1>

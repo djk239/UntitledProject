@@ -3,9 +3,11 @@ import styles from './Nav.module.css';
 import PopupMenu from './PopupMenu';
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from 'react-router-dom';
+import { useAuth } from '../AuthContext';
 
-function Nav( {isLoggedIn, handleLog, handleLogout, menuOpen, handleClick }) {
+function Nav() {
   const [popupOpen, setPopupOpen] = useState(false);  
+  const { isLoggedIn, handleLog, handleLogout } = useAuth();
 
   const popup = () => {
     setPopupOpen(!popupOpen);
