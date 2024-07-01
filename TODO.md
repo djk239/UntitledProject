@@ -4,7 +4,7 @@
 This document outlines the tasks to be completed for the Melody Mystery project. Each task is assigned to a team member and prioritized for efficient workflow.
 
 ## Sections
-- [ ] **To Do**
+- [ 13 ] **To Do**
 - [ 0 ] **In Progress**
 - [ 0 ] **Review**
 - [ 0 ] **Done**
@@ -85,8 +85,8 @@ This document outlines the tasks to be completed for the Melody Mystery project.
   - *Priority:* High
   - *Deadline:* MM/DD
   - *Assigned to:* Team Member
-    > "Description of work done" MM/DD
-    > "Description of work done" MM/DD
+    - > "Description of work done" MM/DD
+    - > "Description of work done" MM/DD
 
 **WHEN YOU FINISH A TASK ADD IT UNDER THE FOLLOWING SECTION USING THE TEMPLATE FOUND AT THE TOP OF THE SECTION** (essentially copy and paste in progress work)
 
@@ -97,11 +97,11 @@ This document outlines the tasks to be completed for the Melody Mystery project.
   - *Priority:* High
   - *Deadline:* MM/DD
   - *Assigned to:* Team Member
-    > "Description of work done" MM/DD
-    > "Description of work done" MM/DD
+    - > "Description of work done" MM/DD
+    - > "Description of work done" MM/DD
   - *Approved by:*
-    > John Doe
-    > Jane Doe
+    - > John Doe
+    - > Jane Doe
 
 **WHEN YOU ARE THE LAST MEMBER TO SIGN OFF ON A REVIEW TASK MOVE IT TO THE DONE SECTION, SEE TEMPLATE**
 
@@ -111,8 +111,8 @@ This document outlines the tasks to be completed for the Melody Mystery project.
   - *Priority:* High
   - *Deadline:* MM/DD
   - *Assigned to:* Team Member
-    > "Description of work done" MM/DD
-    > "Description of work done" MM/DD
+    - > "Description of work done" MM/DD
+    - > "Description of work done" MM/DD
   - *Approved by:*
-    > John Doe
-    > Jane Doe
+    - > John Doe
+    - > Jane Doe
