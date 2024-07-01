@@ -25,14 +25,14 @@ a limited amount of time.
     - `git push` (pushes your changes to the repo)
 
     **Merging**:
-    `git checkout main` (must be in main to merge a branch to it)
-    `git merge <branch to be merged>` (merges the branches together in current branch)
-    `<Fix any conflicts and commit changes>`
-    `git tag archive/<branch name> <branch name>` (archive the branch)
-    `git branch -d <branch name>` (delete the branch)
-    `git push origin archive/<branch name>` (push the archive)
-    `git push origin --delete <branch name>` (push branch deletion)
-    `git checkout -b <branch name> archive/<branch name>` (restore archived branch)
+    - `git checkout main` (must be in main to merge a branch to it)
+    - `git merge <branch to be merged>` (merges the branches together in current branch)
+    - `<Fix any conflicts and commit changes>`
+    - `git tag archive/<branch name> <branch name>` (archive the branch)
+    - `git branch -d <branch name>` (delete the branch)
+    - `git push origin archive/<branch name>` (push the archive)
+    - `git push origin --delete <branch name>` (push branch deletion)
+    - `git checkout -b <branch name> archive/<branch name>` (restore archived branch)
 
 ## License
 
