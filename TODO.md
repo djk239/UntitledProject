@@ -11,7 +11,14 @@ This document outlines the tasks to be completed for the Melody Mystery project.
 
 ## Tasks
 
+**WHEN YOU THINK OF A TASK ADD IT UNDER THE FOLLOWING SECTION USING THE TEMPLATE FOUND AT THE TOP OF THE SECTION**
+
 ### To Do
+- [ ] **Template** - *Description:* Description of the task to be done.
+  - *Priority:* High
+  - *Deadline:* MM/DD
+  - *Assigned to:* Team Member
+
 - [ ] **Introduce losing sound** - *Description:* Introduce a sound that is played along with the incorrect popup.
   - *Priority:* Medium
   - *Deadline:* 7/8
@@ -81,7 +88,7 @@ This document outlines the tasks to be completed for the Melody Mystery project.
 
 ### In Progress
 
-- [ ] **Template** - *Description:* Develop the login functionality.
+- [ ] **Template** - *Description:* Description of the task to be done.
   - *Priority:* High
   - *Deadline:* MM/DD
   - *Assigned to:* Team Member
@@ -93,7 +100,7 @@ This document outlines the tasks to be completed for the Melody Mystery project.
 ### Review 
 ***When a task enters review it is the job of all team-members to signoff on before it can enter the 'Done' section***
 
-- [ ] **Template** - *Description:* Develop the login functionality.
+- [ ] **Template** - *Description:* Description of the task to be done.
   - *Priority:* High
   - *Deadline:* MM/DD
   - *Assigned to:* Team Member
@@ -107,7 +114,7 @@ This document outlines the tasks to be completed for the Melody Mystery project.
 
 ### Done
 
-- [X] **Template** - *Description:* Develop the login functionality.
+- [X] **Template** - *Description:* Description of the task to be done.
   - *Priority:* High
   - *Deadline:* MM/DD
   - *Assigned to:* Team Member
