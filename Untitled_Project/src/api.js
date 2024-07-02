@@ -115,11 +115,7 @@ export const fetchClip = async () => {
       const token = getAccessToken();
       
       // Make a GET request to the API to fetch a random song clip
-      const response = await axios.get(`${API_BASE_URL}/api/songs/random`, {
-          headers: {
-              Authorization: `Bearer ${token}`,
-          },
-      });
+      const response = await axios.get(`${API_BASE_URL}/api/songs/random/`);
       
       // Return the data of the fetched song clip
       return response.data;

@@ -7,8 +7,8 @@ a limited amount of time.
 
 ## Features
 
-**Melody Mystery**
-**Leaderboards**
+- **Melody Mystery**
+- **Leaderboards**
 
 ## Developer usage
 
@@ -18,7 +18,8 @@ a limited amount of time.
 
     ### Contributing
     **Workflow**:
-    - `git checkout <feature name>` (Creates / switches to branch)
+    - `git branch <feature name>` (creates branch)
+    - `git checkout <feature name>` (switches to branch)
     - `git add <filename>` (Adds file to git you plan to commit)
     - `git add .` (Adds all files for commiting)
     - `git commit -m <commit message>` (commits your changes)

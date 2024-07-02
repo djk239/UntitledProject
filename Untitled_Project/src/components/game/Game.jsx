@@ -30,6 +30,8 @@ export default function Game() {
     correctArtist: '',
   });
   const audioRef = useRef(null);
+  const intervalRef = useRef(null);
+  const timeoutRef = useRef(null);
 
   // Triggered when the component mounts
   useEffect(() => {
@@ -52,6 +54,7 @@ export default function Game() {
       correctTitle: '',
       correctArtist: '',
     });
+    setProgress(0);
   };
 
   // Triggered when the score or isLoggedIn status changes
@@ -66,13 +69,15 @@ export default function Game() {
       setShowPopup(true);
 
     }
+    clearInterval(intervalRef.current);
+    clearTimeout(timeoutRef.current);
   }, [guessCounter]);  
 
   // Function to play an audio snippet
   const handlePlaySnippet = () => {
     // Calculate the snippet duration based on the guess counter
     const snippetDuration = snippetDurations[5 - guessCounter];
-    playSnippet(audioRef, audioUrl, snippetDuration, setProgress, guessCounter);
+    playSnippet(audioRef, audioUrl, snippetDuration, setProgress, guessCounter, intervalRef, timeoutRef);
   };
 
   // Function to submit a guess
@@ -111,6 +116,7 @@ export default function Game() {
     setShowPopup(false);
     loadNewClip();
     setGuessCounter(5);
+    console.log(progress);
     setPrompt(prompts[Math.floor(Math.random() * prompts.length)]);
     audioRef.current.pause();
   };

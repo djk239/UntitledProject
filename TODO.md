@@ -91,16 +91,20 @@ This document outlines the tasks to be completed for the Melody Mystery project.
   - *Priority:* Medium
   - *Deadline:* 7/29
   - *Assigned to:* Dale + Darryon + Grif(temp)
+    - > "Added some songs, employed grifs help. 40+ songs on the sheet"
 
 - [ ] **Introduce losing sound** - *Description:* Introduce a sound that is played along with the incorrect popup.
   - *Priority:* Medium
   - *Deadline:* 7/8
   - *Assigned to:* Dale
+    - > "DETAILS"
 
 - [ ] **No longer need for auth for song fetching** - *Description:* Remove the need for user to be logged in for song to be fetched (frontend and backend)
   - *Priority:* HIGH
   - *Deadline:* 7/4
   - *Assigned to:* Dale
+    - > "Removed need for auth from backend and frontend for fetching."
+    - > "Fixed bug with progress and audioplayback. Created a interval and timeout refs in game"
 
 **WHEN YOU FINISH A TASK ADD IT UNDER THE FOLLOWING SECTION USING THE TEMPLATE FOUND AT THE TOP OF THE SECTION** (essentially copy and paste in progress work)
 

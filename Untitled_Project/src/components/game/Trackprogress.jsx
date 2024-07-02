@@ -4,6 +4,7 @@ import styles from './Trackprogress.module.css';
 
 const Trackprogress = ({ progress, duration, guessesRemaining }) => {
   const [activeTimes, setActiveTimes] = useState([]);
+  const [internalProgress, setInternalProgress] = useState(progress);
 
   useEffect(() => {
     setActiveTimes([]);
@@ -19,15 +20,23 @@ const Trackprogress = ({ progress, duration, guessesRemaining }) => {
     });
 
     setActiveTimes(prevTimes => [...prevTimes, ...updatedActiveTimes]);
-  }, [duration, ]);
+  }, [duration]);
+
+  useEffect(() => {
+    if (progress === 0) {
+      setInternalProgress(0);
+    } else {
+      setInternalProgress(progress);
+    }
+  }, [progress]);
 
   const variants = {
     growing: {
-      width: `${progress}%`, // Progress length (20% * guess #)
+      width: `${internalProgress}%`,
       transition: { duration: duration, type: 'tween', ease: 'linear' },
     },
-    done: {
-      width: `${0}%`,
+    reset: {
+      width: `0%`,
       transition: { duration: 0.5, type: 'tween', ease: 'linear' },
     },
   };
@@ -54,9 +63,9 @@ const Trackprogress = ({ progress, duration, guessesRemaining }) => {
             {activeTimes.includes(time) && (
               <motion.h1
                 className={getClassName(time)}
-                initial={{ opacity: 0, x:-100 }}
-                animate={{ opacity: 1, x:0 }}
-                transition={{ duration: .8 }}
+                initial={{ opacity: 0, x: -100 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
               >
                 {time}s
               </motion.h1>
@@ -73,8 +82,13 @@ const Trackprogress = ({ progress, duration, guessesRemaining }) => {
         <motion.div
           className={styles.trackprogress}
           initial={{ width: 0 }}
-          animate={progress > 0 ? 'growing' : 'done'}
+          animate={progress > 0 ? 'growing' : 'reset'}
           variants={variants}
+          onAnimationComplete={() => {
+            if (progress === 0) {
+              setInternalProgress(0); // Ensure progress resets to 0 after animation
+            }
+          }}
         />
       </div>
     </div>
