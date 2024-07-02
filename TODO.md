@@ -19,6 +19,8 @@ This document outlines the tasks to be completed for the Melody Mystery project.
   - *Deadline:* MM/DD
   - *Assigned to:* Team Member
 
+------------------------------------------------------------------------------------------------------------------------------------------------
+
 - [ ] **Introduce losing sound** - *Description:* Introduce a sound that is played along with the incorrect popup.
   - *Priority:* Medium
   - *Deadline:* 7/8
@@ -95,6 +97,8 @@ This document outlines the tasks to be completed for the Melody Mystery project.
     - > "Description of work done" MM/DD
     - > "Description of work done" MM/DD
 
+------------------------------------------------------------------------------------------------------------------------------------------------
+
 **WHEN YOU FINISH A TASK ADD IT UNDER THE FOLLOWING SECTION USING THE TEMPLATE FOUND AT THE TOP OF THE SECTION** (essentially copy and paste in progress work)
 
 ### Review 
@@ -110,6 +114,8 @@ This document outlines the tasks to be completed for the Melody Mystery project.
     - > John Doe
     - > Jane Doe
 
+------------------------------------------------------------------------------------------------------------------------------------------------
+
 **WHEN YOU ARE THE LAST MEMBER TO SIGN OFF ON A REVIEW TASK MOVE IT TO THE DONE SECTION, SEE TEMPLATE**
 
 ### Done
@@ -123,3 +129,5 @@ This document outlines the tasks to be completed for the Melody Mystery project.
   - *Approved by:*
     - > John Doe
     - > Jane Doe
+
+------------------------------------------------------------------------------------------------------------------------------------------------
