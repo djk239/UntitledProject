@@ -3,7 +3,7 @@ import Nav from './Nav';
 import styles from './Header.module.css';
 import { motion, AnimatePresence } from "framer-motion";
 
-const Header = ( {isLoggedIn, handleLog, handleLogout }) => {
+const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const handleClick = () => {
@@ -88,7 +88,7 @@ const Header = ( {isLoggedIn, handleLog, handleLogout }) => {
       <div className={styles.bar} />
       <div className={styles.bottom}/>
       <AnimatePresence>
-        {menuOpen && <Nav isLoggedIn={isLoggedIn} handleLog={handleLog} handleLogout={handleLogout} menuOpen={menuOpen} handleClick={handleClick} />}
+        {menuOpen && <Nav close={handleClick}/>}
       </AnimatePresence>
     </>
   );

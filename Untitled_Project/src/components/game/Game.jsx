@@ -12,7 +12,7 @@ import {prompts} from './prompts';
 // Predefined snippet lengths in seconds
 const snippetDurations = [0.5, 1, 2.5, 5, 10];
 
-export default function Game({isLoggedIn}) {
+export default function Game() {
   // Initialize state variables
   const [prompt, setPrompt] = useState(prompts[Math.floor(Math.random() * prompts.length)]);
   const [guess, setGuess] = useState('');
@@ -57,7 +57,7 @@ export default function Game({isLoggedIn}) {
   // Triggered when the score or isLoggedIn status changes
   useEffect(() => {
     setGuessCounter(5);
-  }, [score, isLoggedIn]);  
+  }, [score]);  
 
   // Triggered when the guess counter changes
   useEffect(() => {

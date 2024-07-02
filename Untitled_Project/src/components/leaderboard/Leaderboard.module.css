@@ -25,15 +25,20 @@
     box-shadow: -2px 2px 5px #19182096;
     max-width: 80vw;
     min-width: 50vw;
-    height: 60vh;
+    min-height: fit-content;
     border-radius: 15px;
     text-align: center;
     color: var(--smokewhite);
+    padding: 1em;
+    margin-bottom: 2.5em;
 }
 
 .title{
     margin-top: .5em;
     padding: .5em;
+    text-shadow: var(--darkblue) 1px 2px 1px;
+    font-family: "Alegreya Sans SC", sans-serif;
+    font-size: x-large;
 }
 
 .table{
@@ -46,17 +51,18 @@
 .others{
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 1px;
     color: var(--lightwhite);
 
 }
 
 .bar{
     width: .3em;
-    height: 95%;
+    height: 28em;
     border-radius: 5px;
     background-color: var(--smokewhite);
     align-self: center;
+    box-shadow: var(--richblack) 1px 3px 4px;
 }
 
 .self{
@@ -64,4 +70,33 @@
     flex-direction: column;
     gap: 2em;
     color: var(--lightwhite);
+}
+
+.columnTitle{
+    font-family: "Alegreya Sans SC", sans-serif;
+    font-size: x-large;
+    margin-top: .5em;
+    text-shadow: var(--richblack) 1px 3px 8px;
+}
+
+.error{
+    color: var(--deepred);
+    font-size: large;
+}
+
+.players{
+    font-family: "Alegreya Sans SC", sans-serif;
+    font-size: 1em;
+    margin-top: .5em;
+    padding: .5em;
+    text-shadow: var(--richblack) 1px 3px 8px;
+}
+
+.please{
+    color: var(--darkblue);
+    font-weight: 500;
+    font-size: larger;
+    margin-top: 5em;
+    padding-bottom: 20vh;
+    text-shadow: var(--richblack) 1px 2px 3px;
 }

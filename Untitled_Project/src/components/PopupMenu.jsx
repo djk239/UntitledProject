@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { useFormik } from 'formik';
 import { signupSchema } from "../schema/SignupSchema";
 import { loginSchema } from "../schema/LoginSchema";
+import { useAuth } from "../AuthContext";
 
 
 const popupVariants = {
@@ -42,10 +43,11 @@ const formTransition = {
     ease: "easeInOut",
 };
 
-function PopupMenu({close, handleLog} ) {
+function PopupMenu({close} ) {
     const [isLoggingin, setisLoggingin] = useState(true);
+    const { handleLog } = useAuth();
+    const [loginError, setLoginError] = useState("");
 
-    console.log(typeof handleLog)
     const loginFormik = useFormik({
         initialValues: {
             username: "",
@@ -60,6 +62,7 @@ function PopupMenu({close, handleLog} ) {
                 handleLog();
             } catch (error) {
                 console.log("Login error:", error);
+                setLoginError("Credentials do not match. Please try again.");
             }
         },
     });
@@ -85,6 +88,7 @@ function PopupMenu({close, handleLog} ) {
 
     const switchMode = () => {
         setisLoggingin(!isLoggingin);
+        setLoginError("");
     };
 
     const closeMenu = () => {
@@ -132,7 +136,7 @@ function PopupMenu({close, handleLog} ) {
                                     className={`${styles.input} ${loginFormik.errors.password && loginFormik.touched.password ? styles.inputError : ''}`}
                                 />
                                 {loginFormik.errors.password && loginFormik.touched.password && <p className={styles.error}>{loginFormik.errors.password}</p>}
-
+                                {loginError && <p className={styles.error}>{loginError}</p>}
                             </li>
                         </ul>
                     </div>
@@ -196,8 +200,8 @@ function PopupMenu({close, handleLog} ) {
                     </div>
                 )}
                 <div className={styles.btnwrap}>
-                    <button type="submit" className={styles.btn}>{isLoggingin ? "Login" : "Sign Up"}</button>
-                    <button type="button" className={styles.btn} onClick={switchMode}>Switch</button>
+                    <motion.button type="submit" className={styles.btn} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>{isLoggingin ? "Login" : "Sign Up"}</motion.button>
+                    <motion.button type="button" className={styles.btn} onClick={switchMode} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>Switch</motion.button>
                 </div>
             </form>
         </motion.div>

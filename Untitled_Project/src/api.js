@@ -318,14 +318,14 @@ export const fetchTopScores = async () => {
         // Get the access token from local storage
         const token = getAccessToken();
         
-        // Make a GET request to the API to fetch a random song clip
+        // Make a GET request to the API to fetch player score
         const response = await axios.get(`${API_BASE_URL}/api/user-score/`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
         });
         
-        // Return the data of the fetched song clip
+        // Return the data of the fetched score
         console.log(response.data);     
         return response.data;
     } catch (error) {

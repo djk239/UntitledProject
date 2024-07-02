@@ -5,7 +5,7 @@ export class Footer extends Component {
   render() {
     return (
       <div className={styles.container}>
-        Footer
+          
         </div>
     )
   }
