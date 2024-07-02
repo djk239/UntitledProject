@@ -11,9 +11,15 @@ const HomePage = () => {
         </div>
         <nav>
           <ul>
-            <li><a href="tbd"><button type="button" className="topbutton">Melody Mystery</button></a></li>
-            <li><a href="aboutus.html"><button type="button" className="topbutton">About Us</button></a></li>
-            <li><a href="tbd"><button type="button" className="topbutton">More Things</button></a></li>
+          <Link to={'/melodymystery'}>
+          <li><button type="button" className="topbutton">Melody Mystery</button></li>
+          </Link>
+          <Link to={'/about'}>
+            <li><button type="button" className="topbutton">About Us</button></li>
+          </Link>
+          <Link to={'/leaderboards'}>
+            <li><button type="button" className="topbutton">More Things</button></li>
+          </Link>
           </ul>
         </nav>
       </div>

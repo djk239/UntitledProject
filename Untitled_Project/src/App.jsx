@@ -6,6 +6,7 @@ import GamePage from './components/game/GamePage'
 import { getAccessToken, removeTokens } from './api'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Leaderboard from './components/leaderboard/Leaderboard.jsx';
+import About from './components/aboutus/about.jsx';
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/leaderboards" element={<Leaderboard isLoggedIn={isLoggedIn} handleLog={handleLog} handleLogout={handleLogout} />} />
         <Route path="/melodymystery" element={<GamePage isLoggedIn={isLoggedIn} handleLog={handleLog} handleLogout={handleLogout}/>}  />
