@@ -20,7 +20,7 @@
  * @param {number} guessCounter - The number of guesses remaining.
  */
 
-export const playSnippet = (audioRef, songUrl, snippetDuration, setProgress, guessCounter) => {
+export const playSnippet = (audioRef, songUrl, snippetDuration, setProgress, guessCounter, intervalRef, timeoutRef) => {
   audioRef.current.src = songUrl;
   audioRef.current.currentTime = 0;
   audioRef.current.volume = 0.1;
@@ -32,14 +32,15 @@ export const playSnippet = (audioRef, songUrl, snippetDuration, setProgress, gue
    * This interval function updates the progress of the audio playback every 100 milliseconds.
    * It also checks if the current playback time has exceeded the snippet duration, and if so, pauses the playback and resets the progress.
    */
-  const interval = setInterval(() => {
+  intervalRef.current = setInterval(() => {
     const currentTime = audioRef.current.currentTime;
     const progressPercentage = ((6-guessCounter) / 5 ) * 100;
     setProgress(progressPercentage);
+    console.log(currentTime);
 
     if (currentTime >= snippetDuration) {
       audioRef.current.pause();
-      clearInterval(interval);
+      clearInterval(intervalRef.current);
       setProgress(0);
     }
   }, 100);
@@ -50,11 +51,14 @@ export const playSnippet = (audioRef, songUrl, snippetDuration, setProgress, gue
    * It also clears the interval function to prevent any further updates.
    * The timeout is set to the snippet duration in milliseconds, ensuring that the playback is paused at the correct time.
    */
-  setTimeout(() => {
+  clearTimeout(timeoutRef.current);
+
+  timeoutRef.current = setTimeout(() => {
     audioRef.current.pause();
     audioRef.current.src = '';
-    clearInterval(interval);
+    clearInterval(intervalRef.current);
     setProgress(0);
+    console.log("TIMEOUT");
   }, snippetDuration * 1000);
 };
 
