@@ -93,20 +93,6 @@ This document outlines the tasks to be completed for the Melody Mystery project.
   - *Assigned to:* Dale + Darryon + Grif(temp)
     - > "Added some songs, employed grifs help. 40+ songs on the sheet" 7/1
 
-- [ ] **Introduce losing sound** - *Description:* Introduce a sound that is played along with the incorrect popup.
-  - *Priority:* Medium
-  - *Deadline:* 7/8
-  - *Assigned to:* Dale
-    - > "Bug Fix: Fixed login popup to fit content, reworked" 7/1
-    - > "Added losing sound effect when all guesses are used up. See public folder for sound" 7/2
-    - > "Bug Fix: Fixed the way the game over popup displays, previously pushing the footer out of view" 7/2
-
-- [ ] **No longer need for auth for song fetching** - *Description:* Remove the need for user to be logged in for song to be fetched (frontend and backend)
-  - *Priority:* HIGH
-  - *Deadline:* 7/4
-  - *Assigned to:* Dale
-    - > "Removed need for auth from backend and frontend for fetching." 7/1
-    - > "Bug Fix: Fixed bug with progress and audioplayback. Created a interval and timeout refs in game" 7/1
 
 **WHEN YOU FINISH A TASK ADD IT UNDER THE FOLLOWING SECTION USING THE TEMPLATE FOUND AT THE TOP OF THE SECTION** (essentially copy and paste in progress work)
 
@@ -124,6 +110,25 @@ This document outlines the tasks to be completed for the Melody Mystery project.
     - > Jane Doe
 
 ------------------------------------------------------------------------------------------------------------------------------------------------
+
+- [ ] **Introduce losing sound** - *Description:* Introduce a sound that is played along with the incorrect popup.
+  - *Priority:* Medium
+  - *Deadline:* 7/8
+  - *Assigned to:* Dale
+    - > "Bug Fix: Fixed login popup to fit content, reworked" 7/1
+    - *Approved by:*
+    - > Dale King
+    - > 
+
+- [ ] **No longer need for auth for song fetching** - *Description:* Remove the need for user to be logged in for song to be fetched (frontend and backend)
+  - *Priority:* HIGH
+  - *Deadline:* 7/4
+  - *Assigned to:* Dale
+    - > "Removed need for auth from backend and frontend for fetching." 7/1
+    - > "Fixed bug with progress and audioplayback. Created a interval and timeout refs in game" 7/1
+    - *Approved by:*
+    - > Dale King
+    - > 
 
 **WHEN YOU ARE THE LAST MEMBER TO SIGN OFF ON A REVIEW TASK MOVE IT TO THE DONE SECTION, SEE TEMPLATE**
 
