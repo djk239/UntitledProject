@@ -8,6 +8,7 @@ import AutosuggestInput from './AutosuggestInput';
 import Trackprogress from './Trackprogress';
 import GamePopup from './GamePopup';
 import {prompts} from './prompts';  
+import gameoversound from '/gameover.wav';
 
 // Predefined snippet lengths in seconds
 const snippetDurations = [0.5, 1, 2.5, 5, 10];
@@ -66,6 +67,7 @@ export default function Game() {
   useEffect(() => {
     if (guessCounter === 0) {
       // Show Popup when guesses reach 0
+      playFull(audioRef, gameoversound);
       setShowPopup(true);
 
     }
