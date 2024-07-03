@@ -1,0 +1,168 @@
+/* Reset margin and padding for all elements, and set the default font */
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Styling for the main container 
+   - Full width
+   - Full viewport height
+   - Gradient overlay and background image
+   - Center the background image
+   - Cover the entire container
+   - Padding on the left and right
+   - Include padding in element's total width and height */
+.container{
+    width: 90%;
+    height: 100vh;
+    background-position: center;
+    background-size: cover;
+    padding-left: 8%;
+    padding-right: 8%;
+    box-sizing: border-box;
+}
+
+/* Styling for the navigation bar 
+   - 12% of the viewport height
+   - Use flexbox for layout
+   - Vertically center items */
+.navbar{
+    height: 12%;
+    display: flex;
+    align-items: center;
+}
+
+/* Styling for the logo 
+   - Set width
+   - Change cursor to pointer on hover */
+.logo{
+    width: 40px;
+    border-radius: 100px;
+    cursor: pointer;
+    box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.7);
+    
+}
+.transparentlogo{
+    opacity: 0.7;
+    
+}
+
+/* Styling for the menu icon 
+   - Set width
+   - Change cursor to pointer on hover
+   - Space on the left */
+.menu-icon{
+    width: 30px;
+    cursor: pointer;
+    margin-left: 40px;
+}
+
+/* Styling for the navigation 
+   - Flex-grow: take up remaining space
+   - Align text to the right */
+nav{
+    flex: 1;
+    text-align: right;
+}
+
+/* Styling for navigation list items 
+   - Remove default list style
+   - Display list items inline
+   - Space on the left */
+nav ul li{
+    list-style: none;
+    display: inline-block;
+    margin-left: 60px;
+}
+
+/* Styling for navigation links 
+   - Remove underline
+   - White text color
+   - Font size */
+nav ul li a{
+    text-decoration: none;
+    color: #fff;
+    font-size: 13px;
+}
+.row{
+    display: flex;
+    height: 88%;
+    align-items: center;
+}
+.col{
+    flex-basis: 50%;
+}
+.topbutton{
+    width: 180px;
+    color: #ffffff;
+    font-size: 15px;
+    padding: 3px 0;
+    background: #39230f;
+    border: 0;
+    border-radius: 20px;
+    outline: none;
+    margin-top: 3px;
+    cursor: pointer;
+}
+.button{
+    width: 180px;
+    color: #000;
+    font-size: 12px;
+    padding: 12px 0;
+    background: #fff;
+    border: 0;
+    border-radius: 20px;
+    outline: none;
+    margin-top: 30px;
+    cursor: pointer;
+}
+.card{
+    width: 200px;
+    height: 230px;
+    display: inline-block;
+    border-radius: 10px;
+    padding: 15px 25px;
+    box-sizing: border-box;
+    cursor: pointer;
+    margin: 10px 15px;
+    background-position: center;
+    background-size: cover;
+    transition: transform 0.5s;
+}
+
+.transparent1{
+    opacity: 0.8;
+}
+.transparent2{
+    opacity: 0.1;
+}
+.transparent3{
+    opacity: 0.1;
+}
+.transparent4{
+    opacity: 0.1;
+}
+.card1{
+    background-image: url(images/MMpreview.png);
+}
+.card2{
+    background-image: url(images/comingsoon.png);
+}
+.card3{
+    background-image: url(images/comingsoon.png);
+}
+.card4{
+    background-image: url(images/comingsoon.png);
+}
+.card:hover{
+    transform: translateY(-10px);
+}
+.card h5{
+    color: #fff;
+    text-shadow: 0 0 5px #999;
+}
+.card p{
+    text-shadow: 0 0 15px #000;
+    font-size: 8px;
+}
