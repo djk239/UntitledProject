@@ -1,9 +1,5 @@
 /* Reset margin and padding for all elements, and set the default font */
-/* *{
-    margin: 0;
-    padding: 0;
-    font-family: 'Roboto', sans-serif;
-} */
+
 
 /* Styling for the main container 
    - Full width
@@ -48,43 +44,9 @@
     
 }
 
-/* Styling for the menu icon 
-   - Set width
-   - Change cursor to pointer on hover
-   - Space on the left */
-.menu-icon{
-    width: 30px;
-    cursor: pointer;
-    margin-left: 40px;
-}
 
-/* Styling for the navigation 
-   - Flex-grow: take up remaining space
-   - Align text to the right */
-nav{
-    flex: 1;
-    text-align: right;
-}
 
-/* Styling for navigation list items 
-   - Remove default list style
-   - Display list items inline
-   - Space on the left */
-nav ul li{
-    list-style: none;
-    display: inline-block;
-    margin-left: 60px;
-}
 
-/* Styling for navigation links 
-   - Remove underline
-   - White text color
-   - Font size */
-nav ul li a{
-    text-decoration: none;
-    color: #fff;
-    font-size: 13px;
-}
 .row{
     display: flex;
     height: 88%;
@@ -93,18 +55,7 @@ nav ul li a{
 .col{
     flex-basis: 50%;
 }
-.topbutton{
-    width: 180px;
-    color: #ffffff;
-    font-size: 15px;
-    padding: 3px 0;
-    background: #39230f;
-    border: 0;
-    border-radius: 20px;
-    outline: none;
-    margin-top: 3px;
-    cursor: pointer;
-}
+
 .button{
     width: 180px;
     color: #000;
