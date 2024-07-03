@@ -4,9 +4,9 @@
 This document outlines the tasks to be completed for the Melody Mystery project. Each task is assigned to a team member and prioritized for efficient workflow.
 
 ## Sections
-- [ 10 ] **To Do**
-- [ 3 ] **In Progress**
-- [ 0 ] **Review**
+- [ 9 ] **To Do**
+- [ 2 ] **In Progress**
+- [ 2 ] **Review**
 - [ 0 ] **Done**
 
 ## Tasks
@@ -27,10 +27,6 @@ This document outlines the tasks to be completed for the Melody Mystery project.
   - *Deadline:* 7/8
   - *Assigned to:* Dale + Darryon
 
-- [ ] **Share button** - *Description:* Overhaul the share button. Add descriptive information to share along with the link. Look into react-share
-  - *Priority:* Medium
-  - *Deadline:* 7/8
-  - *Assigned to:* Dale
 
 
 - [ ] **Home page** - *Description:* Overhaul homepage to work with CSS modules and JSX. (Apperance?)
@@ -93,6 +89,10 @@ This document outlines the tasks to be completed for the Melody Mystery project.
   - *Assigned to:* Dale + Darryon + Grif(temp)
     - > "Added some songs, employed grifs help. 40+ songs on the sheet" 7/1
 
+- [ ] **Share button** - *Description:* Overhaul the share button. Add descriptive information to share along with the link. Look into react-share
+  - *Priority:* Medium
+  - *Deadline:* 7/8
+  - *Assigned to:* Dale
 
 **WHEN YOU FINISH A TASK ADD IT UNDER THE FOLLOWING SECTION USING THE TEMPLATE FOUND AT THE TOP OF THE SECTION** (essentially copy and paste in progress work)
 
