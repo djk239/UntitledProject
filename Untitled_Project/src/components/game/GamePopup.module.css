@@ -3,7 +3,6 @@
     display: flex;
     justify-content: center;
     position: relative;
-    bottom: 15em;
 }
 
 .popup {
@@ -17,7 +16,8 @@
     width: 300px; 
     height: 25em;
     color: var(--smokewhite);
-
+    position: absolute;
+    bottom: -7em;
   }
   
   .popup h2 {
@@ -64,3 +64,9 @@
     justify-content: center;
   }
   
+
+  @media(max-width:767px){
+    .popup{
+      bottom: -10em;
+    }
+}

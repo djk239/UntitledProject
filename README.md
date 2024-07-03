@@ -7,8 +7,8 @@ a limited amount of time.
 
 ## Features
 
-**Melody Mystery**
-**Leaderboards**
+- **Melody Mystery**
+- **Leaderboards**
 
 ## Developer usage
 
