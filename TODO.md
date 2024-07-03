@@ -27,8 +27,6 @@ This document outlines the tasks to be completed for the Melody Mystery project.
   - *Deadline:* 7/8
   - *Assigned to:* Dale + Darryon
 
-
-
 - [ ] **Home page** - *Description:* Overhaul homepage to work with CSS modules and JSX. (Apperance?)
   - *Priority:* HIGH
   - *Deadline:* 7/8
@@ -38,11 +36,6 @@ This document outlines the tasks to be completed for the Melody Mystery project.
   - *Priority:* Medium
   - *Deadline:* 7/15
   - *Assigned to:* Darryon
-
-- [ ] **Admin Panel** - *Description:* Rework the admin panel. Adding API calls to see songs in database and to update playability. (Apperance?)
-  - *Priority:* Medium
-  - *Deadline:* 7/15
-  - *Assigned to:* Dale
 
 - [ ] **Comment Existing code** - *Description:* add comments to all of the existing code base
   - *Priority:* Medium
@@ -92,6 +85,11 @@ This document outlines the tasks to be completed for the Melody Mystery project.
 - [ ] **Share button** - *Description:* Overhaul the share button. Add descriptive information to share along with the link. Look into react-share
   - *Priority:* Medium
   - *Deadline:* 7/8
+  - *Assigned to:* Dale
+
+- [ ] **Admin Panel** - *Description:* Rework the admin panel. Adding API calls to see songs in database and to update playability. (Apperance?)
+  - *Priority:* Medium
+  - *Deadline:* 7/15
   - *Assigned to:* Dale
 
 **WHEN YOU FINISH A TASK ADD IT UNDER THE FOLLOWING SECTION USING THE TEMPLATE FOUND AT THE TOP OF THE SECTION** (essentially copy and paste in progress work)
