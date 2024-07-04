@@ -171,6 +171,23 @@ export default function Game() {
             />
         )}
       </AnimatePresence>
+      <h1>d</h1>
+      <h1>d</h1>
+      <h1>d</h1>
+      <h1>d</h1>
+      <h1>d</h1>
+      <h1>d</h1>
+      <h1>d</h1>
+      <h1>d</h1>
+      <h1>d</h1>
+      <h1>d</h1>
+      <h1>d</h1>
+      <h1>d</h1>
+      <h1>d</h1>
+      <h1>d</h1>
+      <h1>d</h1>
+      <h1>d</h1>
+      
     </div>
   );
 }

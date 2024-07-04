@@ -20,6 +20,7 @@ a limited amount of time.
     **Workflow**:
     - `git branch <feature name>` (creates branch)
     - `git checkout <feature name>` (switches to branch)
+    - `git push --set-upstream origin <branch name>` (inital branch push)
     - `git add <filename>` (Adds file to git you plan to commit)
     - `git add .` (Adds all files for commiting)
     - `git commit -m <commit message>` (commits your changes)

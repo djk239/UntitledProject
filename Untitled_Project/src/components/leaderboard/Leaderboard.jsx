@@ -77,6 +77,7 @@ export default function Leaderboard() {
                     {!isLoggedIn && <p className={styles.please}>Please log in to view the leaderboards.</p>}
                 </div>
             </div>
+            <h1>ssss</h1><h1>ssss</h1><h1>ssss</h1><h1>ssss</h1><h1>ssss</h1><h1>ssss</h1><h1>ssss</h1><h1>ssss</h1><h1>ssss</h1><h1>ssss</h1>
             <Footer />
         </div>
     );
