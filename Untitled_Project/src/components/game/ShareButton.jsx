@@ -2,10 +2,10 @@ import React, { useMemo } from 'react';
 import styles from './GamePopup.module.css';
 import { motion } from "framer-motion"
 
-export default function ShareButton() {
+export default function ShareButton({title, timetoguess}) {
   const shareData = useMemo(() => ({
-    title: 'I guessed it!',
-    text: 'I just guessed the audio clip correctly!',
+    title: 'Guessed it!',
+    text: `I just guessed the song ${title} after only ${timetoguess} second(s) of listening! Give it a try!`,
     url: window.location.href,
   }), []);
 
@@ -14,8 +14,8 @@ export default function ShareButton() {
       await navigator.share(shareData);
     } catch (error) {
       console.error('Error sharing:', error);
-      // Fallback for older browsers
-      const shareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareData.url)}&text=${encodeURIComponent(shareData.text)}`;
+      // Fallback for nonsupported browsers
+      navigator.clipboard.writeText(shareData.text + " : " + shareData.url);
       window.open(shareUrl, '_blank');
     }
   };
