@@ -1,0 +1,16 @@
+@import '../../vars.css';
+
+.App{
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient( var(--darkblue), var(--primary-color), var(--richblack));
+    width:  100vw;
+    height: 100vh;
+    overflow-x: hidden;
+    position: fixed;
+
+}
+
+.content{
+    flex-grow: 1;
+}
