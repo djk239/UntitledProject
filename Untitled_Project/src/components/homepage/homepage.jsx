@@ -9,12 +9,13 @@ const HomePage = () => {
     <div className= {style.App}>
 
     <div className= {styles.container}>
+        <div className= {styles.transparentlogo}>
+          <img src="./images/logo2.png" className= {styles.logo} alt="Logo" />
+        </div>
+    </div>
       <div className= {styles.navbar}>
         <div>
           <HomeNav />
-        </div>
-        <div className= {styles.transparentlogo}>
-          <img src="./images/logo2.png" className= {styles.logo} alt="Logo" />
         </div>
       </div>
 
@@ -23,7 +24,7 @@ const HomePage = () => {
       <div className= {styles.row}>
         <div className= {styles.col}>
           <h1 className= {styles.maintitleheader}>Melody Mystery</h1>
-          <p>Welcome to Melody Mystery, the ultimate music guessing game! Test your music knowledge and see how well you know your favorite tunes. In this thrilling game, you'll be presented with short clips from a wide variety of songs. Your challenge is to guess the song title and artist as quickly as possible. The faster you guess correctly, the higher your score!</p>
+          <p className= {styles.mainparagraph}>Welcome to Melody Mystery, the ultimate music guessing game! Test your music knowledge and see how well you know your favorite tunes. In this thrilling game, you'll be presented with short clips from a wide variety of songs. Your challenge is to guess the song title and artist as quickly as possible. The faster you guess correctly, the higher your score!</p>
           <button type="button" className= {styles.button}>Sign In</button>
         </div>
         
@@ -31,9 +32,7 @@ const HomePage = () => {
           <Homegamecard />
         </div>
       </div>
-
       </div>
-    </div>
     </div>
   );
 };
