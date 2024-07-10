@@ -6,7 +6,7 @@ const CLIENT_SECRET = 'b71745f784df4b2398557d04a71a7378';
 const TOKEN_ENDPOINT = 'https://accounts.spotify.com/api/token';
 
 //CUSTOM API ENDPOINT
-const API_BASE_URL = 'http://192.168.1.173:8000';
+const API_BASE_URL = '/choreo-apis/melodymystery/backend/v1';
 
 
 // SPOTIFY API CALLS
