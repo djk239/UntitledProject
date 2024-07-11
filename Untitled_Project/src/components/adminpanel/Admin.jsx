@@ -27,6 +27,7 @@ export default function Admin() {
     const fetchAllSongs = async () => {
         try {
             const allSongs = await getAllSongs();
+            console.log('fetched songs:', allSongs);
             setSongs(allSongs);
             setError(null); // Clear any previous error
         } catch (error) {
