@@ -92,7 +92,7 @@ export default function Game() {
     try {
       // Get the access token and send a POST request to check the guess
       const token = getAccessToken();
-      const response = await axios.post('http://192.168.1.173:8000/api/songs/check/', {
+      const response = await axios.post('/choreo-apis/melodymystery/backend/v1', {
         title: guess,
         id: songID, 
       }, {
