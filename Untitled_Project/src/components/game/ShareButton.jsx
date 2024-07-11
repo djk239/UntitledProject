@@ -6,7 +6,7 @@ export default function ShareButton({title, timetoguess}) {
   const shareData = useMemo(() => ({
     title: 'Guessed it!',
     text: `I just guessed the song ${title} after only ${timetoguess} second(s) of listening! Give it a try!`,
-    url: 'https://www.melodymystery.com/melodymystery',
+    url: window.location.href,
   }), [title, timetoguess]);  
 
   const handleShare = async () => {
@@ -16,7 +16,7 @@ export default function ShareButton({title, timetoguess}) {
       console.error('Error sharing:', error);
       // Fallback for nonsupported browsers
       await navigator.clipboard.writeText(shareData.text + " : " + shareData.url);
-      window.alert('Link copied to clipboard:\n' + fallbackText);
+      window.alert('Link copied to clipboard');
     }
   };
 
