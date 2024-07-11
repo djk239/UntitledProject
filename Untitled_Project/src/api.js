@@ -1,5 +1,5 @@
 import axios from 'axios';
-import jwt_decode from 'jwt-decode';
+import { jwtDecode } from "jwt-decode";
 
 const SPOTIFY_API_BASE_URL = 'https://api.spotify.com/v1';
 const CLIENT_ID = '92c197ccced844e0afb389001abc394b';
@@ -290,7 +290,7 @@ export const login = async (credentials) => {
       // Get the access token and refresh token from the response data
       const { access, refresh } = response.data;
 
-      const decodedToken = jwt_decode(access);
+      const decodedToken = jwtDecode(access);
       const expTime = decodedToken.exp * 1000;
       
       // Set the access token and refresh token in local storage
@@ -345,7 +345,7 @@ const isAccessTokenExpired = () => {
       localStorage.setItem('accessToken', access);
       localStorage.setItem('refreshToken', refresh);
   
-      const decodedToken = jwt_decode(access);
+      const decodedToken = jwtDecode(access);
       const expTime = decodedToken.exp * 1000;
       localStorage.setItem('expTime', expTime);
   
