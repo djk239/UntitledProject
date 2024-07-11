@@ -387,6 +387,7 @@ const isAccessTokenExpired = () => {
 export const removeTokens = () => {
   localStorage.removeItem('accessToken');
   localStorage.removeItem('refreshToken');
+  localStorage.removeItem('expTime');
 };
 
 export const fetchTopScores = async () => {
