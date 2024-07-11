@@ -9,8 +9,19 @@ export function AuthProvider({ children }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    const token = getAccessToken();
-    setIsLoggedIn(!!token);
+    const checkTokenValidity = async () => {
+      const token = await getAccessToken();
+      setIsLoggedIn(!token);
+    };
+
+    // Initial check on component mount
+    checkTokenValidity();
+
+    // Check token validity every minute
+    const interval = setInterval(checkTokenValidity, 60000);
+
+    // Clean up interval on component unmount
+    return () => clearInterval(interval);
   }, []);
 
   const handleLog = () => {
