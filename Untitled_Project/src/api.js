@@ -1,4 +1,5 @@
 import axios from 'axios';
+import jwt_decode from 'jwt-decode';
 
 const SPOTIFY_API_BASE_URL = 'https://api.spotify.com/v1';
 const CLIENT_ID = '92c197ccced844e0afb389001abc394b';
@@ -288,10 +289,14 @@ export const login = async (credentials) => {
       
       // Get the access token and refresh token from the response data
       const { access, refresh } = response.data;
+
+      const decodedToken = jwt_decode(access);
+      const expTime = decodedToken.exp * 1000;
       
       // Set the access token and refresh token in local storage
       localStorage.setItem('accessToken', access);
       localStorage.setItem('refreshToken', refresh);
+      localStorage.setItem('expTime', expTime);
       
       // Return the data of the logged in user
       return response.data;
@@ -301,18 +306,74 @@ export const login = async (credentials) => {
   }
 };
 
-/**
-* Gets the access token from local storage.
-* 
-* Preconditions:
-* - The access token is set in local storage.
-* 
-* Postconditions:
-* - Returns the access token.
-*/
-export const getAccessToken = () => {
-  return localStorage.getItem('accessToken');
-};
+// Function to check if access token is expired
+const isAccessTokenExpired = () => {
+    const expirationTime = localStorage.getItem('expTime');
+    if (!expirationTime) {
+      return true; // No expiration time found, consider expired
+    }
+    
+    const now = new Date().getTime();
+    return now > expirationTime; // Return true if current time is after expiration time
+  };
+  
+  // Function to refresh access token using refresh token
+  export const refreshAccessToken = async () => {
+    try {
+      const refreshToken = localStorage.getItem('refreshToken');
+      if (!refreshToken) {
+        throw new Error('No refresh token available');
+      }
+  
+      const credentials = `${CLIENT_ID}:${CLIENT_SECRET}`;
+      const encodedCredentials = btoa(credentials);
+  
+      const response = await axios.post(
+        TOKEN_ENDPOINT,
+        'grant_type=refresh_token&refresh_token=' + refreshToken,
+        {
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            Authorization: `Basic ${encodedCredentials}`,
+          },
+        }
+      );
+  
+      const { access, refresh } = response.data;
+  
+      // Update tokens in localStorage
+      localStorage.setItem('accessToken', access);
+      localStorage.setItem('refreshToken', refresh);
+  
+      const decodedToken = jwt_decode(access);
+      const expTime = decodedToken.exp * 1000;
+      localStorage.setItem('expTime', expTime);
+  
+      return access;
+    } catch (error) {
+      console.error('Error refreshing access token:', error);
+      throw error;
+    }
+  };
+  
+  // Modify getAccessToken to check and refresh token if expired
+  export const getAccessToken = async () => {
+    let token = localStorage.getItem('accessToken');
+    const expirationTime = localStorage.getItem('expTime');
+  
+    if (!token || !expirationTime || isAccessTokenExpired()) {
+      // Token is expired or not available, refresh it
+      try {
+        token = await refreshAccessToken();
+      } catch (error) {
+        console.error('Error refreshing token:', error);
+        throw error;
+      }
+    }
+  
+    return token;
+  };
+  
 
 /**
 * Removes the access token and refresh token from local storage.
