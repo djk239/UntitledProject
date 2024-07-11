@@ -113,7 +113,7 @@ export const fetchSuggestions = async (query, accessToken) => {
 export const fetchClip = async () => {
   try {
       // Get the access token from local storage
-      const token = getAccessToken();
+      const token = await getAccessToken();
       
       // Make a GET request to the API to fetch a random song clip
       const response = await axios.get(`${API_BASE_URL}/api/songs/random/`);
@@ -142,7 +142,7 @@ export const fetchClip = async () => {
 export const addSong = async (title, artist, link, isPlayable) => {
   try {
       // Get the access token from local storage
-      const token = getAccessToken();
+      const token = await getAccessToken();
       
       // Make a POST request to the API to add a new song
       const response = await axios.post(`${API_BASE_URL}/api/songs/`, {
@@ -180,7 +180,7 @@ export const addSong = async (title, artist, link, isPlayable) => {
 export const getAudioLink = async (spotifyLink) => {
   try {
       // Get the access token from local storage
-      const token = getAccessToken();
+      const token = await getAccessToken();
       
       // Make a GET request to the API to get the audio link of a song
       const response = await axios.get(`${API_BASE_URL}/api/getsource/`, {
@@ -204,7 +204,7 @@ export const getAudioLink = async (spotifyLink) => {
 export const getAllSongs = async () => {
     try {
         // Get the access token from local storage
-        const token = getAccessToken();
+        const token = await getAccessToken();
         
         // Make a GET request to the API to get the audio link of a song
         const response = await axios.get(`${API_BASE_URL}/api/songs/`, {
@@ -225,7 +225,7 @@ export const getAllSongs = async () => {
   export const switchPlayability = async (id, data) => {
     try {
         // Get the access token from local storage
-        const token = getAccessToken();
+        const token = await getAccessToken();
         
         // Make a GET request to the API to get the audio link of a song
         const response = await axios.patch(`${API_BASE_URL}/api/songs/${id}/`, data, {
@@ -392,7 +392,7 @@ export const removeTokens = () => {
 export const fetchTopScores = async () => {
     try {
         // Get the access token from local storage
-        const token = getAccessToken();
+        const token = await getAccessToken();
         
         // Make a GET request to the API to fetch a random song clip
         const response = await axios.get(`${API_BASE_URL}/api/top-scores/`, {
@@ -415,7 +415,7 @@ export const fetchTopScores = async () => {
   export const fetchMyScore = async () => {
     try {
         // Get the access token from local storage
-        const token = getAccessToken();
+        const token = await getAccessToken();
         
         // Make a GET request to the API to fetch player score
         const response = await axios.get(`${API_BASE_URL}/api/user-score/`, {
