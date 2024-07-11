@@ -30,7 +30,7 @@ function Nav({close}) {
           <Link className={styles.links} to="/leaderboards">Leaderboards</Link>
         </motion.div>
         <motion.div whileTap={{scale: 0.8}} whileHover={{scale: 1.15}}>
-          <Link className={styles.links} to="/">Melody Mystery</Link>
+          <Link className={styles.links} to="/melodymystery">Melody Mystery</Link>
         </motion.div>
         <motion.div whileTap={{scale: 0.8}} whileHover={{scale: 1.15}}>
           <Link className={styles.links} to="/about">About</Link>
