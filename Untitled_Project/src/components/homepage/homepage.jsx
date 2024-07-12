@@ -12,8 +12,8 @@ const HomePage = () => {
           <img src="./images/logo2.png" className= {styles.logo} alt="Logo" />
         </div>
     </div> */}
-      <div className= {styles.navbar}>
-        <div>
+      <div>
+        <div className= {styles.navbar}>
           <HomeNav />
         </div>
       </div>
@@ -27,7 +27,7 @@ const HomePage = () => {
           <button type="button" className= {styles.button}>Sign In</button>
         </div>
         
-        <div>
+        <div className= {styles.cards}>
           <Homegamecard />
         </div>
       </div>

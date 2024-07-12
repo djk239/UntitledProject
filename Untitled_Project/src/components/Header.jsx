@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Nav from './Nav';
 import styles from './Header.module.css';
 import { motion, AnimatePresence } from "framer-motion";
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -33,6 +34,7 @@ const Header = () => {
 
   return (
     <>
+    <Link to="/melodymystery"><img className={styles.logo} src="/logo1.png"></img></Link>
       <h1 className={styles.title}>Melody Mystery</h1>
       <div className={styles.container}>
         <motion.div

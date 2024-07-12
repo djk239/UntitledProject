@@ -118,7 +118,6 @@ export default function Game() {
     setShowPopup(false);
     loadNewClip();
     setGuessCounter(5);
-    console.log(progress);
     setPrompt(prompts[Math.floor(Math.random() * prompts.length)]);
     audioRef.current.pause();
   };
@@ -168,6 +167,7 @@ export default function Game() {
               correctTitle={popupData.correctTitle}
               correctArtist={popupData.correctArtist}
               handleNextBtn={handleNextBtn}
+              timetoguess={snippetDurations[5 - guessCounter]}
             />
         )}
       </AnimatePresence>

@@ -6,7 +6,7 @@ const CLIENT_SECRET = 'b71745f784df4b2398557d04a71a7378';
 const TOKEN_ENDPOINT = 'https://accounts.spotify.com/api/token';
 
 //CUSTOM API ENDPOINT
-const API_BASE_URL = 'http://192.168.1.173:8000';
+const API_BASE_URL = '/choreo-apis/melodymystery/backend/v1';
 
 
 // SPOTIFY API CALLS
@@ -199,6 +199,48 @@ export const getAudioLink = async (spotifyLink) => {
       throw error;
   }
 };
+
+export const getAllSongs = async () => {
+    try {
+        // Get the access token from local storage
+        const token = getAccessToken();
+        
+        // Make a GET request to the API to get the audio link of a song
+        const response = await axios.get(`${API_BASE_URL}/api/songs/`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        
+        // Return the audio link of the song
+        return response.data;
+    } catch (error) {
+        // Log the error and throw it again to handle it in the caller function
+        console.error('Error getting link:', error);
+        throw error;
+    }
+  };
+
+  export const switchPlayability = async (id, data) => {
+    try {
+        // Get the access token from local storage
+        const token = getAccessToken();
+        
+        // Make a GET request to the API to get the audio link of a song
+        const response = await axios.patch(`${API_BASE_URL}/api/songs/${id}/`, data, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        
+        // Return the audio link of the song
+        return response.data;
+    } catch (error) {
+        // Log the error and throw it again to handle it in the caller function
+        console.error('Error changing playability:', error);
+        throw error;
+    }
+  };
 
 
 // SIGNUP / LOGIN API CALLS

@@ -3,7 +3,7 @@ import styles from './GamePopup.module.css'; // Define your styles here
 import ShareButton from './ShareButton';
 import { motion } from "framer-motion"
 
-export default function GamePopup({ guessesTaken, correctTitle, correctArtist, handleNextBtn }) {
+export default function GamePopup({ guessesTaken, correctTitle, correctArtist, handleNextBtn, timetoguess }) {
   if (correctTitle.length > 2) {
     return (
         <div className={styles.container}>
@@ -20,7 +20,7 @@ export default function GamePopup({ guessesTaken, correctTitle, correctArtist, h
                 <p>{correctArtist}</p>
                 <div className={styles.buttonWrapper}>
                   <motion.button className={styles.button} onClick={handleNextBtn} whileTap={{scale: 0.9}} whileHover={{scale: 1.05}}>Next</motion.button>
-                  <ShareButton />
+                  <ShareButton title={correctTitle} timetoguess={timetoguess} />
                 </div>
             </motion.div>
         </div>

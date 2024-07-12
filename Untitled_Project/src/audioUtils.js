@@ -36,8 +36,6 @@ export const playSnippet = (audioRef, songUrl, snippetDuration, setProgress, gue
     const currentTime = audioRef.current.currentTime;
     const progressPercentage = ((6-guessCounter) / 5 ) * 100;
     setProgress(progressPercentage);
-    console.log(currentTime);
-
     if (currentTime >= snippetDuration) {
       audioRef.current.pause();
       clearInterval(intervalRef.current);
@@ -58,7 +56,6 @@ export const playSnippet = (audioRef, songUrl, snippetDuration, setProgress, gue
     audioRef.current.src = '';
     clearInterval(intervalRef.current);
     setProgress(0);
-    console.log("TIMEOUT");
   }, snippetDuration * 1000);
 };
 

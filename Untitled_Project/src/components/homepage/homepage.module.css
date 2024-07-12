@@ -13,22 +13,53 @@
 
 .content{
     flex-grow: 1;
+    display: flex;    
 }
 .navbar{
-    
-    
-    align-items: right;
+    display: flex;
+    border: 5px solid black;   
+    align-items: left;
 }
 .row{
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    border: 10px solid black;
-    
-    padding: 20px;
-    flex-wrap: wrap;
     align-content: space-evenly;
+    align-self: center;
+    border: 10px solid black;
+    justify-self: center;
+    padding: 20px;
+
 }
 .col{
     flex-basis: 50%;
+}
+.cards{
+    display: flex; 
+    border: 10px solid black;
+    align-content: center;
+    justify-content: center;
+    align-self: center;
+    flex-direction: column;
+ 
+}
+
+
+
+.maintitleheader{
+    color: aliceblue
+}
+.mainparagraph{
+    color:aliceblue
+}
+
+
+@media(max-width:767px){
+    .guesses{
+        font-size: .5rem;
+    }
+
+    .score{
+        font-size: .5rem;
+    }
 }
