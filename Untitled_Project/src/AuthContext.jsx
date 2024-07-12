@@ -11,7 +11,7 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     const checkTokenValidity = async () => {
       const token = await getAccessToken();
-      setIsLoggedIn(!token);
+      setIsLoggedIn(!!token);
     };
 
     // Initial check on component mount
