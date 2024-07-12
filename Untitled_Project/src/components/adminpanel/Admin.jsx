@@ -6,8 +6,10 @@ import Footer from '../Footer';
 import styles from './Admin.module.css';
 import { addSong, getAudioLink, getAllSongs, switchPlayability } from '../../api';
 import { motion } from "framer-motion";
+import DOMPurify from 'dompurify';
+
 export default function Admin() {
-  
+
   // State for holding song details
   const [songData, setSongData] = useState({
     title: '',
@@ -36,14 +38,20 @@ export default function Admin() {
     };
 
     fetchAllSongs();
-}, []);
+  }, []);
 
-
+  const sanitizeInput = (input) => DOMPurify.sanitize(input);
 
   const handleAddSong = async (e) => {
     e.preventDefault();
+    const sanitizedSongData = {
+      title: sanitizeInput(songData.title),
+      artist: sanitizeInput(songData.artist),
+      link: sanitizeInput(songData.link),
+      isPlayable: songData.isPlayable,
+    };
     try {
-      await addSong(songData.title, songData.artist, songData.link, songData.isPlayable);
+      await addSong(sanitizedSongData.title, sanitizedSongData.artist, sanitizedSongData.link, sanitizedSongData.isPlayable);
       toast.success('Song added successfully!', { toastId: 'success-add' });
     } catch (error) {
       // Alert Admin of error, print error to console
@@ -55,7 +63,8 @@ export default function Admin() {
   const handleGetLink = async (e) => {
     e.preventDefault();
     try {
-      const audioSource = await getAudioLink(spotifyLink);
+      const sanitizedSpotifyLink = sanitizeInput(spotifyLink);
+      const audioSource = await getAudioLink(sanitizedSpotifyLink);
       setPlaylink(audioSource);
       toast.success('Link retrieved successfully!', { toastId: 'success-get' });
     } catch (error) {
@@ -78,7 +87,6 @@ export default function Admin() {
       console.error("Error details:", error); 
     }
   };
-  
 
   return (
     <div className={styles.Admin}>
@@ -93,7 +101,7 @@ export default function Admin() {
             placeholder="Enter song title"
             name="title" 
             value={songData.title}
-            onChange={(e) => setSongData({ ...songData, title: e.target.value })} 
+            onChange={(e) => setSongData({ ...songData, title: sanitizeInput(e.target.value) })} 
           />
           <input
             type="text"
@@ -101,7 +109,7 @@ export default function Admin() {
             placeholder="Enter artist name"
             name="artist" 
             value={songData.artist}
-            onChange={(e) => setSongData({ ...songData, artist: e.target.value })} 
+            onChange={(e) => setSongData({ ...songData, artist: sanitizeInput(e.target.value) })} 
           />
           <input
             type="url"
@@ -109,7 +117,7 @@ export default function Admin() {
             placeholder="Link"
             name="link" 
             value={songData.link}
-            onChange={(e) => setSongData({ ...songData, link: e.target.value })} 
+            onChange={(e) => setSongData({ ...songData, link: sanitizeInput(e.target.value) })} 
           />
           <div>
             <label className={styles.label}>Playable?</label>
@@ -133,7 +141,7 @@ export default function Admin() {
             className={styles.input}
             placeholder="Enter Spotify link"
             value={spotifyLink}
-            onChange={(e) => setSpotifyLink(e.target.value)}
+            onChange={(e) => setSpotifyLink(sanitizeInput(e.target.value))}
           />
           <motion.button type="submit" className={styles.button} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.9 }}>Get Link</motion.button>
           <p className={styles.label}>Link: {playlink}</p>

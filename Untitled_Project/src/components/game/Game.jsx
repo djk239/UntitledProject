@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styles from './Game.module.css';
 import axios from 'axios';
+import DOMPurify from 'dompurify';
 import { AnimatePresence,motion } from "framer-motion"
 import { fetchAccessToken, fetchClip, fetchSuggestions, getAccessToken } from '../../api';
 import { playFull, playSnippet } from '../../audioUtils';
@@ -33,6 +34,8 @@ export default function Game() {
   const audioRef = useRef(null);
   const intervalRef = useRef(null);
   const timeoutRef = useRef(null);
+
+  const sanitizeInput = (input) => DOMPurify.sanitize(input);
 
   // Triggered when the component mounts
   useEffect(() => {
@@ -93,8 +96,8 @@ export default function Game() {
       // Get the access token and send a POST request to check the guess
       const token = await getAccessToken();
       const response = await axios.post('/choreo-apis/melodymystery/backend/v1/api/songs/check/', {
-        title: guess,
-        id: songID, 
+        title: sanitizeInput(guess),
+        id: sanitizeInput(songID), 
       }, {
         headers: {
           Authorization: `Bearer ${token}`,

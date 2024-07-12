@@ -1,4 +1,5 @@
 import { useState } from "react";
+import DOMPurify from 'dompurify';
 import styles from "./PopupMenu.module.css";
 import { login, signup } from "../api";
 import { motion } from "framer-motion";
@@ -6,7 +7,6 @@ import { useFormik } from 'formik';
 import { signupSchema } from "../schema/SignupSchema";
 import { loginSchema } from "../schema/LoginSchema";
 import { useAuth } from "../AuthContext";
-
 
 const popupVariants = {
     hidden: {
@@ -43,10 +43,12 @@ const formTransition = {
     ease: "easeInOut",
 };
 
-function PopupMenu({close} ) {
+function PopupMenu({close}) {
     const [isLoggingin, setisLoggingin] = useState(true);
     const { handleLog } = useAuth();
     const [loginError, setLoginError] = useState("");
+
+    const sanitizeInput = (input) => DOMPurify.sanitize(input);
 
     const loginFormik = useFormik({
         initialValues: {
@@ -55,8 +57,12 @@ function PopupMenu({close} ) {
         },
         validationSchema: loginSchema,
         onSubmit: async (values) => {
+            const sanitizedValues = {
+                username: sanitizeInput(values.username),
+                password: sanitizeInput(values.password),
+            };
             try {
-                const response = await login(values);
+                const response = await login(sanitizedValues);
                 console.log("Login successful:", response);
                 closeMenu();
                 handleLog();
@@ -76,8 +82,14 @@ function PopupMenu({close} ) {
         },
         validationSchema: signupSchema,
         onSubmit: async (values) => {
+            const sanitizedValues = {
+                email: sanitizeInput(values.email),
+                username: sanitizeInput(values.username),
+                password: sanitizeInput(values.password),
+                confirmPassword: sanitizeInput(values.confirmPassword),
+            };
             try {
-                const response = await signup(values);
+                const response = await signup(sanitizedValues);
                 console.log("Signup successful:", response);
                 closeMenu();
             } catch (error) {

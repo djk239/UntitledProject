@@ -1,13 +1,12 @@
 import axios from 'axios';
 import { jwtDecode } from "jwt-decode";
 
-const SPOTIFY_API_BASE_URL = 'https://api.spotify.com/v1';
-const CLIENT_ID = '92c197ccced844e0afb389001abc394b';
-const CLIENT_SECRET = 'b71745f784df4b2398557d04a71a7378';
-const TOKEN_ENDPOINT = 'https://accounts.spotify.com/api/token';
 
-//CUSTOM API ENDPOINT
-const API_BASE_URL = '/choreo-apis/melodymystery/backend/v1';
+const SPOTIFY_API_BASE_URL = import.meta.env.VITE_SPOTIFY_API_BASE_URL;
+const CLIENT_ID = import.meta.env.VITE_SPOTIFY_CLIENT_ID;
+const CLIENT_SECRET = import.meta.env.VITE_SPOTIFY_CLIENT_SECRET;
+const TOKEN_ENDPOINT = import.meta.env.VITE_SPOTIFY_TOKEN_ENDPOINT;
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 
 // SPOTIFY API CALLS
