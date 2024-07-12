@@ -14,3 +14,21 @@
 .content{
     flex-grow: 1;
 }
+.navbar{
+    
+    
+    align-items: right;
+}
+.row{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    border: 10px solid black;
+    
+    padding: 20px;
+    flex-wrap: wrap;
+    align-content: space-evenly;
+}
+.col{
+    flex-basis: 50%;
+}

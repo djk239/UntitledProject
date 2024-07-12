@@ -1,25 +1,24 @@
 import React from 'react';
-import styles from './homestyle.module.css';
 import HomeNav from './homenav';
-import style from './homepage.module.css';
+import styles from './homepage.module.css';
 import Homegamecard from './homegamecard';
 
 const HomePage = () => {
   return (
-    <div className= {style.App}>
+    <div className= {styles.App}>
 
-    <div className= {styles.container}>
+    {/* <div className= {styles.container}>
         <div className= {styles.transparentlogo}>
           <img src="./images/logo2.png" className= {styles.logo} alt="Logo" />
         </div>
-    </div>
+    </div> */}
       <div className= {styles.navbar}>
         <div>
           <HomeNav />
         </div>
       </div>
 
-      <div className= {style.content}>
+      <div className= {styles.content}>
 
       <div className= {styles.row}>
         <div className= {styles.col}>
@@ -28,7 +27,7 @@ const HomePage = () => {
           <button type="button" className= {styles.button}>Sign In</button>
         </div>
         
-        <div className={styles.col}>
+        <div>
           <Homegamecard />
         </div>
       </div>

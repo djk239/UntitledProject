@@ -23,11 +23,7 @@
    - 12% of the viewport height
    - Use flexbox for layout
    - Vertically center items */
-.navbar{
-    height: 12%;
-    display: flex;
-    align-items: right;
-}
+
 
 /* Styling for the logo 
    - Set width
@@ -47,14 +43,8 @@
 
 
 
-.row{
-    display: flex;
-    height: 88%;
-    align-items: center;
-}
-.col{
-    flex-basis: 50%;
-}
+
+
 .maintitleheader{
     color: aliceblue
 }

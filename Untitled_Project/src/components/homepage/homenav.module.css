@@ -5,6 +5,7 @@
 nav{
     flex: 1;
     text-align: right;
+    align-items: baseline;
 }
 
 /* Styling for navigation list items 
@@ -28,10 +29,10 @@ nav ul li a{
 }
 .topbutton{
     width: 180px;
-    color: #ffffff;
+    color: #000000;
     font-size: 15px;
     padding: 3px 0;
-    background: #39230f;
+    background:var(--primary-color);
     border: 0;
     border-radius: 20px;
     outline: none;
