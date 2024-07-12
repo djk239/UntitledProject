@@ -325,18 +325,8 @@ const isAccessTokenExpired = () => {
         throw new Error('No refresh token available');
       }
   
-      const credentials = `${CLIENT_ID}:${CLIENT_SECRET}`;
-      const encodedCredentials = btoa(credentials);
-  
       const response = await axios.post(
-        TOKEN_ENDPOINT,
-        'grant_type=refresh_token&refresh_token=' + refreshToken,
-        {
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            Authorization: `Basic ${encodedCredentials}`,
-          },
-        }
+        `${API_BASE_URL}/api/token/refresh/`, {refresh: refreshToken}
       );
   
       const { access, refresh } = response.data;
