@@ -47,6 +47,8 @@ function PopupMenu({close}) {
     const [isLoggingin, setisLoggingin] = useState(true);
     const { handleLog } = useAuth();
     const [loginError, setLoginError] = useState("");
+    const [signupError, setSignupError] = useState("");
+
 
     const sanitizeInput = (input) => DOMPurify.sanitize(input);
 
@@ -94,6 +96,7 @@ function PopupMenu({close}) {
                 closeMenu();
             } catch (error) {
                 console.log("Signup error:", error);
+                setSignupError("Username or email already in use.");
             }
         },
     });
@@ -207,13 +210,14 @@ function PopupMenu({close}) {
                                     className={`${styles.input} ${signupFormik.errors.confirmPassword && signupFormik.touched.confirmPassword ? styles.inputError : ''}`}
                                 />
                                 {signupFormik.errors.confirmPassword && signupFormik.touched.confirmPassword && <p className={styles.error}>{signupFormik.errors.confirmPassword}</p>}
+                                {signupError && <p className={styles.error}>{signupError}</p>}
                             </li>
                         </ul>
                     </div>
                 )}
                 <div className={styles.btnwrap}>
-                    <motion.button type="submit" className={styles.btn} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>{isLoggingin ? "Login" : "Sign Up"}</motion.button>
                     <motion.button type="button" className={styles.btn} onClick={switchMode} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>Switch</motion.button>
+                    <motion.button type="submit" className={styles.btn} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>{isLoggingin ? "Login" : "Sign Up"}</motion.button>
                 </div>
             </form>
         </motion.div>
