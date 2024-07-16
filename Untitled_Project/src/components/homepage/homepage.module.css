@@ -52,11 +52,9 @@
 
 @media(max-width:767px){
     .maintitleheader{
-        color:var(--off-white);
-        font-size: 1em;
+        display: none;
     }
     .mainparagraph{
-        color:var(--off-white);
-        font-size: .5em;
+        display: none;
     }
 }
