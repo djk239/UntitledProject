@@ -29,13 +29,15 @@ nav ul li a{
 }
 .topbutton{
     width: 180px;
-    color: #000000;
+    color:var(--off-white);
     font-size: 15px;
     padding: 3px 0;
-    background:var(--primary-color);
+    
+    background:var(--richblack);
     border: 0;
     border-radius: 20px;
     outline: none;
     margin-top: 3px;
     cursor: pointer;
+    opacity: 0.8;
 }

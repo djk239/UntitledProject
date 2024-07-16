@@ -17,49 +17,46 @@
 }
 .navbar{
     display: flex;
-    border: 5px solid black;   
+    /* border: 5px solid black;    */
     align-items: left;
 }
 .row{
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
-    align-content: space-evenly;
-    align-self: center;
-    border: 10px solid black;
-    justify-self: center;
-    padding: 20px;
+    padding: 1em;
+
+    
 
 }
 .col{
     flex-basis: 50%;
+  
 }
 .cards{
     display: flex; 
-    border: 10px solid black;
-    align-content: center;
-    justify-content: center;
-    align-self: center;
-    flex-direction: column;
+
  
 }
 
 
 
 .maintitleheader{
-    color: aliceblue
+    color:var(--off-white);
+    font-size: 8em;
 }
 .mainparagraph{
-    color:aliceblue
+    color:var(--off-white);
+    font-size: 1.5em;
 }
 
 
 @media(max-width:767px){
-    .guesses{
-        font-size: .5rem;
+    .maintitleheader{
+        color:var(--off-white);
+        font-size: 1em;
     }
-
-    .score{
-        font-size: .5rem;
+    .mainparagraph{
+        color:var(--off-white);
+        font-size: .5em;
     }
 }

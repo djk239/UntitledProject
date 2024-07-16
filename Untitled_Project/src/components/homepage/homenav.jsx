@@ -7,7 +7,7 @@ const HomeNav = () => {
         <nav>
         <ul>
         <Link to={'/melodymystery'}>
-        <li><button type="button" className= {styles.topbutton}>Melody Mystery</button></li>
+        <li><button type="button" className= {styles.topbutton}>Play Game</button></li>
         </Link>
         <Link to={'/about'}>
           <li><button type="button" className= {styles.topbutton}>About Us</button></li>

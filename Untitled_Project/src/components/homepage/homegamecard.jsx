@@ -16,6 +16,13 @@ const Homegamecard = () => {
         <div className={`${styles.card} ${styles.card4} ${styles.transparent4}`}>
             <h5>Coming Soon</h5>
         </div>
+        <div className={`${styles.card} ${styles.card5} ${styles.transparent5}`}>
+            <h5>Coming Soon</h5>
+        </div>
+        <div className={`${styles.card} ${styles.card6} ${styles.transparent6}`}>
+            <h5>Coming Soon</h5>
+        </div>
+        
     </div>
   )
 }

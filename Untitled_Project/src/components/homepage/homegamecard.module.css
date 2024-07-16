@@ -1,6 +1,8 @@
 .card{
-    width: 200px;
-    height: 230px;
+    /* width: 200px;
+    height: 230px; */
+    width: 11em;
+    height: 12em;
     display: inline-block;
     border-radius: 10px;
     padding: 15px 25px;
@@ -23,6 +25,13 @@
 .transparent4{
     opacity: 0.1;
 }
+.transparent5{
+    opacity: 0.1;
+}
+.transparent6{
+    opacity: 0.1;
+}
+
 .card1{
     background-image: url(images/MMpreview.png);
 }
@@ -35,6 +44,13 @@
 .card4{
     background-image: url(images/comingsoon.png);
 }
+.card5{
+    background-image: url(images/comingsoon.png);
+}
+.card6{
+    background-image: url(images/comingsoon.png);
+}
+
 .card:hover{
     transform: translateY(-10px);
 }
