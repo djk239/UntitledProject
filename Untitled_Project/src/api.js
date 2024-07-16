@@ -110,10 +110,7 @@ export const fetchSuggestions = async (query, accessToken) => {
  * - Throws an error if the API call fails.
  */
 export const fetchClip = async () => {
-  try {
-      // Get the access token from local storage
-      const token = await getAccessToken();
-      
+  try {      
       // Make a GET request to the API to fetch a random song clip
       const response = await axios.get(`${API_BASE_URL}/api/songs/random/`);
       
