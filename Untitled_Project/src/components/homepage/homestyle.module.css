@@ -1,0 +1,63 @@
+/* Reset margin and padding for all elements, and set the default font */
+
+
+/* Styling for the main container 
+   - Full width
+   - Full viewport height
+   - Gradient overlay and background image
+   - Center the background image
+   - Cover the entire container
+   - Padding on the left and right
+   - Include padding in element's total width and height */
+.container{
+    width: 90%;
+    height: 100vh;
+    background-position: center;
+    background-size: cover;
+    padding-left: 8%;
+    padding-right: 8%;
+    box-sizing: border-box;
+}
+
+/* Styling for the navigation bar 
+   - 12% of the viewport height
+   - Use flexbox for layout
+   - Vertically center items */
+
+
+/* Styling for the logo 
+   - Set width
+   - Change cursor to pointer on hover */
+.logo{
+    width: 40px;
+    border-radius: 100px;
+    cursor: pointer;
+    box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.7);
+    
+}
+.transparentlogo{
+    opacity: 0.7;
+    
+}
+
+
+
+
+
+
+
+
+.button{
+    width: 180px;
+    color: #000;
+    font-size: 12px;
+    padding: 12px 0;
+    background: #fff;
+    border: 0;
+    border-radius: 20px;
+    outline: none;
+    margin-top: 30px;
+    cursor: pointer;
+}
+
+

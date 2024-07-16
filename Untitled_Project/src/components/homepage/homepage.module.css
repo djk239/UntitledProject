@@ -1,0 +1,60 @@
+@import '../../vars.css';
+
+.App{
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient( var(--darkblue), var(--primary-color), var(--richblack));
+    width:  100vw;
+    height: 100vh;
+    overflow-x: hidden;
+    position: fixed;
+
+}
+
+.content{
+    flex-grow: 1;
+    display: flex;    
+}
+.navbar{
+    display: flex;
+    /* border: 5px solid black;    */
+    align-items: left;
+}
+.row{
+    display: flex;
+    align-items: center;
+    padding: 1em;
+
+    
+
+}
+.col{
+    flex-basis: 50%;
+  
+}
+.cards{
+    display: flex; 
+
+ 
+}
+
+
+
+.maintitleheader{
+    color:var(--off-white);
+    font-size: 8em;
+}
+.mainparagraph{
+    color:var(--off-white);
+    font-size: 1.5em;
+}
+
+
+@media(max-width:767px){
+    .maintitleheader{
+        display: none;
+    }
+    .mainparagraph{
+        display: none;
+    }
+}
