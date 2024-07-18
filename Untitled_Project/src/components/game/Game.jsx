@@ -3,7 +3,7 @@ import styles from './Game.module.css';
 import axios from 'axios';
 import DOMPurify from 'dompurify';
 import { AnimatePresence,motion } from "framer-motion"
-import { fetchAccessToken, fetchClip, fetchSuggestions, getAccessToken } from '../../api';
+import { fetchAccessToken, fetchClip, fetchGroup, fetchSuggestions, getAccessToken } from '../../api';
 import { playFull, playSnippet } from '../../audioUtils';
 import AutosuggestInput from './AutosuggestInput';
 import Trackprogress from './Trackprogress';
@@ -59,6 +59,11 @@ export default function Game() {
       correctArtist: '',
     });
     setProgress(0);
+  };
+
+  const fetchmygroup = async () => {
+    const groups = await fetchGroup();
+    return groups;
   };
 
   // Triggered when the score or isLoggedIn status changes
@@ -174,6 +179,7 @@ export default function Game() {
             />
         )}
       </AnimatePresence>
+      <button onClick={fetchmygroup}>clickkkk</button>
     </div>
   );
 }

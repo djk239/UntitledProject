@@ -426,3 +426,24 @@ export const fetchTopScores = async () => {
     }
   };
   
+  export const fetchGroup = async () => {
+    try {
+        // Get the access token from local storage
+        const token = await getAccessToken();
+        
+        // Make a GET request to the API to fetch player score
+        const response = await axios.get(`${API_BASE_URL}/api/user-groups/`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        
+        // Return the data of the fetched score
+        console.log(response.data);     
+        return response.data;
+    } catch (error) {
+        // Log the error and throw it again to handle it in the caller function
+        console.error('Error fetching data:', error);
+        throw error;
+    }
+  };
