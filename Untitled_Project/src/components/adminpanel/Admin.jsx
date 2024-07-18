@@ -4,11 +4,13 @@ import 'react-toastify/dist/ReactToastify.css';
 import Header from '../Header';
 import Footer from '../Footer';
 import styles from './Admin.module.css';
-import { addSong, getAudioLink, getAllSongs, switchPlayability } from '../../api';
+import { addSong, getAudioLink, getAllSongs, switchPlayability, fetchGroup } from '../../api';
 import { motion } from "framer-motion";
 import DOMPurify from 'dompurify';
 
 export default function Admin() {
+
+  const [isAdmin, setIsAdmin] = useState(false);
 
   // State for holding song details
   const [songData, setSongData] = useState({
@@ -26,19 +28,33 @@ export default function Admin() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchAllSongs = async () => {
-        try {
-            const allSongs = await getAllSongs();
-            setSongs(allSongs);
-            setError(null); // Clear any previous error
-        } catch (error) {
-            console.error(error);
-            setError(error.message || 'Failed to fetch songs.');
+    const checkAdminStatus = async () => {
+      try {
+        const groups = await fetchGroup();
+        if (groups.includes('Admin')) {
+          setIsAdmin(true);
+          fetchAllSongs(); // Fetch songs if user is admin
+        } else {
+          setIsAdmin(false);
         }
+      } catch (error) {
+        console.error('Error fetching user groups:', error);
+      }
     };
 
-    fetchAllSongs();
+    checkAdminStatus();
   }, []);
+
+  const fetchAllSongs = async () => {
+    try {
+      const allSongs = await getAllSongs();
+      setSongs(allSongs);
+      setError(null); // Clear any previous error
+    } catch (error) {
+      console.error(error);
+      setError(error.message || 'Failed to fetch songs.');
+    }
+  };
 
   const sanitizeInput = (input) => DOMPurify.sanitize(input);
 
@@ -87,6 +103,10 @@ export default function Admin() {
       console.error("Error details:", error); 
     }
   };
+
+  if(!isAdmin) {
+    return (<div>NOT AUTHORIZED</div>)
+    }
 
   return (
     <div className={styles.Admin}>

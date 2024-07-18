@@ -292,9 +292,6 @@ export const login = async (credentials) => {
       localStorage.setItem('accessToken', access);
       localStorage.setItem('refreshToken', refresh);
       localStorage.setItem('expTime', expTime);
-      const groups = await fetchGroup();
-      localStorage.setItem('groups', groups);
-      console.log(groups);
       
       // Return the data of the logged in user
       return response.data;
@@ -429,7 +426,7 @@ export const fetchTopScores = async () => {
         // Get the access token from local storage
         const token = await getAccessToken();
         
-        // Make a GET request to the API to fetch player score
+        // Make a GET request to the API to fetch player group
         const response = await axios.get(`${API_BASE_URL}/api/user-groups/`, {
             headers: {
                 Authorization: `Bearer ${token}`,
