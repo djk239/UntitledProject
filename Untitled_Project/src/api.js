@@ -287,15 +287,14 @@ export const login = async (credentials) => {
       const { access, refresh } = response.data;
 
       const decodedToken = jwtDecode(access);
-      const expTime = decodedToken.exp * 1000;
-      const userGroups = decodedToken.groups;
-      
+      const expTime = decodedToken.exp * 1000;     
       // Set the access token and refresh token in local storage
       localStorage.setItem('accessToken', access);
       localStorage.setItem('refreshToken', refresh);
       localStorage.setItem('expTime', expTime);
-      localStorage.setItem('userGroups', JSON.stringify(userGroups));
-      console.log(userGroups);
+      const groups = await fetchGroup();
+      localStorage.setItem('groups', groups);
+      console.log(groups);
       
       // Return the data of the logged in user
       return response.data;
@@ -338,7 +337,6 @@ const isAccessTokenExpired = () => {
       const expTime = decodedToken.exp * 1000;
       const userGroups = decodedToken.groups;
       localStorage.setItem('expTime', expTime);
-      localStorage.setItem('userGroups', JSON.stringify(userGroups));
   
       return access;
     } catch (error) {
