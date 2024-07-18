@@ -3,58 +3,121 @@
 .App{
     display: flex;
     flex-direction: column;
-    background: linear-gradient( var(--darkblue), var(--primary-color), var(--richblack));
+    background: radial-gradient(circle at bottom left, var(--richblack), #1e1e38, var(--richblack));
     width:  100vw;
-    height: 100vh;
+    min-height: 100vh;
     overflow-x: hidden;
-    position: fixed;
-
+    overflow-y: auto;
 }
 
 .content{
     flex-grow: 1;
     display: flex;    
 }
-.navbar{
-    display: flex;
-    /* border: 5px solid black;    */
-    align-items: left;
-}
-.row{
-    display: flex;
-    align-items: center;
-    padding: 1em;
 
+.title{
+    display: flex;
+    flex-direction: column;
+    color: var(--smokewhite);
+    margin-top: 3rem;
+    margin-left: 8rem;
+}
+
+.melody{
+    font-size: 4.5em;
+    margin-bottom: -15px;
+    text-shadow: -2px 5px 8px var(--richblack), var(--darkblue) 2px 7px;
+    font-family: 'Danfo', sans-serif; 
     
-
 }
-.col{
-    flex-basis: 50%;
-  
+.mystery{
+    font-size: 4em;
+    margin-top: 5px;
+    text-shadow: -2px 5px 8px var(--richblack), var(--darkblue) 2px 7px;
+    margin-left: 1em;
+    font-family: 'Danfo', sans-serif; 
+}
+
+.mainparagraph{
+    color:var(--smokewhite);
+    font-size: 1.5em;
+    max-width: 65vw;
+    font-family: "Alegreya Sans SC", sans-serif;
+    text-shadow: -4px 10px 10px var(--richblack);
+    font-size: x-large;
+}
+
+.cardcontainer{
+    display: flex; 
+    flex-direction: column;
+    margin-top: 10em;
+    margin-right: 15px;
+}
+.games{
+    color: var(--darkblue);
+    text-shadow: 0px 5px 4px var(--richblack);
+    font-family: "Alegreya Sans SC", sans-serif;
+    font-size: x-large;
+    margin-left: 1em;
 }
 .cards{
-    display: flex; 
-
- 
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
 }
 
-
-
-.maintitleheader{
-    color:var(--off-white);
-    font-size: 8em;
+.card{
+    width: 12em;
+    height: 12em;
+    display: inline-block;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 10px 15px;
+    background-size: cover;
+    opacity: 0.7;
 }
-.mainparagraph{
-    color:var(--off-white);
-    font-size: 1.5em;
+.transparent2{
+    opacity: 0.1;
 }
+
+.logo{
+    max-width: 88px;
+    max-height: 88px;
+    position: absolute;
+    margin-left: 3em;
+    cursor: pointer;
+  }
 
 
 @media(max-width:767px){
-    .maintitleheader{
-        display: none;
+    .content{
+        flex-direction: column;
     }
+
+    .title{
+        margin-top: 1rem;
+        margin-left: 1.2rem;
+    }
+    
+    .melody{
+        font-size: 2.5em;
+        text-shadow: -2px 5px 8px var(--richblack), var(--darkblue) 3px 8px;
+    }
+    .mystery{
+        font-size: 2em;
+        text-shadow: --2px 5px 8px var(--richblack), var(--darkblue) 3px 8px;
+    }
+    
     .mainparagraph{
-        display: none;
+        color:var(--smokewhite);
+        font-size: 1em;
+        max-width: 90vw;
     }
+    .cardcontainer{
+        display: flex; 
+        flex-direction: column;
+        margin-top: 2em;
+        align-content: center;
+    }
+
 }

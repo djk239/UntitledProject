@@ -3,9 +3,10 @@
    - Align text to the right */
 
 nav{
-    flex: 1;
     text-align: right;
     align-items: baseline;
+    margin-top: 1em;
+    margin-right: 1em;
 }
 
 /* Styling for navigation list items 
@@ -33,11 +34,10 @@ nav ul li a{
     font-size: 15px;
     padding: 3px 0;
     
-    background:var(--richblack);
+    background:var(--darkblue);
     border: 0;
-    border-radius: 20px;
+    border-radius: 10px;
     outline: none;
-    margin-top: 3px;
     cursor: pointer;
     opacity: 0.8;
 }

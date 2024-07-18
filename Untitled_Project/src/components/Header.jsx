@@ -34,7 +34,7 @@ const Header = () => {
 
   return (
     <>
-    <Link to="/melodymystery"><img className={styles.logo} src="/logo1.png"></img></Link>
+    <Link to="/"><motion.img className={styles.logo} src='/logo1.png' whileHover={{scale: 1.1}}></motion.img></Link>
       <h1 className={styles.title}>Melody Mystery</h1>
       <div className={styles.container}>
         <motion.div
