@@ -332,7 +332,6 @@ const isAccessTokenExpired = () => {
   
       const decodedToken = jwtDecode(access);
       const expTime = decodedToken.exp * 1000;
-      const userGroups = decodedToken.groups;
       localStorage.setItem('expTime', expTime);
   
       return access;
@@ -435,7 +434,7 @@ export const fetchTopScores = async () => {
         
         // Return the data of the fetched score
         console.log(response.data);     
-        return response.data;
+        return response.data.groups;
     } catch (error) {
         // Log the error and throw it again to handle it in the caller function
         console.error('Error fetching data:', error);

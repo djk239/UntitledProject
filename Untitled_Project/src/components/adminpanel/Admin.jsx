@@ -31,6 +31,7 @@ export default function Admin() {
     const checkAdminStatus = async () => {
       try {
         const groups = await fetchGroup();
+        console.log(groups);
         if (groups.includes('Admin')) {
           setIsAdmin(true);
           fetchAllSongs(); // Fetch songs if user is admin
