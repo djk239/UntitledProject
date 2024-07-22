@@ -5,7 +5,7 @@
     flex-direction: column;
     background: radial-gradient(circle at bottom left, var(--richblack), #1e1e38, var(--richblack));
     width:  100vw;
-    min-height: 100vh;
+    min-height: 110vh;
     overflow-x: hidden;
     overflow-y: auto;
 }
@@ -13,6 +13,7 @@
 .content{
     flex-grow: 1;
     display: flex;    
+    flex-direction: column; 
 }
 
 .title{
@@ -50,8 +51,8 @@
 .cardcontainer{
     display: flex; 
     flex-direction: column;
-    margin-top: 10em;
-    margin-right: 15px;
+    margin-top: 1em;
+    margin-left: 10em;
 }
 .games{
     color: var(--darkblue);
@@ -118,6 +119,7 @@
         flex-direction: column;
         margin-top: 2em;
         align-content: center;
+        margin-left: 0;
     }
 
 }

@@ -15,7 +15,7 @@ const HomePage = () => {
         <div className={styles.title}>
           <h1 className={styles.melody}>Melody</h1>
           <h1 className={styles.mystery}>Mystery</h1>
-        <p className= {styles.mainparagraph}>Welcome to Melody Mystery, the ultimate music guessing game! Test your music knowledge and see how well you know your favorite tunes. In this thrilling game, you'll be presented with short clips from a wide variety of songs. Your challenge is to guess the song title and artist as quickly as possible. The faster you guess correctly, the higher your score!</p>
+        <p className= {styles.mainparagraph}>The ultimate music guessing game! Test your music knowledge and see how well you know your favorite tunes. In this thrilling game, you'll be presented with short clips from a wide variety of songs. Your challenge is to guess the song title and artist as quickly as possible. The faster you guess correctly, the higher your score!</p>
         </div>
         <div className={styles.cardcontainer}>
           <h2 className={styles.games}>Games</h2>
