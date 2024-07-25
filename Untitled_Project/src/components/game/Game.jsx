@@ -13,6 +13,7 @@ import gameoversound from '/gameover.wav';
 
 // Predefined snippet lengths in seconds
 const snippetDurations = [0.5, 1, 2.5, 5, 10];
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 export default function Game() {
   // Initialize state variables
@@ -95,7 +96,7 @@ export default function Game() {
     try {
       // Get the access token and send a POST request to check the guess
       const token = await getAccessToken();
-      const response = await axios.post('/choreo-apis/melodymystery/backend/v1/api/songs/check/', {
+      const response = await axios.post(`${API_BASE_URL}/api/songs/check/`, {
         title: sanitizeInput(guess),
         id: sanitizeInput(songID), 
       }, {

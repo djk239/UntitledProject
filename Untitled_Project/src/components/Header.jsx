@@ -11,7 +11,7 @@ const Header = () => {
     setMenuOpen(!menuOpen);
   };
 
-  // Effect to lock/unlock scrolling
+  // Effect to lock/unlock scrolling when menu open
   useEffect(() => {
     if (menuOpen) {
       document.documentElement.style.overflow = 'hidden';
@@ -35,7 +35,7 @@ const Header = () => {
   return (
     <>
     <Link to="/"><motion.img className={styles.logo} src='/logo1.png' whileHover={{scale: 1.1}}></motion.img></Link>
-      <h1 className={styles.title}>Melody Mystery</h1>
+    <Link style={{ textDecoration: 'none', color: 'inherit' }} to="/"><h1 className={styles.title}>Melody Mystery</h1> </Link>
       <div className={styles.container}>
         <motion.div
           className={styles.hamburger}

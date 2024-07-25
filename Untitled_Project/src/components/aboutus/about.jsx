@@ -5,8 +5,31 @@ import { motion } from "framer-motion";
 import { Link } from 'react-router-dom';
 import Header from '../Header';
 
+const CONTACTURL = import.meta.env.VITE_CONTACTKEY;
 
 const AboutUs = () => {
+
+  const onSubmit = async (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+
+    formData.append("access_key", CONTACTURL);
+
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+      event.target.reset();
+    } else {
+      console.log("Error", data);
+    }
+  };
+
+
   return (
     <div className= {styles.App}>
       <Header />
@@ -23,12 +46,14 @@ const AboutUs = () => {
         </section>
         <section className={styles.contact}>
           <h1 className={styles.title}>Contact Us</h1>
-          <form className={styles.form}>
-            <input type="text" placeholder="Name" />
-            <input type="email" placeholder="Email" />
-            <input type="text" placeholder="Subject" />
-            <textarea placeholder="Message"></textarea>
-            <button type="submit">Submit</button>
+          <form onSubmit={onSubmit} className={styles.form}>
+            <label className={styles.label}>Name</label>
+            <input name="name" className={styles.input} type="text" placeholder="Enter your name" required/>
+            <label className={styles.label}>Email</label>
+            <input name="email" className={styles.input} type="email" placeholder="Enter your email" required/>
+            <label className={styles.label}>Message</label>
+            <textarea name="message" className={`${styles.messageInput} ${styles.input}`} placeholder="Message" required></textarea>
+            <button className={styles.button} type="submit">Send</button>
           </form>
         </section>
       </div>

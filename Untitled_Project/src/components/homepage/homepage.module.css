@@ -5,7 +5,7 @@
     flex-direction: column;
     background: radial-gradient(circle at bottom left, var(--richblack), #1e1e38, var(--richblack));
     width:  100vw;
-    min-height: 110vh;
+    min-height: 100vh;
     overflow-x: hidden;
     overflow-y: auto;
 }

@@ -3,7 +3,7 @@
 .App{
     display: flex;
     flex-direction: column;
-    background: radial-gradient(circle at bottom left, var(--richblack), #15151d, var(--richblack));
+    background: radial-gradient(circle at bottom left, var(--richblack), #161629, var(--richblack));
     width:  100vw;
     min-height: 100vh;
     overflow-x: hidden;

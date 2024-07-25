@@ -3,7 +3,7 @@
     flex-direction: column;
     background: radial-gradient(circle at bottom left, var(--richblack), #1e1e38, var(--richblack));
     width:  100vw;
-    min-height: 110vh;
+    min-height: 100vh;
     overflow-x: hidden;
     overflow-y: auto;
 }
@@ -30,13 +30,16 @@
     font-family: "Alegreya Sans SC", sans-serif;
     color: var(--lightblue);
     font-size: 2em;
-    text-shadow: 2px 5px 5px var(--darkblue), var(--richblack) 2px 8px;
+    text-shadow: 2px 3px 3px var(--richblack);
 
 }
 
 .paragraph{
+    margin-top: 10px;
     font-family: "Alegreya Sans SC", sans-serif;
     font-size: large;
+    text-shadow: 2px 3px 3px var(--richblack);
+
     
 }
 
@@ -59,4 +62,63 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
+    padding: 5%;
+}
+
+.label{
+    color: var(--lightblue);
+    font-family: "Alegreya Sans SC", sans-serif;
+    font-size: large;
+    font-weight: 500;
+    margin-left: 10px;
+    text-shadow: 2px 3px 3px var(--richblack);
+
+}
+
+.input{
+    min-width: 20vw;
+    height: 3vh;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 2px 3px 3px var(--richblack);
+
+}
+
+.messageInput{
+    height: 10vh;
+    resize: none;
+}
+
+.button{
+    background-color: var(--darkblue);
+    color: var(--smokewhite);
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 1rem;
+    text-shadow: 2px 3px 3px var(--richblack);
+    font-weight: 200;
+    font-size: large;
+    font-family: 'Danfo', sans-serif; 
+}
+
+@media(max-width:767px){
+
+    .content{
+        flex-direction: column;
+        align-items: center;
+        gap: 7em;
+    }
+
+    .contact{
+        margin-top: 0;
+    }
+
+    .input{
+        min-width: 50vw;
+        min-height: 5vh;
+    }
+
+    .form{
+        margin-bottom: 5em;
+    }
 }

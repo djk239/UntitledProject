@@ -3,7 +3,7 @@
 .container{
     display: flex;
     flex-direction: column;
-    background: radial-gradient(circle at bottom left, var(--richblack), #15151d, var(--richblack));
+    background: radial-gradient(circle at bottom left, var(--richblack), #161629, var(--richblack));
     width:  100vw;
     height: 100vh;
     overflow-x: hidden;
@@ -20,7 +20,7 @@
 .leaderboard{
     display: flex;
     flex-direction: column;
-    background: linear-gradient(45deg, var(--richblack), #191820, var(--richblack));
+    background: linear-gradient(45deg, var(--richblack), #1f1d2e, var(--richblack));
     border: #15151d 3px solid;
     box-shadow: -2px 2px 5px #19182096;
     max-width: 80vw;
