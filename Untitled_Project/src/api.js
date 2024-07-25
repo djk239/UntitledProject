@@ -2,11 +2,11 @@ import axios from 'axios';
 import { jwtDecode } from "jwt-decode";
 
 
-const SPOTIFY_API_BASE_URL = import.meta.env.VITE_SPOTIFY_API_BASE_URL;
-const CLIENT_ID = import.meta.env.VITE_SPOTIFY_CLIENT_ID;
-const CLIENT_SECRET = import.meta.env.VITE_SPOTIFY_CLIENT_SECRET;
-const TOKEN_ENDPOINT = import.meta.env.VITE_SPOTIFY_TOKEN_ENDPOINT;
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const SPOTIFY_API_BASE_URL = window.config.SPOTIFY_API_BASE_URL
+const CLIENT_ID = window.config.CLIENT_ID;
+const CLIENT_SECRET =  window.config.CLIENT_SECRET;
+const TOKEN_ENDPOINT =  window.config.TOKEN_ENDPOINT;
+const API_BASE_URL =  window.config.API_BASE_URL;
 
 
 // SPOTIFY API CALLS
