@@ -99,6 +99,7 @@ export default function Game() {
       const response = await axios.post(`${API_BASE_URL}/api/songs/check/`, {
         title: sanitizeInput(guess),
         id: sanitizeInput(songID), 
+        guesses: sanitizeInput(guessCounter),
       }, {
         headers: {
           Authorization: `Bearer ${token}`,
