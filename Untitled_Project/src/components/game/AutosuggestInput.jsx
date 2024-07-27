@@ -4,17 +4,22 @@ import autosuggestStyles from './Autosuggest.module.css';
 import styles from './Game.module.css';
 
 export default function AutosuggestInput({ guess, setGuess, suggestions, fetchSuggestions, onSuggestionSelected }) {
+
+  // Renders base input props
   const renderInputComponent = (inputProps) => (
     <input {...inputProps} className={styles.guess} placeholder="Enter song title" />
   );
 
+  // Fetches suggestions based on user's input.
   const onSuggestionsFetchRequested = ({ value }) => {
     fetchSuggestions(value);
   };
 
+  // Will clear the suggestions and reset placeholder.
   const onSuggestionsClearRequested = () => {
   };
 
+  // base input props (stored here for easy use)
   const inputProps = {
     value: guess,
     onChange: (e) => setGuess(e.target.value),

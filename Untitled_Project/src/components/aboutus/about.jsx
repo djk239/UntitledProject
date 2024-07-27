@@ -5,10 +5,12 @@ import { motion } from "framer-motion";
 import { Link } from 'react-router-dom';
 import Header from '../Header';
 
+// Web3Forms API Key stored in env (config.js on hosting)
 const CONTACTURL = import.meta.env.VITE_CONTACTKEY;
 
 const AboutUs = () => {
 
+  // basic onsubmit function as provided by web3forms documentation
   const onSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);

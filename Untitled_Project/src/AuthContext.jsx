@@ -1,13 +1,14 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import { getAccessToken, removeTokens } from './api';
 
-// Create the context
+// Create the context for auth
 const AuthContext = createContext();
 
-// Create a provider component
+// Create provider component
 export function AuthProvider({ children }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  // checks token on mount
   useEffect(() => {
     const checkTokenValidity = async () => {
       const token = await getAccessToken();
@@ -24,6 +25,7 @@ export function AuthProvider({ children }) {
     return () => clearInterval(interval);
   }, []);
 
+  // Functions to handle login/logout
   const handleLog = () => {
     setIsLoggedIn(true);
   };
@@ -40,7 +42,7 @@ export function AuthProvider({ children }) {
   );
 }
 
-// Create a custom hook to use the AuthContext
+// custom hook to use the AuthContext
 export function useAuth() {
   return useContext(AuthContext);
 }

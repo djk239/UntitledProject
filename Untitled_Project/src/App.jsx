@@ -3,16 +3,19 @@ import styles from './App.module.css'
 import Home from './components/homepage/homepage.jsx';
 import Admin from './components/adminpanel/Admin.jsx';
 import GamePage from './components/game/GamePage'
-import { getAccessToken, removeTokens } from './api'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Leaderboard from './components/leaderboard/Leaderboard.jsx';
 import AboutUs from './components/aboutus/about.jsx';
 import { AuthProvider } from './AuthContext.jsx';
 
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
+// Base url from env (config.js on hosting)
+const API_BASE_URL =  (window.config && window.config.API_BASE_URL) || import.meta.env.API_BASE_URL;
 
 function App() {
+
+  // Used to mount CSRF token to axios on mount
   useEffect(() => {
     const setUpAxiosCsrf = async () => {
       try {
@@ -26,6 +29,8 @@ function App() {
     setUpAxiosCsrf();
   }, []);
 
+
+  // Routes to pages
   return (
     <AuthProvider>
     <Router>

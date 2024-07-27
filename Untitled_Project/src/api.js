@@ -1,33 +1,36 @@
 import axios from 'axios';
 import { jwtDecode } from "jwt-decode";
 
+// Variables from env (config.js on hosting)
 
-const SPOTIFY_API_BASE_URL = window.config.SPOTIFY_API_BASE_URL
-const CLIENT_ID = window.config.CLIENT_ID;
-const CLIENT_SECRET =  window.config.CLIENT_SECRET;
-const TOKEN_ENDPOINT =  window.config.TOKEN_ENDPOINT;
-const API_BASE_URL =  window.config.API_BASE_URL;
+const SPOTIFY_API_BASE_URL = (window.config && window.config.SPOTIFY_API_BASE_URL) || import.meta.env.SPOTIFY_API_BASE_URL;
+const CLIENT_ID = (window.config && window.config.CLIENT_ID) || import.meta.env.CLIENT_ID;
+const CLIENT_SECRET =  (window.config && window.config.CLIENT_SECRET) || import.meta.env.CLIENT_SECRET;
+const TOKEN_ENDPOINT =  (window.config && window.config.TOKEN_ENDPOINT) || import.meta.env.TOKEN_ENDPOINT;
+const API_BASE_URL =  (window.config && window.config.API_BASE_URL) || import.meta.env.API_BASE_URL;
 
 
-// SPOTIFY API CALLS
+
+// SPOTIFY CALLS
 
 /**
- * Fetches an access token for the Spotify API.
+ * Fetches an access token from the Spotify API using client credentials.
  * 
  * Preconditions:
- * - The CLIENT_ID and CLIENT_SECRET constants are set to the correct Spotify API credentials.
+ * - `CLIENT_ID` and `CLIENT_SECRET` should be valid and correctly set.
+ * - `TOKEN_ENDPOINT` should be the correct URL for fetching the token.
  * 
  * Postconditions:
- * - Returns the access token as a string.
- * - Throws an error if the API call fails.
+ * - Returns the access token as a string if the request is successful.
+ * - Logs an error and throws it if the request fails.
+ * 
+ * @returns {Promise<string>} The access token.
  */
 export const fetchAccessToken = async () => {
   try {
-      // Create a string of the client ID and secret, and encode it using Base64
       const credentials = `${CLIENT_ID}:${CLIENT_SECRET}`;
       const encodedCredentials = btoa(credentials);
-      
-      // Make a POST request to the Spotify API to fetch an access token
+
       const response = await axios.post(
           TOKEN_ENDPOINT,
           'grant_type=client_credentials',
@@ -38,26 +41,30 @@ export const fetchAccessToken = async () => {
               },
           }
       );
-      
-      // Return the access token from the response data
+
       return response.data.access_token;
   } catch (error) {
-      // Log the error and throw it again to handle it in the caller function
       console.error('Error fetching access token:', error);
       throw error;
   }
 };
 
 /**
- * Fetches song suggestions from the Spotify API based on a query.
+ * Fetches song suggestions from the Spotify API based on a search query.
+ * 
+ * @param {string} query - The search query for fetching song suggestions.
+ * @param {string} accessToken - The access token for authorization with the Spotify API.
  * 
  * Preconditions:
- * - The query parameter is provided and is a non-empty string.
- * - The accessToken parameter is provided and is a valid Spotify API access token.
+ * - `query` should be a non-empty string.
+ * - `accessToken` should be a valid Spotify API access token.
  * 
  * Postconditions:
- * - Returns an array of objects, where each object contains the song title and the artist's name.
- * - Throws an error if the API call fails.
+ * - Returns an array of song suggestions if the request is successful.
+ * - Each suggestion includes the song title and artist(s).
+ * - Logs an error and throws it if the request fails.
+ * 
+ * @returns {Promise<Array<{title: string, artist: string}>>} An array of song suggestions.
  */
 export const fetchSuggestions = async (query, accessToken) => {
   try {
@@ -78,11 +85,9 @@ export const fetchSuggestions = async (query, accessToken) => {
               },
           }
       );
-      
-      // Get the response data
+
       const data = response.data; 
-      
-      // If the response data contains tracks, map the track items to objects with title and artist, and return the array
+
       if (data.tracks && data.tracks.items) {
           return data.tracks.items.map((item) => ({
               title: item.name,
@@ -90,95 +95,108 @@ export const fetchSuggestions = async (query, accessToken) => {
           }));
       }
   } catch (error) {
-      // Log the error and throw it again to handle it in the caller function
       console.error('Error fetching suggestions:', error);
       throw error;
   }
 };
 
-// CUSTOM API CALLS
+
+// CALLS TO BACKEND CUSTOM API
 
 /**
- * Fetches a random song clip from the API.
+ * Fetches song to be played in the game component.
+ * 
  * 
  * Preconditions:
- * - The user is logged in and has a valid access token.
- * - The API_BASE_URL is set to the correct backend URL.
+ * - None
  * 
  * Postconditions:
- * - Returns the data of the fetched song clip.
- * - Throws an error if the API call fails.
+ * - Returns a song url to be played and song ID for it to be checked agianst.
+ * 
  */
 export const fetchClip = async () => {
   try {      
-      // Make a GET request to the API to fetch a random song clip
+      
       const response = await axios.get(`${API_BASE_URL}/api/songs/random/`);
       
       // Return the data of the fetched song clip
       return response.data;
   } catch (error) {
-      // Log the error and throw it again to handle it in the caller function
+      
       console.error('Error fetching data:', error);
       throw error;
   }
 };
 
 /**
-* Adds a new song to the API.
-* 
-* Preconditions:
-* - The user is logged in and has a valid access token.
-* - The API_BASE_URL is set to the correct backend URL.
-* - The title, artist, link, and isPlayable parameters are provided.
-* 
-* Postconditions:
-* - Returns the data of the added song.
-* - Throws an error if the API call fails.
-*/
+ * Adds a new song to the database via the admin panel.
+ * 
+ * @param {string} title - The title of the song.
+ * @param {string} artist - The artist of the song.
+ * @param {string} link - The URL link to the song's audio.
+ * @param {boolean} isPlayable - Flag indicating whether the song is playable.
+ * 
+ * Preconditions:
+ * - `title` should be a non-empty string representing the song's title.
+ * - `artist` should be a non-empty string representing the song's artist.
+ * - `link` should be a valid URL string pointing to the song's audio.
+ * - `isPlayable` should be a boolean indicating if the song is playable.
+ * - `API_BASE_URL` should be correctly set to the API's base URL.
+ * - `getAccessToken` function should be defined and return a valid access token.
+ * 
+ * Postconditions:
+ * - Sends a POST request to add the song to the database.
+ * - Returns the response data if the request is successful.
+ * - Logs an error and throws it if the request fails.
+ * 
+ * @returns {Promise<object>} The response data from the API.
+ */
 export const addSong = async (title, artist, link, isPlayable) => {
-  try {
-      // Get the access token from local storage
-      const token = await getAccessToken();
-      
-      // Make a POST request to the API to add a new song
-      const response = await axios.post(`${API_BASE_URL}/api/songs/`, {
-          title,
-          artist,
-          audio_link: link,
-          isPlayable,
-      }, {
-          headers: {
-              Authorization: `Bearer ${token}`,
-          },
-      });
-      
-      // Return the data of the added song
-      return response.data;
-  } catch (error) {
-      // Log the error and throw it again to handle it in the caller function
-      console.error('Error adding song:', error);
-      throw error;
-  }
-};
+    try {
+        // Fetch access token
+        const token = await getAccessToken();
+  
+        // Send POST request to add the song
+        const response = await axios.post(`${API_BASE_URL}/api/songs/`, {
+            title,
+            artist,
+            audio_link: link,
+            isPlayable,
+        }, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+  
+        return response.data;
+    } catch (error) {
+        console.error('Error adding song:', error);
+        throw error;
+    }
+  };
+  
 
 /**
-* Gets the audio link of a song from the API.
-* 
-* Preconditions:
-* - The user is logged in and has a valid access token.
-* - The API_BASE_URL is set to the correct backend URL.
-* - The spotifyLink parameter is provided.
-* 
-* Postconditions:
-* - Returns the audio link of the song.
-* - Throws an error if the API call fails.
-*/
+ * Adds a new song to the database via the admin panel.
+ * 
+ * @param {string} spotifyLink - The Link to the song.
+ * 
+ * Preconditions:
+ * - `API_BASE_URL` should be correctly set to the API's base URL.
+ * - `spotifyLink` should be a non-empty string representing url to the song on spotify.
+ * - `getAccessToken` function should be defined and return a valid access token.
+ * 
+ * Postconditions:
+ * - Sends a Get request to use function in the backend.
+ * - Returns playable link if successful.
+ * - Logs an error and throws it if the request fails.
+ * 
+ * @returns {Promise<object>} The playable HTML link to the song.
+ */
 export const getAudioLink = async (spotifyLink) => {
   try {
-      // Get the access token from local storage
       const token = await getAccessToken();
       
-      // Make a GET request to the API to get the audio link of a song
       const response = await axios.get(`${API_BASE_URL}/api/getsource/`, {
           params: {
               spotify_url: spotifyLink,
@@ -188,120 +206,163 @@ export const getAudioLink = async (spotifyLink) => {
           },
       });
       
-      // Return the audio link of the song
       return response.data.audio_source;
   } catch (error) {
-      // Log the error and throw it again to handle it in the caller function
       console.error('Error getting link:', error);
       throw error;
   }
 };
 
+/**
+ * Retrieves all songs from the database.
+ * 
+ * Preconditions:
+ * - `API_BASE_URL` should be correctly set to the API's base URL.
+ * - `getAccessToken` function should be defined and return a valid access token.
+ * 
+ * Postconditions:
+ * - Sends a GET request to retrieve all songs from the database.
+ * - Returns the response data if the request is successful.
+ * - Logs an error and throws it if the request fails.
+ * 
+ * @returns {Promise<Array<object>>} The response data containing an array of song objects.
+ */
 export const getAllSongs = async () => {
     try {
-        // Get the access token from local storage
+        // Fetch access token
         const token = await getAccessToken();
         
-        // Make a GET request to the API to get the audio link of a song
+        // Send GET request to retrieve all songs
         const response = await axios.get(`${API_BASE_URL}/api/songs/`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
         });
         
-        // Return the audio link of the song
         return response.data;
     } catch (error) {
-        // Log the error and throw it again to handle it in the caller function
-        console.error('Error getting link:', error);
+        console.error('Error getting songs:', error);
         throw error;
     }
-  };
+};
 
-  export const switchPlayability = async (id, data) => {
+
+/**
+ * Changes the playability value of a song in the database.
+ * 
+ * @param {string} id - The ID of the song to update.
+ * @param {object} data - The data to update the song with, typically containing the playability flag.
+ * 
+ * Preconditions:
+ * - `id` should be a valid song ID as a non-empty string.
+ * - `data` should be an object with the fields to update (e.g., { isPlayable: boolean }).
+ * - `API_BASE_URL` should be correctly set to the API's base URL.
+ * - `getAccessToken` function should be defined and return a valid access token.
+ * 
+ * Postconditions:
+ * - Sends a PATCH request to update the playability of the specified song.
+ * - Returns the response data if the request is successful.
+ * - Logs an error and throws it if the request fails.
+ * 
+ * @returns {Promise<object>} The response data from the API.
+ */
+export const switchPlayability = async (id, data) => {
     try {
-        // Get the access token from local storage
+        // Fetch access token
         const token = await getAccessToken();
-        
-        // Make a GET request to the API to get the audio link of a song
+
+        // Send PATCH request to update the song's playability
         const response = await axios.patch(`${API_BASE_URL}/api/songs/${id}/`, data, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
         });
-        
-        // Return the audio link of the song
+
         return response.data;
     } catch (error) {
-        // Log the error and throw it again to handle it in the caller function
         console.error('Error changing playability:', error);
         throw error;
     }
-  };
+};
 
 
-// SIGNUP / LOGIN API CALLS
 
 /**
-* Signs up a new user to the API.
-* 
-* Preconditions:
-* - The userInfo parameter is provided and contains the required user information.
-* - The API_BASE_URL is set to the correct backend URL.
-* 
-* Postconditions:
-* - Returns the data of the signed up user.
-* - Throws an error if the API call fails.
-*/
+ * Function to sign up a new user.
+ * 
+ * Preconditions:
+ * - The userInfo object must contain valid user details required for signing up.
+ * - API_BASE_URL should be defined and correctly pointing to the backend API.
+ * 
+ * Postconditions:
+ * - If successful, the response data from the server containing user details will be returned.
+ * - If an error occurs, the error response data will be thrown.
+ * 
+ * @param {Object} userInfo - An object containing user details for signup (e.g., username, email, password).
+ * @returns {Object} The response data from the signup API.
+ * @throws {Object} The error response data if the signup fails.
+ */
 export const signup = async (userInfo) => {
-  try {
-      // Make a POST request to the API to sign up a new user
-      const response = await axios.post(`${API_BASE_URL}/api/signup/`, userInfo);
-      
-      // Return the data of the signed up user
-      return response.data;
-  } catch (error) {
-      // Throw the error data to handle it in the caller function
-      throw error.response.data;
-  }
-};
+    try {
+        const response = await axios.post(`${API_BASE_URL}/api/signup/`, userInfo);
+        
+        return response.data;
+    } catch (error) {
+        throw error.response.data;
+    }
+  };
+  
+  /**
+   * Function to log in a user.
+   * 
+   * Preconditions:
+   * - The credentials object must contain valid user login details (e.g., username, password).
+   * - API_BASE_URL should be defined and correctly pointing to the backend API.
+   * - jwtDecode should be available for decoding JWT tokens.
+   * - localStorage should be available in the environment for storing tokens.
+   * 
+   * Postconditions:
+   * - If successful, the access and refresh tokens will be stored in localStorage.
+   * - The decoded token's expiration time will also be stored in localStorage.
+   * - The response data from the server containing tokens will be returned.
+   * - If an error occurs, the error response data will be thrown.
+   * 
+   * @param {Object} credentials - An object containing user login details (e.g., username, password).
+   * @returns {Object} The response data from the login API containing tokens.
+   * @throws {Object} The error response data if the login fails.
+   */
+  export const login = async (credentials) => {
+    try {
+        const response = await axios.post(`${API_BASE_URL}/api/login/`, credentials);
+        
+        const { access, refresh } = response.data;
+  
+        const decodedToken = jwtDecode(access);
+        const expTime = decodedToken.exp * 1000;     
+        localStorage.setItem('accessToken', access);
+        localStorage.setItem('refreshToken', refresh);
+        localStorage.setItem('expTime', expTime);
+        
+        return response.data;
+    } catch (error) {
+        throw error.response.data;
+    }
+  };
+  
 
 /**
-* Logs in a user to the API.
-* 
-* Preconditions:
-* - The credentials parameter is provided and contains the required login credentials.
-* - The API_BASE_URL is set to the correct backend URL.
-* 
-* Postconditions:
-* - Returns the data of the logged in user.
-* - Sets the access token and refresh token in local storage.
-* - Throws an error if the API call fails.
-*/
-export const login = async (credentials) => {
-  try {
-      // Make a POST request to the API to log in a user
-      const response = await axios.post(`${API_BASE_URL}/api/login/`, credentials);
-      
-      // Get the access token and refresh token from the response data
-      const { access, refresh } = response.data;
-
-      const decodedToken = jwtDecode(access);
-      const expTime = decodedToken.exp * 1000;     
-      // Set the access token and refresh token in local storage
-      localStorage.setItem('accessToken', access);
-      localStorage.setItem('refreshToken', refresh);
-      localStorage.setItem('expTime', expTime);
-      
-      // Return the data of the logged in user
-      return response.data;
-  } catch (error) {
-      // Throw the error data to handle it in the caller function
-      throw error.response.data;
-  }
-};
-
-// Function to check if access token is expired
+ * Function to check if the access token has expired.
+ * 
+ * Preconditions:
+ * - The expiration time of the access token should be stored in localStorage under the key 'expTime'.
+ * - localStorage should be available in the environment.
+ * 
+ * Postconditions:
+ * - Returns true if the access token is expired or no expiration time is found.
+ * - Returns false if the access token is still valid.
+ * 
+ * @returns {boolean} True if the access token is expired or not found, false otherwise.
+ */
 const isAccessTokenExpired = () => {
     const expirationTime = localStorage.getItem('expTime');
     if (!expirationTime) {
@@ -312,7 +373,24 @@ const isAccessTokenExpired = () => {
     return now > expirationTime; // Return true if current time is after expiration time
   };
   
-  // Function to refresh access token using refresh token
+  /**
+   * Function to refresh the access token using the refresh token.
+   * 
+   * Preconditions:
+   * - A valid refresh token should be stored in localStorage under the key 'refreshToken'.
+   * - API_BASE_URL should be defined and correctly pointing to the backend API.
+   * - jwtDecode should be available for decoding JWT tokens.
+   * - localStorage should be available in the environment for storing tokens.
+   * 
+   * Postconditions:
+   * - If successful, the new access and refresh tokens will be stored in localStorage.
+   * - The new expiration time of the access token will also be stored in localStorage.
+   * - The new access token will be returned.
+   * - If an error occurs, an error message will be logged and the error will be thrown.
+   * 
+   * @returns {string} The new access token.
+   * @throws {Error} If there is no refresh token available or the token refresh fails.
+   */
   export const refreshAccessToken = async () => {
     try {
       const refreshToken = localStorage.getItem('refreshToken');
@@ -341,7 +419,22 @@ const isAccessTokenExpired = () => {
     }
   };
   
-  // Modify getAccessToken to check and refresh token if expired
+  /**
+   * Function to get the access token.
+   * 
+   * Preconditions:
+   * - The access token and its expiration time should be stored in localStorage.
+   * - The refreshAccessToken function should be available for refreshing tokens.
+   * 
+   * Postconditions:
+   * - Returns the current access token if it is valid.
+   * - If the access token is expired or not available, attempts to refresh it.
+   * - If token refresh is successful, returns the new access token.
+   * - If token refresh fails, logs the error and throws it.
+   * 
+   * @returns {string} The access token.
+   * @throws {Error} If the token refresh fails.
+   */
   export const getAccessToken = async () => {
     let token = localStorage.getItem('accessToken');
     const expirationTime = localStorage.getItem('expTime');
@@ -359,85 +452,119 @@ const isAccessTokenExpired = () => {
     return token;
   };
   
+  /**
+   * Function to remove access and refresh tokens from localStorage.
+   * 
+   * Preconditions:
+   * - localStorage should be available in the environment.
+   * 
+   * Postconditions:
+   * - The access token, refresh token, and expiration time will be removed from localStorage.
+   */
+  export const removeTokens = () => {
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('refreshToken');
+    localStorage.removeItem('expTime');
+  };
+  
 
 /**
-* Removes the access token and refresh token from local storage.
-* 
-* Preconditions:
-* - The access token and refresh token are set in local storage.
-* 
-* Postconditions:
-* - The access token and refresh token are removed from local storage.
-*/
-export const removeTokens = () => {
-  localStorage.removeItem('accessToken');
-  localStorage.removeItem('refreshToken');
-  localStorage.removeItem('expTime');
-};
-
+ * Function to fetch the top scores from the server.
+ * 
+ * Preconditions:
+ * - The user must be authenticated and have a valid access token stored in localStorage.
+ * - The getAccessToken function should be available for retrieving the token.
+ * - API_BASE_URL should be defined and correctly pointing to the backend API.
+ * 
+ * Postconditions:
+ * - If successful, the response data containing the top scores will be returned.
+ * - If an error occurs, an error message will be logged and the error will be thrown.
+ * 
+ * @returns {Object} The response data containing the top scores.
+ * @throws {Error} If there is an issue with fetching the data.
+ */
 export const fetchTopScores = async () => {
     try {
-        // Get the access token from local storage
-        const token = await getAccessToken();
-        
-        // Make a GET request to the API to fetch 
-        const response = await axios.get(`${API_BASE_URL}/api/top-scores/`, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-        });
-        
-        
-        console.log(response.data);     
-        return response.data;
+      const token = await getAccessToken();
+      
+      const response = await axios.get(`${API_BASE_URL}/api/top-scores/`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      
+      console.log(response.data);     
+      return response.data;
     } catch (error) {
-        // Log the error and throw it again to handle it in the caller function
-        console.error('Error fetching data:', error);
-        throw error;
-    }
-  };
-
-
-  export const fetchMyScore = async () => {
-    try {
-        // Get the access token from local storage
-        const token = await getAccessToken();
-        
-        // Make a GET request to the API to fetch player score
-        const response = await axios.get(`${API_BASE_URL}/api/user-score/`, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-        });
-        
-        // Return the data of the fetched score
-        console.log(response.data);     
-        return response.data;
-    } catch (error) {
-        // Log the error and throw it again to handle it in the caller function
-        console.error('Error fetching data:', error);
-        throw error;
+      console.error('Error fetching data:', error);
+      throw error;
     }
   };
   
-  export const fetchGroup = async () => {
+  /**
+   * Function to fetch the current user's score from the server.
+   * 
+   * Preconditions:
+   * - The user must be authenticated and have a valid access token stored in localStorage.
+   * - The getAccessToken function should be available for retrieving the token.
+   * - API_BASE_URL should be defined and correctly pointing to the backend API.
+   * 
+   * Postconditions:
+   * - If successful, the response data containing the user's score will be returned.
+   * - If an error occurs, an error message will be logged and the error will be thrown.
+   * 
+   * @returns {Object} The response data containing the user's score.
+   * @throws {Error} If there is an issue with fetching the data.
+   */
+  export const fetchMyScore = async () => {
     try {
-        // Get the access token from local storage
-        const token = await getAccessToken();
-        
-        // Make a GET request to the API to fetch player group
-        const response = await axios.get(`${API_BASE_URL}/api/user-groups/`, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-        });
-        
-        // Return the data of the fetched score
-        console.log(response.data);     
-        return response.data.groups;
+      const token = await getAccessToken();
+      
+      const response = await axios.get(`${API_BASE_URL}/api/user-score/`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      
+      console.log(response.data);     
+      return response.data;
     } catch (error) {
-        // Log the error and throw it again to handle it in the caller function
-        console.error('Error fetching data:', error);
-        throw error;
+      console.error('Error fetching data:', error);
+      throw error;
     }
   };
+  
+  
+/**
+ * Function to fetch the user groups from the server.
+ * 
+ * Preconditions:
+ * - The user must be authenticated and have a valid access token stored in localStorage.
+ * - The getAccessToken function should be available for retrieving the token.
+ * - API_BASE_URL should be defined and correctly pointing to the backend API.
+ * 
+ * Postconditions:
+ * - If successful, the response data containing the user groups will be returned.
+ * - If an error occurs, an error message will be logged and the error will be thrown.
+ * 
+ * @returns {Array} The list of user groups retrieved from the API.
+ * @throws {Error} If there is an issue with fetching the data.
+ */
+export const fetchGroup = async () => {
+    try {
+      const token = await getAccessToken();
+      
+      const response = await axios.get(`${API_BASE_URL}/api/user-groups/`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      
+      console.log(response.data);     
+      return response.data.groups; // Assuming 'groups' is the key containing the list of user groups
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      throw error;
+    }
+  };
+  

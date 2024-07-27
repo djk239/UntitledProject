@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import styles from './Footer.module.css'
 import { Link } from 'react-router-dom'
 
+// URLS to social media accounts
 const instaUrl = "https://www.instagram.com/melody_mystery_/"
 const xUrl = "https://twitter.com/melody_mystery_"
 

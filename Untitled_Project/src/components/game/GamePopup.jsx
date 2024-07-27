@@ -4,6 +4,8 @@ import ShareButton from './ShareButton';
 import { motion } from "framer-motion"
 
 export default function GamePopup({ guessesTaken, correctTitle, correctArtist, handleNextBtn, timetoguess }) {
+
+  // Check if correctTitle is longer than 2 characters(IF A TITLE IS SET THEN THE GAME IS WON(incorrect will result in a null title)) and display correct popup. 
   if (correctTitle.length > 2) {
     return (
         <div className={styles.container}>
@@ -25,6 +27,7 @@ export default function GamePopup({ guessesTaken, correctTitle, correctArtist, h
             </motion.div>
         </div>
     );
+    // Otherwise display incorrect popup  
   } else {
     return (
         <div className={styles.container}>

@@ -6,10 +6,12 @@ const Trackprogress = ({ progress, duration, guessesRemaining }) => {
   const [activeTimes, setActiveTimes] = useState([]);
   const [internalProgress, setInternalProgress] = useState(progress);
 
+  // reset active times when guesses remaining changes (resets every guess but the next useeffect will repopulate with approatite durations based on duration(think of this as a fallback))
   useEffect(() => {
     setActiveTimes([]);
   }, [guessesRemaining]);
 
+  // Update active times based on duration time (add the duration to the active times array)
   useEffect(() => {
     const updatedActiveTimes = [];
 
@@ -22,6 +24,7 @@ const Trackprogress = ({ progress, duration, guessesRemaining }) => {
     setActiveTimes(prevTimes => [...prevTimes, ...updatedActiveTimes]);
   }, [duration]);
 
+  // Set internal progress based on progress prop 
   useEffect(() => {
     if (progress === 0) {
       setInternalProgress(0);
@@ -30,6 +33,7 @@ const Trackprogress = ({ progress, duration, guessesRemaining }) => {
     }
   }, [progress]);
 
+  // Animation variants
   const variants = {
     growing: {
       width: `${internalProgress}%`,
@@ -41,6 +45,7 @@ const Trackprogress = ({ progress, duration, guessesRemaining }) => {
     },
   };
 
+  // Utility function to get class name based on duration of the song being played. If a guess is made, the class name changes. 
   const getClassName = (expectedDuration) => {
     if (duration > expectedDuration) {
       return styles.incorrect;

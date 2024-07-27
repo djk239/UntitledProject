@@ -1,40 +1,39 @@
 /**
- * Plays an audio snippet for a predefined length of time based on the number of guesses remaining.
- *
+ * Plays a snippet of the audio from the provided song URL.
+ * 
+ * @param {object} audioRef - A React ref object containing the audio element.
+ * @param {string} songUrl - The URL of the song to play.
+ * @param {number} snippetDuration - The durations able to be played.
+ * @param {function} setProgress - Function to update the playback progress.
+ * @param {number} guessCounter - Counter that affects the snippet length and progress calculation.
+ * @param {object} intervalRef - A React ref object to store the interval ID.
+ * @param {object} timeoutRef - A React ref object to store the timeout ID.
+ * 
  * Preconditions:
- * - audioRef is a valid React reference to an audio element.
- * - songUrl is a valid URL of the audio snippet to be played.
- * - snippetDuration is a positive number representing the duration of the audio snippet in seconds.
- * - setProgress is a function that updates the progress of the audio playback.
- * - guessCounter is a non-negative integer representing the number of guesses remaining.
- *
+ * - `audioRef` should be a valid React ref object pointing to an HTMLAudioElement.
+ * - `songUrl` should be a valid URL string.
+ * - `snippetDuration` should be a list of positive numbers representing the durations in seconds.
+ * - `setProgress` should be a valid function to update progress.
+ * - `guessCounter` should be a number between 0 and 5.
+ * - `intervalRef` and `timeoutRef` should be valid React ref objects.
+ * 
  * Postconditions:
- * - The audio snippet is played for the specified duration.
- * - The audio playback is paused after the specified duration.
- * - The progress of the audio playback is updated at regular intervals.
- *
- * @param {Object} audioRef - A React reference to an audio element.
- * @param {string} songUrl - The URL of the audio snippet to be played.
- * @param {number} snippetDuration - The duration of the audio snippet in seconds.
- * @param {function} setProgress - A function that updates the progress of the audio playback.
- * @param {number} guessCounter - The number of guesses remaining.
+ * - The audio snippet will start playing and will stop after `snippetDuration` seconds or when `currentTime` reaches `snippetDuration`.
+ * - `setProgress` will be called periodically to update the playback progress.
+ * - Any previous interval or timeout will be cleared before setting new ones.
  */
-
 export const playSnippet = (audioRef, songUrl, snippetDuration, setProgress, guessCounter, intervalRef, timeoutRef) => {
+  // Set audio source and initial properties
   audioRef.current.src = songUrl;
   audioRef.current.currentTime = 0;
   audioRef.current.volume = 0.1;
   audioRef.current.play();
   setProgress(0);
 
-  /**
-   * The progress percentage is calculated based on the guess counter, increasing by 20% intervals.
-   * This interval function updates the progress of the audio playback every 100 milliseconds.
-   * It also checks if the current playback time has exceeded the snippet duration, and if so, pauses the playback and resets the progress.
-   */
+  // Set up interval to update progress and stop audio after snippet duration
   intervalRef.current = setInterval(() => {
     const currentTime = audioRef.current.currentTime;
-    const progressPercentage = ((6-guessCounter) / 5 ) * 100;
+    const progressPercentage = ((6 - guessCounter) / 5) * 100;
     setProgress(progressPercentage);
     if (currentTime >= snippetDuration) {
       audioRef.current.pause();
@@ -43,14 +42,10 @@ export const playSnippet = (audioRef, songUrl, snippetDuration, setProgress, gue
     }
   }, 100);
 
-  /**
-   * This timeout function ensures that the audio playback is paused and the progress is reset after the specified snippet duration.
-   * Sets src to empty, disabling lockscreen controls
-   * It also clears the interval function to prevent any further updates.
-   * The timeout is set to the snippet duration in milliseconds, ensuring that the playback is paused at the correct time.
-   */
+  // Clear any previous timeout
   clearTimeout(timeoutRef.current);
 
+  // Set up timeout to stop audio after snippet duration
   timeoutRef.current = setTimeout(() => {
     audioRef.current.pause();
     audioRef.current.src = '';
@@ -59,9 +54,23 @@ export const playSnippet = (audioRef, songUrl, snippetDuration, setProgress, gue
   }, snippetDuration * 1000);
 };
 
+/**
+ * Plays the full audio from the provided song URL.
+ * 
+ * @param {object} audioRef - A React ref object containing the audio element.
+ * @param {string} songUrl - The URL of the song to play.
+ * 
+ * Preconditions:
+ * - `audioRef` should be a valid React ref object pointing to an HTMLAudioElement.
+ * - `songUrl` should be a valid URL string.
+ * 
+ * Postconditions:
+ * - The full audio will start playing from the beginning.
+ */
 export const playFull = (audioRef, songUrl) => {
+  // Set audio source and initial properties
   audioRef.current.src = songUrl;
   audioRef.current.currentTime = 0;
   audioRef.current.volume = 0.1;
   audioRef.current.play();
-}
+};

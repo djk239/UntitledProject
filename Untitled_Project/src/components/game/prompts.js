@@ -1,3 +1,5 @@
+
+// Prompts for game. Appear on the main game page when the game is started. The game component will render a random one every render and after the game is over(round).
 export const prompts = [
     "Heard this one before?",
     "Sound familiar?",

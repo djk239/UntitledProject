@@ -1,8 +1,13 @@
 :root {
+  /* 
+  Previous colors do not use unless you feel the need to.
+  */
   --off-white: #eeebeb;
   --off-black: #070707;
   --soft-grey: #d6e6e2;
   --primary-color: #4caf50;
+
+  /* main colors for the website */
 
   --darkblue: #19647e;
   --lightblue: #28afb0;

@@ -6,9 +6,13 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../AuthContext';
 
 function Nav({close}) {
+  // State to toggle login/signup popup form. FALSE by default
   const [popupOpen, setPopupOpen] = useState(false);  
+
+  // Authentication hook for getting login state and login and logout functions
   const { isLoggedIn, handleLog, handleLogout } = useAuth();
 
+  // Function to toggle login/signup popup
   const popup = () => {
     setPopupOpen(!popupOpen);
   };

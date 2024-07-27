@@ -13,7 +13,7 @@ import gameoversound from '/gameover.wav';
 
 // Predefined snippet lengths in seconds
 const snippetDurations = [0.5, 1, 2.5, 5, 10];
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const API_BASE_URL =  (window.config && window.config.API_BASE_URL) || import.meta.env.API_BASE_URL;
 
 export default function Game() {
   // Initialize state variables

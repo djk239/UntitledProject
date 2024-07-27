@@ -1,5 +1,7 @@
 @import './vars.css';
 
+/* The following should be used by most if not all pages for styling */
+
 .App{
     display: flex;
     flex-direction: column;

@@ -8,6 +8,8 @@ import { signupSchema } from "../schema/SignupSchema";
 import { loginSchema } from "../schema/LoginSchema";
 import { useAuth } from "../AuthContext";
 
+
+// Variants for popup animation
 const popupVariants = {
     hidden: {
         opacity: 0,
@@ -37,6 +39,7 @@ const popupVariants = {
     },
 };
 
+// Transition for form animation
 const formTransition = {
     type: "tween",
     duration: 0.6,
@@ -44,37 +47,46 @@ const formTransition = {
 };
 
 function PopupMenu({close}) {
-    const [isLoggingin, setisLoggingin] = useState(true);
+    // State to toggle between login and signup modes
+    const [isLoggingin, setIsLoggingin] = useState(true);
+
+    // Authentication hook for getting login function
     const { handleLog } = useAuth();
+
+    // State to store login and signup error messages
     const [loginError, setLoginError] = useState("");
     const [signupError, setSignupError] = useState("");
 
-
+    // Utility function to sanitize input values
     const sanitizeInput = (input) => DOMPurify.sanitize(input);
 
+    // Formik instance for handling login form
     const loginFormik = useFormik({
         initialValues: {
             username: "",
             password: "",
         },
-        validationSchema: loginSchema,
+        validationSchema: loginSchema, // Schema for validating login form
         onSubmit: async (values) => {
+            // Sanitize input values before submission
             const sanitizedValues = {
                 username: sanitizeInput(values.username),
                 password: sanitizeInput(values.password),
             };
             try {
+                // Attempt to log in with sanitized values
                 const response = await login(sanitizedValues);
                 console.log("Login successful:", response);
-                closeMenu();
-                handleLog();
+                closeMenu(); // Close the popup on successful login
+                handleLog(); // Handle post-login logic
             } catch (error) {
                 console.log("Login error:", error);
-                setLoginError("Credentials do not match. Please try again.");
+                setLoginError("Credentials do not match. Please try again."); // Set error message on failure
             }
         },
     });
 
+    // Formik instance for handling signup form
     const signupFormik = useFormik({
         initialValues: {
             email: "",
@@ -82,8 +94,9 @@ function PopupMenu({close}) {
             password: "",
             confirmPassword: "",
         },
-        validationSchema: signupSchema,
+        validationSchema: signupSchema, // Schema for validating signup form
         onSubmit: async (values) => {
+            // Sanitize input values before submission
             const sanitizedValues = {
                 email: sanitizeInput(values.email),
                 username: sanitizeInput(values.username),
@@ -91,21 +104,24 @@ function PopupMenu({close}) {
                 confirmPassword: sanitizeInput(values.confirmPassword),
             };
             try {
+                // Attempt to sign up with sanitized values
                 const response = await signup(sanitizedValues);
                 console.log("Signup successful:", response);
-                closeMenu();
+                closeMenu(); // Close the popup on successful signup
             } catch (error) {
                 console.log("Signup error:", error);
-                setSignupError("Username or email already in use.");
+                setSignupError("Username or email already in use."); // Set error message on failure
             }
         },
     });
 
+    // Toggle between login and signup modes
     const switchMode = () => {
-        setisLoggingin(!isLoggingin);
-        setLoginError("");
+        setIsLoggingin(!isLoggingin);
+        setLoginError(""); // Clear login error when switching to signup
     };
 
+    // Close the popup menu
     const closeMenu = () => {
         close();
     };

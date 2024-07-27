@@ -11,7 +11,7 @@ const Header = () => {
     setMenuOpen(!menuOpen);
   };
 
-  // Effect to lock/unlock scrolling when menu open
+  // Effect to lock/unlock scrolling when menu open (mainly for mobile devices, may no longer be needed. kept as precaution)
   useEffect(() => {
     if (menuOpen) {
       document.documentElement.style.overflow = 'hidden';

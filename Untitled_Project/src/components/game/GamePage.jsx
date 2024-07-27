@@ -4,6 +4,7 @@ import Footer from '../Footer';
 import Game from './Game'
 import styles from './GamePage.module.css';
 
+//page to settup game component
 export default function GamePage() {
   return (
     <div className={styles.App}>
