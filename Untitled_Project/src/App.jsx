@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Leaderboard from './components/leaderboard/Leaderboard.jsx';
 import AboutUs from './components/aboutus/about.jsx';
 import { AuthProvider } from './AuthContext.jsx';
+import axios from 'axios';
 
 
 
