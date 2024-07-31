@@ -8,6 +8,7 @@ import Leaderboard from './components/leaderboard/Leaderboard.jsx';
 import AboutUs from './components/aboutus/about.jsx';
 import { AuthProvider } from './AuthContext.jsx';
 import axios from 'axios';
+import TermsPriv from './components/termspriv/TermsPriv.jsx';
 
 
 
@@ -41,8 +42,8 @@ function App() {
           <Route path="/admin" element={<Admin />} />
           <Route path="/leaderboards" element={<Leaderboard />} />
           <Route path="/melodymystery" element={<GamePage />}  />
-          <Route path="/terms" element={<AboutUs />}  />
-          <Route path="/privacy" element={<AboutUs />}  />
+          <Route path="/terms" element={<TermsPriv />}  />
+          <Route path="/privacy" element={<TermsPriv />}  />
 
         </Routes>
       </Router>

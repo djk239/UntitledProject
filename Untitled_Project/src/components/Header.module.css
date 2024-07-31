@@ -1,7 +1,6 @@
 @import '../vars.css';
 
 .title {
-    text-align: center; 
     margin-top: 1em; 
     font-family: 'Danfo', sans-serif; 
     color: var(--smokewhite);    
@@ -9,6 +8,15 @@
     border-radius: 5px; 
     text-shadow: var(--darkblue) 1px 4px;
     background-color: transparent;
+  }
+
+  .linkcontain{
+    display: flex;
+    justify-content: center;
+  }
+
+  .link{
+    width: max-content;
   }
   
   .container {

@@ -35,7 +35,9 @@ const Header = () => {
   return (
     <>
     <Link to="/"><motion.img className={styles.logo} src='/logo1.png' whileHover={{scale: 1.1}}></motion.img></Link>
-    <Link style={{ textDecoration: 'none', color: 'inherit' }} to="/"><h1 className={styles.title}>Melody Mystery</h1> </Link>
+    <div className={styles.linkcontain} >
+      <Link className={styles.link} style={{ textDecoration: 'none', color: 'inherit' }} to="/"><h1 className={styles.title}>Melody Mystery</h1> </Link>
+    </div>
       <div className={styles.container}>
         <motion.div
           className={styles.hamburger}

@@ -1,0 +1,45 @@
+@import '../../vars.css';
+
+.container{
+    display: flex;
+    flex-direction: column;
+    background: radial-gradient(circle at bottom left, var(--richblack), #161629, var(--richblack));
+    width:  100vw;
+    height: 100vh;
+    overflow-x: hidden;
+
+}
+
+.content{
+    margin-top: 3vh;
+    flex-grow: 1;
+    align-self: center;
+    max-width: 90vw;
+}
+
+.title{
+    margin-top: .5em;
+    padding: .5em;
+    text-shadow: var(--darkblue) 1px 2px 1px;
+    color: var(--smokewhite);
+    font-family: "Alegreya Sans SC", sans-serif;
+    font-size: x-large;
+}
+
+.listheader{
+    font-family: "Alegreya Sans SC", sans-serif;
+    font-size: large;
+    margin-top: .5em;
+    text-shadow: var(--richblack) 1px 3px 8px;
+    color: var(--smokewhite);
+    font-weight: 500;
+}
+
+.termsdesc{
+    font-family: "Alegreya Sans SC", sans-serif;
+    margin-top: .5em;
+    text-shadow: var(--richblack) 1px 3px 8px;
+    color: var(--smokewhite);
+    margin-left: 30px;
+    font-size: medium;
+}
