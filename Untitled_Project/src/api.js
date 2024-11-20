@@ -49,6 +49,10 @@ export const fetchAccessToken = async () => {
   }
 };
 
+let debounceTimeout;
+let lastQuery = '';
+let cachedSuggestions = null;
+
 /**
  * Fetches song suggestions from the Spotify API based on a search query.
  * 
@@ -66,12 +70,26 @@ export const fetchAccessToken = async () => {
  * 
  * @returns {Promise<Array<{title: string, artist: string}>>} An array of song suggestions.
  */
-export const fetchSuggestions = async (query, accessToken) => {
-  try {
-      // Make a GET request to the Spotify API to fetch song suggestions
-      const response = await axios.get(
-          `${SPOTIFY_API_BASE_URL}/search`,
-          {
+export const fetchSuggestions = async (query, accessToken, callback) => {
+  // Check if the query hasn't changed
+  if (query === lastQuery && cachedSuggestions) {
+      callback(null, cachedSuggestions);
+      return;
+  }
+
+  // Update the last query
+  lastQuery = query;
+
+  // Clear previous debounce timer
+  if (debounceTimeout) {
+      clearTimeout(debounceTimeout);
+  }
+
+  // Set up a new debounce timer
+  debounceTimeout = setTimeout(async () => {
+      try {
+          // Make the API request
+          const response = await axios.get(`${SPOTIFY_API_BASE_URL}/search`, {
               params: {
                   q: query,
                   type: 'track',
@@ -83,21 +101,25 @@ export const fetchSuggestions = async (query, accessToken) => {
               headers: {
                   Authorization: `Bearer ${accessToken}`,
               },
+          });
+
+          const data = response.data;
+
+          if (data.tracks && data.tracks.items) {
+              const suggestions = data.tracks.items.map((item) => ({
+                  title: item.name,
+                  artist: item.artists.map((artist) => artist.name).join(', '),
+              }));
+
+              // Cache the suggestions
+              cachedSuggestions = suggestions;
+              callback(null, suggestions);
           }
-      );
-
-      const data = response.data; 
-
-      if (data.tracks && data.tracks.items) {
-          return data.tracks.items.map((item) => ({
-              title: item.name,
-              artist: item.artists.map((artist) => artist.name).join(', '),
-          }));
+      } catch (error) {
+          console.error('Error fetching suggestions:', error);
+          callback(error, null);
       }
-  } catch (error) {
-      console.error('Error fetching suggestions:', error);
-      throw error;
-  }
+  }, 300); // Adjust debounce delay (e.g., 300ms) as needed
 };
 
 
