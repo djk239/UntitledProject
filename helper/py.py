@@ -5,8 +5,8 @@ import csv
 import time
 
 # Initialize Spotipy with your credentials
-SPOTIPY_CLIENT_ID = '72ae4656fbfb484b80cbb598eb7add21'
-SPOTIPY_CLIENT_SECRET = '338ebd6bb03e491caf8fbcda2a376d97'
+SPOTIPY_CLIENT_ID = ''
+SPOTIPY_CLIENT_SECRET = ''
 
 sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id=SPOTIPY_CLIENT_ID,
                                                            client_secret=SPOTIPY_CLIENT_SECRET))

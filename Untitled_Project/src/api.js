@@ -3,10 +3,10 @@ import { jwtDecode } from "jwt-decode";
 
 // Variables from env (config.js on hosting)
 
-const SPOTIFY_API_BASE_URL = (window.config && window.config.SPOTIFY_API_BASE_URL) || import.meta.env.SPOTIFY_API_BASE_URL;
-const CLIENT_ID = (window.config && window.config.CLIENT_ID) || import.meta.env.CLIENT_ID;
-const CLIENT_SECRET =  (window.config && window.config.CLIENT_SECRET) || import.meta.env.CLIENT_SECRET;
-const TOKEN_ENDPOINT =  (window.config && window.config.TOKEN_ENDPOINT) || import.meta.env.TOKEN_ENDPOINT;
+const SPOTIFY_API_BASE_URL = "https://api.spotify.com/v1";
+const CLIENT_ID = "72ae4656fbfb484b80cbb598eb7add21";
+const CLIENT_SECRET =  "338ebd6bb03e491caf8fbcda2a376d97";
+const TOKEN_ENDPOINT =  "https://accounts.spotify.com/api/token";
 const API_BASE_URL =  (window.config && window.config.API_BASE_URL) || import.meta.env.API_BASE_URL;
 
 
@@ -70,57 +70,60 @@ let cachedSuggestions = null;
  * 
  * @returns {Promise<Array<{title: string, artist: string}>>} An array of song suggestions.
  */
-export const fetchSuggestions = async (query, accessToken, callback) => {
-  // Check if the query hasn't changed
-  if (query === lastQuery && cachedSuggestions) {
-      callback(null, cachedSuggestions);
-      return;
-  }
+export const fetchSuggestions = (query, accessToken) => {
+    return new Promise((resolve, reject) => {
+        // Check if the query hasn't changed
+        if (query === lastQuery && cachedSuggestions) {
+            resolve(cachedSuggestions);
+            return;
+        }
 
-  // Update the last query
-  lastQuery = query;
+        // Update the last query
+        lastQuery = query;
 
-  // Clear previous debounce timer
-  if (debounceTimeout) {
-      clearTimeout(debounceTimeout);
-  }
+        // Clear previous debounce timer
+        if (debounceTimeout) {
+            clearTimeout(debounceTimeout);
+        }
 
-  // Set up a new debounce timer
-  debounceTimeout = setTimeout(async () => {
-      try {
-          // Make the API request
-          const response = await axios.get(`${SPOTIFY_API_BASE_URL}/search`, {
-              params: {
-                  q: query,
-                  type: 'track',
-                  market: 'US',
-                  limit: 5,
-                  offset: 0,
-                  include_external: 'audio',
-              },
-              headers: {
-                  Authorization: `Bearer ${accessToken}`,
-              },
-          });
+        // Set up a new debounce timer
+        debounceTimeout = setTimeout(async () => {
+            try {
+                // Make the API request
+                const response = await axios.get(`${SPOTIFY_API_BASE_URL}/search`, {
+                    params: {
+                        q: query,
+                        type: 'track',
+                        market: 'US',
+                        limit: 5,
+                        offset: 0,
+                        include_external: 'audio',
+                    },
+                    headers: {
+                        Authorization: `Bearer ${accessToken}`,
+                    },
+                });
 
-          const data = response.data;
+                const data = response.data;
 
-          if (data.tracks && data.tracks.items) {
-              const suggestions = data.tracks.items.map((item) => ({
-                  title: item.name,
-                  artist: item.artists.map((artist) => artist.name).join(', '),
-              }));
+                if (data.tracks && data.tracks.items) {
+                    const suggestions = data.tracks.items.map((item) => ({
+                        title: item.name,
+                        artist: item.artists.map((artist) => artist.name).join(', '),
+                    }));
 
-              // Cache the suggestions
-              cachedSuggestions = suggestions;
-              callback(null, suggestions);
-          }
-      } catch (error) {
-          console.error('Error fetching suggestions:', error);
-          callback(error, null);
-      }
-  }, 300); // Adjust debounce delay (e.g., 300ms) as needed
+                    // Cache the suggestions
+                    cachedSuggestions = suggestions;
+                    resolve(suggestions);
+                }
+            } catch (error) {
+                console.error('Error fetching suggestions:', error);
+                reject(error);
+            }
+        }, 300); // Adjust debounce delay (e.g., 300ms) as needed
+    });
 };
+
 
 
 // CALLS TO BACKEND CUSTOM API
