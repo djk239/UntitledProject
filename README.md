@@ -9,6 +9,8 @@ a limited amount of time.
 
 - **Melody Mystery**
 - **Leaderboards**
+- **Admin Panel**
+
 
 ## Developer usage
 
